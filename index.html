@@ -34,16 +34,92 @@
     }
     </script>
     
-    <canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+    <hr>
+    
+    <canvas id="myCanvas" width="400" height="300" style="border:1px solid #000000;">
     Your browser does not support the HTML5 canvas tag.</canvas>
 
     <script>
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    ctx.moveTo(0,0);
-    ctx.lineTo(200,100);
-    ctx.stroke();
+        var c = document.getElementById("myCanvas");
+        var f1,f2,f3,f4;
+        f1 = c.getContext("2d");
+        f1.fillStyle="#00AD51";
+        f2 = c.getContext("2d");
+        f2.fillStyle="#00AD51";
+        f3 = c.getContext("2d");
+        f3.fillStyle="#00AD51";
+        f4 = c.getContext("2d");
+        f4.fillStyle="#00AD51";
+        f1.fillRect(101,101,48,48);
+        f2.fillRect(151,101,48,48);
+        f3.fillRect(101,151,48,48);
+        f4.fillRect(151,151,48,48);
+        var u1,u2,u3,u4;
+        u1 = c.getContext("2d");
+        u2 = c.getContext("2d");
+        u3 = c.getContext("2d");
+        u4 = c.getContext("2d");
+        u1.rect(101,1,48,48);
+        u2.rect(151,1,48,48);
+        u3.rect(101,51,48,48);
+        u4.rect(151,51,48,48);
+        u1.stroke();
+        u2.stroke();
+        u3.stroke();
+        u4.stroke();
+        var l1,l2,l3,l4;
+        l1 = c.getContext("2d");
+        l1.fillStyle="#FE8707";
+        l2 = c.getContext("2d");
+        l2.fillStyle="#FE8707";
+        l3 = c.getContext("2d");
+        l3.fillStyle="#FE8707";
+        l4 = c.getContext("2d");
+        l4.fillStyle="#FE8707";
+        l1.fillRect(1,101,48,48);
+        l2.fillRect(51,101,48,48);
+        l3.fillRect(1,151,48,48);
+        l4.fillRect(51,151,48,48);
+        var d1,d2,d3,d4;
+        d1 = c.getContext("2d");
+        d1.fillStyle="#F4F501";
+        d2 = c.getContext("2d");
+        d2.fillStyle="#F4F501";
+        d3 = c.getContext("2d");
+        d3.fillStyle="#F4F501";
+        d4 = c.getContext("2d");
+        d4.fillStyle="#F4F501";
+        d1.fillRect(101,201,48,48);
+        d2.fillRect(151,201,48,48);
+        d3.fillRect(101,251,48,48);
+        d4.fillRect(151,251,48,48);
+        var r1,r2,r3,r4;
+        r1 = c.getContext("2d");
+        r1.fillStyle="#EF3E34";
+        r2 = c.getContext("2d");
+        r2.fillStyle="#EF3E34";
+        r3 = c.getContext("2d");
+        r3.fillStyle="#EF3E34";
+        r4 = c.getContext("2d");
+        r4.fillStyle="#EF3E34";
+        r1.fillRect(201,101,48,48);
+        r2.fillRect(251,101,48,48);
+        r3.fillRect(201,151,48,48);
+        r4.fillRect(251,151,48,48);
+        var b1,b2,b3,b4;
+        b1 = c.getContext("2d");
+        b1.fillStyle="#39B7EA";
+        b2 = c.getContext("2d");
+        b2.fillStyle="#39B7EA";
+        b3 = c.getContext("2d");
+        b3.fillStyle="#39B7EA";
+        b4 = c.getContext("2d");
+        b4.fillStyle="#39B7EA";
+        b1.fillRect(301,101,48,48);
+        b2.fillRect(351,101,48,48);
+        b3.fillRect(301,151,48,48);
+        b4.fillRect(351,151,48,48);
     </script>
-    
+
 </body>
 </html>
