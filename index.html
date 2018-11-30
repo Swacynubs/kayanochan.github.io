@@ -40,6 +40,16 @@
     Your browser does not support the HTML5 canvas tag.</canvas>
 
     <script>
+        function Sticker(side,pos,color){
+            this.side=side||0;
+            this.pos=pos||0;
+            this.color=color||'#000000';
+        }
+        Sticker.prototype.draw=function(s){
+            s.fillStyle=this.color;
+            var x,y;
+        }
+        
         var c = document.getElementById("myCanvas");
         var f1,f2,f3,f4;
         f1 = c.getContext("2d");
