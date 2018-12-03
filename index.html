@@ -9,6 +9,7 @@
         <script>
         color = ["#FFFFFF","#EF3E34","#00AD51",
                  "#F4F501","#FE8707","#39B7EA"];
+        hold = 0;
         </script>
     </head>
 <body>
@@ -39,6 +40,15 @@
     </script>
     
     <hr>
+    
+    <div id="hold">0</div>
+    
+    <script>
+    function holder(n) {
+        var x = document.getElementById("hold");
+        x.innerHTML = n;
+    }
+    </script>
     
     <canvas id="pocket" width="400" height="300">
     Your browser does not support the HTML5 canvas tag.</canvas>
@@ -294,7 +304,8 @@
         <rect x="1" y="351" width="48" height="48"
         style="fill:white;stroke:black;stroke-width:1;"/>
         <rect x="51" y="351" width="48" height="48"
-        style="fill:red;stroke:black;stroke-width:1;"/>
+        style="fill:red;stroke:black;stroke-width:1;"
+        onclick = "holder(1)"/>
         <rect x="101" y="351" width="48" height="48"
         style="fill:green;stroke:black;stroke-width:1;"/>
         <rect x="151" y="351" width="48" height="48"
