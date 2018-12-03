@@ -6,6 +6,10 @@
                 color: black;
             }
         </style>
+        <script>
+        color = ["#FFFFFF","#EF3E34","#00AD51",
+                 "#F4F501","#FE8707","#39B7EA"];
+        </script>
     </head>
 <body>
 
@@ -20,7 +24,7 @@
     
     <div class="counter">0</div>
     
-    <button onclick="increment()">おして</button>
+    <button onclick="increment()" id="myButton">おして</button>
     
     <script>
     function increment() {
@@ -36,85 +40,45 @@
     
     <hr>
     
-    <canvas id="myCanvas" width="400" height="300" style="border:1px solid #000000;">
+    <canvas id="pocket" width="400" height="300">
     Your browser does not support the HTML5 canvas tag.</canvas>
-    
-    <canvas id="canvas" width="400" height="300" style="border:1px solid #000000;">
-    Your browser does not support the HTML5 canvas tag.</canvas>
-    
-    <script src="pocket.js">
-    var c1 = document.getElementById("canvas");
-    var f1 = new Sticker(2, 0, "#00AD51");
-    drawSticker(c1,f1);
-    function drawSticker(c,sticker) {
-        var p;
-        p = c.getContext("2d");
-        p.fillStlye=sticker.color;
-        var x, y;
-        // U,R,F,D,L,B
-        switch(sticker.side) {
-            case 0:
-                x=101;
-                y=1;
-                break;
-            case 1:
-                x=201;
-                y=101;
-                break;
-            case 2:
-                x=101;
-                y=101;
-                break;
-            case 3:
-                x=101;
-                y=201;
-                break;
-            case 4:
-                x=1;
-                y=101;
-                break;
-            default:
-                x=301;
-                y=101;
-        }
-        switch(sticker.pos) {
-            case 1;
-                x+=50;
-                break;
-            case 2:
-                x+=50;
-                y+=50;
-                break;
-            case 3:
-                y+=50;
-                break;
-        }
-        p.fillRect(x,y,48,48);
-        p.rect(x,y,48,48);
-        p.stroke();
-    }
-    </script>
     
     <script>
-        var c = document.getElementById("myCanvas");
+        var c = document.getElementById("pocket");
         var f1,f2,f3,f4;
         f1 = c.getContext("2d");
-        f1.fillStyle="#00AD51";
+        f1.fillStyle = color[2];
         f2 = c.getContext("2d");
-        f2.fillStyle="#00AD51";
+        f2.fillStyle = color[2];
         f3 = c.getContext("2d");
-        f3.fillStyle="#00AD51";
+        f3.fillStyle = color[2];
         f4 = c.getContext("2d");
-        f4.fillStyle="#00AD51";
+        f4.fillStyle = color[2];
         f1.fillRect(101,101,48,48);
         f2.fillRect(151,101,48,48);
         f3.fillRect(101,151,48,48);
         f4.fillRect(151,151,48,48);
+        f1.rect(101,101,48,48);
+        f2.rect(151,101,48,48);
+        f3.rect(101,151,48,48);
+        f4.rect(151,151,48,48);
+        f1.stroke();
+        f2.stroke();
+        f3.stroke();
+        f4.stroke();
         var u1,u2,u3,u4;
         u1 = c.getContext("2d");
+        u1.fillStyle = color[0];
         u2 = c.getContext("2d");
+        u2.fillStyle = color[0];
         u3 = c.getContext("2d");
+        u3.fillStyle = color[0];
         u4 = c.getContext("2d");
+        u4.fillStyle = color[0];
+        u1.fillRect(101,1,48,48);
+        u2.fillRect(151,1,48,48);
+        u3.fillRect(101,51,48,48);
+        u4.fillRect(151,51,48,48);
         u1.rect(101,1,48,48);
         u2.rect(151,1,48,48);
         u3.rect(101,51,48,48);
@@ -125,57 +89,158 @@
         u4.stroke();
         var l1,l2,l3,l4;
         l1 = c.getContext("2d");
-        l1.fillStyle="#FE8707";
+        l1.fillStyle = color[4];
         l2 = c.getContext("2d");
-        l2.fillStyle="#FE8707";
+        l2.fillStyle = color[4];
         l3 = c.getContext("2d");
-        l3.fillStyle="#FE8707";
+        l3.fillStyle = color[4];
         l4 = c.getContext("2d");
-        l4.fillStyle="#FE8707";
+        l4.fillStyle = color[4];
         l1.fillRect(1,101,48,48);
         l2.fillRect(51,101,48,48);
         l3.fillRect(1,151,48,48);
         l4.fillRect(51,151,48,48);
+        l1.rect(1,101,48,48);
+        l2.rect(51,101,48,48);
+        l3.rect(1,151,48,48);
+        l4.rect(51,151,48,48);
+        l1.stroke();
+        l2.stroke();
+        l3.stroke();
+        l4.stroke();
         var d1,d2,d3,d4;
         d1 = c.getContext("2d");
-        d1.fillStyle="#F4F501";
+        d1.fillStyle = color[3];
         d2 = c.getContext("2d");
-        d2.fillStyle="#F4F501";
+        d2.fillStyle = color[3];
         d3 = c.getContext("2d");
-        d3.fillStyle="#F4F501";
+        d3.fillStyle = color[3];
         d4 = c.getContext("2d");
-        d4.fillStyle="#F4F501";
+        d4.fillStyle = color[3];
         d1.fillRect(101,201,48,48);
         d2.fillRect(151,201,48,48);
         d3.fillRect(101,251,48,48);
         d4.fillRect(151,251,48,48);
+        d1.rect(101,201,48,48);
+        d2.rect(151,201,48,48);
+        d3.rect(101,251,48,48);
+        d4.rect(151,251,48,48);
+        d1.stroke();
+        d2.stroke();
+        d3.stroke();
+        d4.stroke();
         var r1,r2,r3,r4;
         r1 = c.getContext("2d");
-        r1.fillStyle="#EF3E34";
+        r1.fillStyle = color[1];
         r2 = c.getContext("2d");
-        r2.fillStyle="#EF3E34";
+        r2.fillStyle = color[1];
         r3 = c.getContext("2d");
-        r3.fillStyle="#EF3E34";
+        r3.fillStyle = color[1];
         r4 = c.getContext("2d");
-        r4.fillStyle="#EF3E34";
+        r4.fillStyle = color[1];
         r1.fillRect(201,101,48,48);
         r2.fillRect(251,101,48,48);
         r3.fillRect(201,151,48,48);
         r4.fillRect(251,151,48,48);
+        r1.rect(201,101,48,48);
+        r2.rect(251,101,48,48);
+        r3.rect(201,151,48,48);
+        r4.rect(251,151,48,48);
+        r1.stroke();
+        r2.stroke();
+        r3.stroke();
+        r4.stroke();
         var b1,b2,b3,b4;
         b1 = c.getContext("2d");
-        b1.fillStyle="#39B7EA";
+        b1.fillStyle = color[5];
         b2 = c.getContext("2d");
-        b2.fillStyle="#39B7EA";
+        b2.fillStyle = color[5];
         b3 = c.getContext("2d");
-        b3.fillStyle="#39B7EA";
+        b3.fillStyle = color[5];
         b4 = c.getContext("2d");
-        b4.fillStyle="#39B7EA";
+        b4.fillStyle = color[5];
         b1.fillRect(301,101,48,48);
         b2.fillRect(351,101,48,48);
         b3.fillRect(301,151,48,48);
         b4.fillRect(351,151,48,48);
+        b1.rect(301,101,48,48);
+        b2.rect(351,101,48,48);
+        b3.rect(301,151,48,48);
+        b4.rect(351,151,48,48);
+        b1.stroke();
+        b2.stroke();
+        b3.stroke();
+        b4.stroke();
     </script>
+    
+    <canvas id="white" width="50" height="50" style="border:1px solid #000000;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+    <canvas id="red" width="50" height="50" style="border:1px solid #000000;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+    <script>
+        var c = document.getElementById("red");
+        var r;
+        r = c.getContext("2d");
+        r.fillStyle = color[1];
+        r.fillRect(0,0,50,50);
+        
+        document.getElementById("red").onclick = function() {red()};
+
+        function red() {
+            var c = document.getElementById("red"),
+                imgData = c.createImageData(50, 50),
+                i;
+            for (i = 0; i < imgData.data.length; i += 4) {
+                imgData.data[i] = 255;
+                imgData.data[i + 1] = 0;
+                imgData.data[i + 2] = 0;
+                imgData.data[i + 3] = 0;
+            }
+            c.putImageData(imgData, 10, 10);
+        }
+    </script>
+    <canvas id="green" width="50" height="50" style="border:1px solid #000000;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+    <script>
+        var c = document.getElementById("green");
+        var f;
+        f = c.getContext("2d");
+        f.fillStyle = color[2];
+        f.fillRect(0,0,50,50);
+    </script>
+    <canvas id="yellow" width="50" height="50" style="border:1px solid #000000;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+    <script>
+        var c = document.getElementById("yellow");
+        var d;
+        d = c.getContext("2d");
+        d.fillStyle = color[3];
+        d.fillRect(0,0,50,50);
+    </script>
+    <canvas id="orange" width="50" height="50" style="border:1px solid #000000;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+    <script>
+        var c = document.getElementById("orange");
+        var l;
+        l = c.getContext("2d");
+        l.fillStyle = color[4];
+        l.fillRect(0,0,50,50);
+    </script>
+    <canvas id="blue" width="50" height="50" style="border:1px solid #000000;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+    <script>
+        var c = document.getElementById("blue");
+        var b;
+        b = c.getContext("2d");
+        b.fillStyle = color[5];
+        b.fillRect(0,0,50,50);
+    </script>
+    
+    <svg width="400" height="400">
+        <rect x="50" y="20" width="150" height="150"
+        style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" />
+    Sorry, your browser does not support inline SVG.
+    </svg>
 
 </body>
 </html>
