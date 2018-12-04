@@ -7,8 +7,7 @@
             }
         </style>
         <script>
-        color = ["#FFFFFF","#EF3E34","#00AD51",
-                 "#F4F501","#FE8707","#39B7EA"];
+        color = ['white','red','green','yellow','orange','blue'];
         state = new Array(24);
         for (var i = 0; i < 6; i++) {
             for (var j = 0; j < 4; j++) {
@@ -53,92 +52,101 @@
     function holder(n) {
         var x = document.getElementById("hold");
         x.innerHTML = n;
+        hold=n;
+    }
+    </script>
+    
+    <script>
+    function setColor(pos, side) {
+        var x = document.getElementsByClassName("sticker");
+        x[pos].style.fill=color[side];
+        state[pos] = side;
     }
     </script>
     
     <svg width="400" height="400">
-        <rect x="101" y="1" width="48" height="48"
-        style="fill:white;stroke:black;stroke-width:1;"/>
-        <rect x="151" y="1" width="48" height="48"
-        style="fill:white;stroke:black;stroke-width:1;"/>
-        <rect x="151" y="51" width="48" height="48"
-        style="fill:white;stroke:black;stroke-width:1;"/>
-        <rect x="101" y="51" width="48" height="48"
-        style="fill:white;stroke:black;stroke-width:1;"/>
+        <style>
+            rect.sticker{
+                stroke: black;
+                stroke-width: 1;
+            }
+        </style>
         
-        <rect x="201" y="101" width="48" height="48"
-        style="fill:red;stroke:black;stroke-width:1;"/>
-        <rect x="251" y="101" width="48" height="48"
-        style="fill:red;stroke:black;stroke-width:1;"/>
-        <rect x="251" y="151" width="48" height="48"
-        style="fill:red;stroke:black;stroke-width:1;"/>
-        <rect x="201" y="151" width="48" height="48"
-        style="fill:red;stroke:black;stroke-width:1;"/>
+        <rect class="sticker" id="rect1" x="101" y="1" width=48 height=48 style="fill:white;"
+        onclick="setColor(0,hold)"/>
+        <rect class="sticker" x="151" y="1" width="48" height="48" style="fill:white;"
+        onclick="setColor(1,hold)"/>
+        <rect class="sticker" x="151" y="51" width="48" height="48" style="fill:white;"
+        onclick="setColor(2,hold)"/>
+        <rect class="sticker" x="101" y="51" width="48" height="48" style="fill:white;"
+        onclick="setColor(3,hold)"/>
         
-        <rect x="101" y="101" width="48" height="48"
-        style="fill:green;stroke:black;stroke-width:1;"/>
-        <rect x="151" y="101" width="48" height="48"
-        style="fill:green;stroke:black;stroke-width:1;"/>
-        <rect x="151" y="151" width="48" height="48"
-        style="fill:green;stroke:black;stroke-width:1;"/>
-        <rect x="101" y="151" width="48" height="48"
-        style="fill:green;stroke:black;stroke-width:1;"/>
+        <rect class="sticker" x="201" y="101" width="48" height="48" style="fill:red;"
+        onclick="setColor(4,hold)"/>
+        <rect class="sticker" x="251" y="101" width="48" height="48" style="fill:red;"
+        onclick="setColor(5,hold)"/>
+        <rect class="sticker" x="251" y="151" width="48" height="48" style="fill:red;"
+        onclick="setColor(6,hold)"/>
+        <rect class="sticker" x="201" y="151" width="48" height="48" style="fill:red;"
+        onclick="setColor(7,hold)"/>
         
-        <rect x="101" y="201" width="48" height="48"
-        style="fill:yellow;stroke:black;stroke-width:1;"/>
-        <rect x="151" y="201" width="48" height="48"
-        style="fill:yellow;stroke:black;stroke-width:1;"/>
-        <rect x="151" y="251" width="48" height="48"
-        style="fill:yellow;stroke:black;stroke-width:1;"/>
-        <rect x="101" y="251" width="48" height="48"
-        style="fill:yellow;stroke:black;stroke-width:1;"/>
+        <rect class="sticker" x="101" y="101" width="48" height="48" style="fill:green;"
+        onclick="setColor(8,hold)"/>
+        <rect class="sticker" x="151" y="101" width="48" height="48" style="fill:green;"
+        onclick="setColor(9,hold)"/>
+        <rect class="sticker" x="151" y="151" width="48" height="48" style="fill:green;"
+        onclick="setColor(10,hold)"/>
+        <rect class="sticker" x="101" y="151" width="48" height="48" style="fill:green;"
+        onclick="setColor(11,hold)"/>
         
-        <rect x="1" y="101" width="48" height="48"
-        style="fill:orange;stroke:black;stroke-width:1;"/>
-        <rect x="51" y="101" width="48" height="48"
-        style="fill:orange;stroke:black;stroke-width:1;"/>
-        <rect x="51" y="151" width="48" height="48"
-        style="fill:orange;stroke:black;stroke-width:1;"/>
-        <rect x="1" y="151" width="48" height="48"
-        style="fill:orange;stroke:black;stroke-width:1;"/>
+        <rect class="sticker" x="101" y="201" width="48" height="48" style="fill:yellow;"
+        onclick="setColor(12,hold)"/>
+        <rect class="sticker" x="151" y="201" width="48" height="48" style="fill:yellow;"
+        onclick="setColor(13,hold)"/>
+        <rect class="sticker" x="151" y="251" width="48" height="48" style="fill:yellow;"
+        onclick="setColor(14,hold)"/>
+        <rect class="sticker" x="101" y="251" width="48" height="48" style="fill:yellow;"
+        onclick="setColor(15,hold)"/>
         
-        <rect x="301" y="101" width="48" height="48"
-        style="fill:blue;stroke:black;stroke-width:1;"/>
-        <rect x="351" y="101" width="48" height="48"
-        style="fill:blue;stroke:black;stroke-width:1;"/>
-        <rect x="351" y="151" width="48" height="48"
-        style="fill:blue;stroke:black;stroke-width:1;"/>
-        <rect x="301" y="151" width="48" height="48"
-        style="fill:blue;stroke:black;stroke-width:1;"/>
+        <rect class="sticker" x="1" y="101" width="48" height="48" style="fill:orange;"
+        onclick="setColor(16,hold)"/>
+        <rect class="sticker" x="51" y="101" width="48" height="48" style="fill:orange;"
+        onclick="setColor(17,hold)"/>
+        <rect class="sticker" x="51" y="151" width="48" height="48" style="fill:orange;"
+        onclick="setColor(18,hold)"/>
+        <rect class="sticker" x="1" y="151" width="48" height="48" style="fill:orange;"
+        onclick="setColor(19,hold)"/>
         
-        <rect x="1" y="351" width="48" height="48"
-        style="fill:white;stroke:black;stroke-width:1;"
+        <rect class="sticker" x="301" y="101" width="48" height="48" style="fill:blue;"
+        onclick="setColor(20,hold)"/>
+        <rect class="sticker" x="351" y="101" width="48" height="48" style="fill:blue;"
+        onclick="setColor(21,hold)"/>
+        <rect class="sticker" x="351" y="151" width="48" height="48" style="fill:blue;"
+        onclick="setColor(22,hold)"/>
+        <rect class="sticker" x="301" y="151" width="48" height="48" style="fill:blue;"
+        onclick="setColor(23,hold)"/>
+        
+        <rect class="sticker" x="1" y="351" width="48" height="48"
+        style="fill:white;"
         onclick = "holder(0)"/>
-        <rect x="51" y="351" width="48" height="48"
-        style="fill:red;stroke:black;stroke-width:1;"
+        <rect class="sticker" x="51" y="351" width="48" height="48"
+        style="fill:red;"
         onclick = "holder(1)"/>
-        <rect x="101" y="351" width="48" height="48"
-        style="fill:green;stroke:black;stroke-width:1;"
+        <rect class="sticker" x="101" y="351" width="48" height="48"
+        style="fill:green;"
         onclick = "holder(2)"/>
-        <rect x="151" y="351" width="48" height="48"
-        style="fill:yellow;stroke:black;stroke-width:1;"
+        <rect class="sticker" x="151" y="351" width="48" height="48"
+        style="fill:yellow;"
         onclick = "holder(3)"/>
-        <rect x="201" y="351" width="48" height="48"
-        style="fill:orange;stroke:black;stroke-width:1;"
+        <rect class="sticker" x="201" y="351" width="48" height="48"
+        style="fill:orange;"
         onclick = "holder(4)"/>
-        <rect x="251" y="351" width="48" height="48"
-        style="fill:blue;stroke:black;stroke-width:1;"
+        <rect class="sticker" x="251" y="351" width="48" height="48"
+        style="fill:blue;"
         onclick = "holder(5)"/>
         
     Sorry, your browser does not support inline SVG.
     </svg>
-    
-    <script>
-    function setColor(int pos, int color) {
-        
-        
-    }
-    </script>
 
 </body>
 </html>
