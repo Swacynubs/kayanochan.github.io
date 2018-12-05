@@ -6,6 +6,12 @@
                 color: black;
             }
         </style>
+        <style>
+            rect.sticker{
+                stroke: black;
+                stroke-width: 1;
+            }
+        </style>
         <script>
         color = ['white','red','green','yellow','orange','blue'];
         state = new Array(24);
@@ -26,6 +32,7 @@
 
     <p style="text-align:center;" title="Coming soon..."><i>Coming soon... </i><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ/" target="_blank">In the meantime, you can use this</a></p>
     
+    <button onclick="pocketOn()">2x2</button>
     <hr>
     
     <script>
@@ -41,15 +48,14 @@
         x[pos].style.fill=color[side];
         state[pos] = side;
     }
+        
+    function pocketOn() {
+        var x = document.getElementById("pocket");
+        x.style.display = "block";
+    }
     </script>
     
-    <svg id="pocket" width="400" height="400">
-        <style>
-            rect.sticker{
-                stroke: black;
-                stroke-width: 1;
-            }
-        </style>
+    <svg id="pocket" width="400" height="400" style="display:none">
         
         <rect class="sticker" id="rect1" x="101" y="1" width=48 height=48 style="fill:white;"
         onclick="setColor(0,hold)"/>
@@ -104,23 +110,27 @@
         onclick="setColor(22,hold)"/>
         <rect class="sticker" x="301" y="151" width="48" height="48" style="fill:blue;"
         onclick="setColor(23,hold)"/>
-        
-        <rect class="sticker" x="1" y="351" width="48" height="48"
+    
+    Sorry, your browser does not support inline SVG.
+    </svg>
+    <hr>
+    <svg id="colorpicker" width="300" height="50">
+        <rect class="sticker" x="1" y="1" width="48" height="48"
         style="fill:white;"
         onclick = "holder(0)"/>
-        <rect class="sticker" x="51" y="351" width="48" height="48"
+        <rect class="sticker" x="51" y="1" width="48" height="48"
         style="fill:red;"
         onclick = "holder(1)"/>
-        <rect class="sticker" x="101" y="351" width="48" height="48"
+        <rect class="sticker" x="101" y="1" width="48" height="48"
         style="fill:green;"
         onclick = "holder(2)"/>
-        <rect class="sticker" x="151" y="351" width="48" height="48"
+        <rect class="sticker" x="151" y="1" width="48" height="48"
         style="fill:yellow;"
         onclick = "holder(3)"/>
-        <rect class="sticker" x="201" y="351" width="48" height="48"
+        <rect class="sticker" x="201" y="1" width="48" height="48"
         style="fill:orange;"
         onclick = "holder(4)"/>
-        <rect class="sticker" x="251" y="351" width="48" height="48"
+        <rect class="sticker" x="251" y="1" width="48" height="48"
         style="fill:blue;"
         onclick = "holder(5)"/>
         
