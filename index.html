@@ -2,25 +2,27 @@
 <html lang="en-US">
     <head>
         <style>
-            .counter {
-                color: black;
+            rect.sticker {
+                stroke: black;
+                stroke-width: 2;
             }
-        </style>
-        <style>
-            rect.sticker{
+            rect.sticker2 {
+                stroke: black;
+                stroke-width: 1;
+            }
+            rect.sticker3 {
+                stroke: black;
+                stroke-width: 1;
+            }
+            polygon.stickerpyra {
                 stroke: black;
                 stroke-width: 1;
             }
         </style>
         <script>
         color = ['white','red','green','yellow','orange','blue'];
-        state = new Array(24);
-        for (var i = 0; i < 6; i++) {
-            for (var j = 0; j < 4; j++) {
-                state[i*4+j] = i;
-            }
-        }
         hold = 0;
+        isHold = false;
         </script>
     </head>
 <body>
@@ -32,480 +34,250 @@
 
     <p style="text-align:center;" title="Coming soon..."><i>Coming soon... </i><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ/" target="_blank">In the meantime, you can use this</a></p>
     
-    <button onclick="pocketOn()">2x2</button>
-    <button onclick="cubeOn()">3x3</button>
+    <script src="javascript.js"></script>
+    
+    <button onclick="cube2On()">2x2</button>
+    <button onclick="cube3On()">3x3</button>
+    <button onclick="cubepyraOn()">Pyraminx</button>
+
     <hr>
     
-    <script>
-    function holder(n) {
-        var x = document.getElementById("hold");
-        hold = n;
-    }
-    </script>
-    
-    <script>
-    function setColor(pos, side) {
-        var x = document.getElementsByClassName("sticker");
-        x[pos].style.fill=color[side];
-        state[pos] = side;
-    }
+    <svg id="cube3" width="600" height="450">
         
-    function pocketOn() {
-        var x = document.getElementById("pocket");
-        x.style.display = "block";
-        var y = document.getElementById("3cube");
-        y.style.display = "none";
-    }
+        <rect class="sticker3" x="151" y="1" width=48 height=48 style="fill:white;"
+        onclick="setColor3(0)"/>
+        <rect class="sticker3" x="201" y="1" width=48 height=48 style="fill:white;"
+        onclick="setColor3(1)"/>
+        <rect class="sticker3" x="251" y="1" width=48 height=48 style="fill:white;"
+        onclick="setColor3(2)"/>
+        <rect class="sticker3" x="151" y="51" width=48 height=48 style="fill:white;"
+        onclick="setColor3(3)"/>
+        <rect class="sticker3" x="201" y="51" width=48 height=48 style="fill:white;"
+        onclick="setColor3(4)"/>
+        <rect class="sticker3" x="251" y="51" width=48 height=48 style="fill:white;"
+        onclick="setColor3(5)"/>
+        <rect class="sticker3" x="151" y="101" width=48 height=48 style="fill:white;"
+        onclick="setColor3(6)"/>
+        <rect class="sticker3" x="201" y="101" width=48 height=48 style="fill:white;"
+        onclick="setColor3(7)"/>
+        <rect class="sticker3" x="251" y="101" width=48 height=48 style="fill:white;"
+        onclick="setColor3(8)"/>
         
-    function cubeOn() {
-        var x = document.getElementById("3cube");
-        x.style.display = "block";
-        var y = document.getElementById("pocket");
-        y.style.display = "none";
-    }
-    </script>
-    
-    <svg id="3cube" width="600" height="450">
-    
+        <rect class="sticker3" x="301" y="151" width=48 height=48 style="fill:red;"
+        onclick="setColor3(9)"/>
+        <rect class="sticker3" x="351" y="151" width=48 height=48 style="fill:red;"
+        onclick="setColor3(10)"/>
+        <rect class="sticker3" x="401" y="151" width=48 height=48 style="fill:red;"
+        onclick="setColor3(11)"/>
+        <rect class="sticker3" x="301" y="201" width=48 height=48 style="fill:red;"
+        onclick="setColor3(12)"/>
+        <rect class="sticker3" x="351" y="201" width=48 height=48 style="fill:red;"
+        onclick="setColor3(13)"/>
+        <rect class="sticker3" x="401" y="201" width=48 height=48 style="fill:red;"
+        onclick="setColor3(14)"/>
+        <rect class="sticker3" x="301" y="251" width=48 height=48 style="fill:red;"
+        onclick="setColor3(15)"/>
+        <rect class="sticker3" x="351" y="251" width=48 height=48 style="fill:red;"
+        onclick="setColor3(16)"/>
+        <rect class="sticker3" x="401" y="251" width=48 height=48 style="fill:red;"
+        onclick="setColor3(17)"/>
+        
+        <rect class="sticker3" x="151" y="151" width=48 height=48 style="fill:green;"
+        onclick="setColor3(18)"/>
+        <rect class="sticker3" x="201" y="151" width=48 height=48 style="fill:green;"
+        onclick="setColor3(19)"/>
+        <rect class="sticker3" x="251" y="151" width=48 height=48 style="fill:green;"
+        onclick="setColor3(20)"/>
+        <rect class="sticker3" x="151" y="201" width=48 height=48 style="fill:green;"
+        onclick="setColor3(21)"/>
+        <rect class="sticker3" x="201" y="201" width=48 height=48 style="fill:green;"
+        onclick="setColor3(22)"/>
+        <rect class="sticker3" x="251" y="201" width=48 height=48 style="fill:green;"
+        onclick="setColor3(23)"/>
+        <rect class="sticker3" x="151" y="251" width=48 height=48 style="fill:green;"
+        onclick="setColor3(24)"/>
+        <rect class="sticker3" x="201" y="251" width=48 height=48 style="fill:green;"
+        onclick="setColor3(25)"/>
+        <rect class="sticker3" x="251" y="251" width=48 height=48 style="fill:green;"
+        onclick="setColor3(26)"/>
+        
+        <rect class="sticker3" x="151" y="301" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(27)"/>
+        <rect class="sticker3" x="201" y="301" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(28)"/>
+        <rect class="sticker3" x="251" y="301" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(29)"/>
+        <rect class="sticker3" x="151" y="351" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(30)"/>
+        <rect class="sticker3" x="201" y="351" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(31)"/>
+        <rect class="sticker3" x="251" y="351" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(32)"/>
+        <rect class="sticker3" x="151" y="401" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(33)"/>
+        <rect class="sticker3" x="201" y="401" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(34)"/>
+        <rect class="sticker3" x="251" y="401" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(35)"/>
+        
+        <rect class="sticker3" x="1" y="151" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(36)"/>
+        <rect class="sticker3" x="51" y="151" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(37)"/>
+        <rect class="sticker3" x="101" y="151" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(38)"/>
+        <rect class="sticker3" x="1" y="201" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(39)"/>
+        <rect class="sticker3" x="51" y="201" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(40)"/>
+        <rect class="sticker3" x="101" y="201" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(41)"/>
+        <rect class="sticker3" x="1" y="251" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(42)"/>
+        <rect class="sticker3" x="51" y="251" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(43)"/>
+        <rect class="sticker3" x="101" y="251" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(44)"/>
+        
+        <rect class="sticker3" x="451" y="151" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(45)"/>
+        <rect class="sticker3" x="501" y="151" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(46)"/>
+        <rect class="sticker3" x="551" y="151" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(47)"/>
+        <rect class="sticker3" x="451" y="201" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(48)"/>
+        <rect class="sticker3" x="501" y="201" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(49)"/>
+        <rect class="sticker3" x="551" y="201" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(50)"/>
+        <rect class="sticker3" x="451" y="251" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(51)"/>
+        <rect class="sticker3" x="501" y="251" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(52)"/>
+        <rect class="sticker3" x="551" y="251" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(53)"/>
+        
+    Sorry, your browser does not support inline SVG.
+        
     </svg>
     
-    <svg id="pocket" width="400" height="300" style="display:none">
+    <svg id="cube2" width="400" height="300" style="display:none">
         
-        <rect class="sticker" id="rect1" x="101" y="1" width=48 height=48 style="fill:white;"
-        onclick="setColor(0,hold)"/>
-        <rect class="sticker" x="151" y="1" width="48" height="48" style="fill:white;"
-        onclick="setColor(1,hold)"/>
-        <rect class="sticker" x="151" y="51" width="48" height="48" style="fill:white;"
-        onclick="setColor(2,hold)"/>
-        <rect class="sticker" x="101" y="51" width="48" height="48" style="fill:white;"
-        onclick="setColor(3,hold)"/>
+        <rect class="sticker2" x="101" y="1" width=48 height=48 style="fill:white;"
+        onclick="setColor2(0)"/>
+        <rect class="sticker2" x="151" y="1" width="48" height="48" style="fill:white;"
+        onclick="setColor2(1)"/>
+        <rect class="sticker2" x="151" y="51" width="48" height="48" style="fill:white;"
+        onclick="setColor2(2)"/>
+        <rect class="sticker2" x="101" y="51" width="48" height="48" style="fill:white;"
+        onclick="setColor2(3)"/>
         
-        <rect class="sticker" x="201" y="101" width="48" height="48" style="fill:red;"
-        onclick="setColor(4,hold)"/>
-        <rect class="sticker" x="251" y="101" width="48" height="48" style="fill:red;"
-        onclick="setColor(5,hold)"/>
-        <rect class="sticker" x="251" y="151" width="48" height="48" style="fill:red;"
-        onclick="setColor(6,hold)"/>
-        <rect class="sticker" x="201" y="151" width="48" height="48" style="fill:red;"
-        onclick="setColor(7,hold)"/>
+        <rect class="sticker2" x="201" y="101" width="48" height="48" style="fill:red;"
+        onclick="setColor2(4)"/>
+        <rect class="sticker2" x="251" y="101" width="48" height="48" style="fill:red;"
+        onclick="setColor2(5)"/>
+        <rect class="sticker2" x="251" y="151" width="48" height="48" style="fill:red;"
+        onclick="setColor2(6)"/>
+        <rect class="sticker2" x="201" y="151" width="48" height="48" style="fill:red;"
+        onclick="setColor2(7)"/>
         
-        <rect class="sticker" x="101" y="101" width="48" height="48" style="fill:green;"
-        onclick="setColor(8,hold)"/>
-        <rect class="sticker" x="151" y="101" width="48" height="48" style="fill:green;"
-        onclick="setColor(9,hold)"/>
-        <rect class="sticker" x="151" y="151" width="48" height="48" style="fill:green;"
-        onclick="setColor(10,hold)"/>
-        <rect class="sticker" x="101" y="151" width="48" height="48" style="fill:green;"
-        onclick="setColor(11,hold)"/>
+        <rect class="sticker2" x="101" y="101" width="48" height="48" style="fill:green;"
+        onclick="setColor2(8)"/>
+        <rect class="sticker2" x="151" y="101" width="48" height="48" style="fill:green;"
+        onclick="setColor2(9)"/>
+        <rect class="sticker2" x="151" y="151" width="48" height="48" style="fill:green;"
+        onclick="setColor2(10)"/>
+        <rect class="sticker2" x="101" y="151" width="48" height="48" style="fill:green;"
+        onclick="setColor2(11)"/>
         
-        <rect class="sticker" x="101" y="201" width="48" height="48" style="fill:yellow;"
-        onclick="setColor(12,hold)"/>
-        <rect class="sticker" x="151" y="201" width="48" height="48" style="fill:yellow;"
-        onclick="setColor(13,hold)"/>
-        <rect class="sticker" x="151" y="251" width="48" height="48" style="fill:yellow;"
-        onclick="setColor(14,hold)"/>
-        <rect class="sticker" x="101" y="251" width="48" height="48" style="fill:yellow;"
-        onclick="setColor(15,hold)"/>
+        <rect class="sticker2" x="101" y="201" width="48" height="48" style="fill:yellow;"
+        onclick="setColor2(12)"/>
+        <rect class="sticker2" x="151" y="201" width="48" height="48" style="fill:yellow;"
+        onclick="setColor2(13)"/>
+        <rect class="sticker2" x="151" y="251" width="48" height="48" style="fill:yellow;"
+        onclick="setColor2(14)"/>
+        <rect class="sticker2" x="101" y="251" width="48" height="48" style="fill:yellow;"
+        onclick="setColor2(15)"/>
         
-        <rect class="sticker" x="1" y="101" width="48" height="48" style="fill:orange;"
-        onclick="setColor(16,hold)"/>
-        <rect class="sticker" x="51" y="101" width="48" height="48" style="fill:orange;"
-        onclick="setColor(17,hold)"/>
-        <rect class="sticker" x="51" y="151" width="48" height="48" style="fill:orange;"
-        onclick="setColor(18,hold)"/>
-        <rect class="sticker" x="1" y="151" width="48" height="48" style="fill:orange;"
-        onclick="setColor(19,hold)"/>
+        <rect class="sticker2" x="1" y="101" width="48" height="48" style="fill:orange;"
+        onclick="setColor2(16)"/>
+        <rect class="sticker2" x="51" y="101" width="48" height="48" style="fill:orange;"
+        onclick="setColor2(17)"/>
+        <rect class="sticker2" x="51" y="151" width="48" height="48" style="fill:orange;"
+        onclick="setColor2(18)"/>
+        <rect class="sticker2" x="1" y="151" width="48" height="48" style="fill:orange;"
+        onclick="setColor2(19)"/>
         
-        <rect class="sticker" x="301" y="101" width="48" height="48" style="fill:blue;"
-        onclick="setColor(20,hold)"/>
-        <rect class="sticker" x="351" y="101" width="48" height="48" style="fill:blue;"
-        onclick="setColor(21,hold)"/>
-        <rect class="sticker" x="351" y="151" width="48" height="48" style="fill:blue;"
-        onclick="setColor(22,hold)"/>
-        <rect class="sticker" x="301" y="151" width="48" height="48" style="fill:blue;"
-        onclick="setColor(23,hold)"/>
+        <rect class="sticker2" x="301" y="101" width="48" height="48" style="fill:blue;"
+        onclick="setColor2(20)"/>
+        <rect class="sticker2" x="351" y="101" width="48" height="48" style="fill:blue;"
+        onclick="setColor2(21)"/>
+        <rect class="sticker2" x="351" y="151" width="48" height="48" style="fill:blue;"
+        onclick="setColor2(22)"/>
+        <rect class="sticker2" x="301" y="151" width="48" height="48" style="fill:blue;"
+        onclick="setColor2(23)"/>
     
     Sorry, your browser does not support inline SVG.
     </svg>
+    
+    <svg id="cubepyra" width="600" height="450" style="display:none">
+        
+        <polygon class="stickerpyra" points="150 1 126 42.57 174 42.57" style="fill:green"/>
+        <polygon class="stickerpyra" points="125 44.3 101 85.87 149 85.87" style="fill:green"/>
+        <polygon class="stickerpyra" points="125 44.3 101 85.87 149 85.87" style="fill:green"/>
+        
+        Sorry, your browser does not support inline SVG.
+    
+    </svg>
+    
     <hr>
+    
     <svg id="colorpicker" width="300" height="50">
         <rect class="sticker" x="1" y="1" width="48" height="48"
-        style="fill:white;"
+        style="fill:white"
         onclick = "holder(0)"/>
         <rect class="sticker" x="51" y="1" width="48" height="48"
-        style="fill:red;"
+        style="fill:red"
         onclick = "holder(1)"/>
         <rect class="sticker" x="101" y="1" width="48" height="48"
-        style="fill:green;"
+        style="fill:green"
         onclick = "holder(2)"/>
         <rect class="sticker" x="151" y="1" width="48" height="48"
-        style="fill:yellow;"
+        style="fill:yellow"
         onclick = "holder(3)"/>
         <rect class="sticker" x="201" y="1" width="48" height="48"
-        style="fill:orange;"
+        style="fill:orange"
         onclick = "holder(4)"/>
         <rect class="sticker" x="251" y="1" width="48" height="48"
-        style="fill:blue;"
+        style="fill:blue"
         onclick = "holder(5)"/>
         
     Sorry, your browser does not support inline SVG.
     </svg>
+    
     <hr>
     
-    <script>
-    function doMove(n) {
-        var x = document.getElementsByClassName("sticker");
-        switch(n) {
-            case 0:
-                var temp = x[0].style.fill;
-                x[0].style.fill=x[3].style.fill;
-                x[3].style.fill=x[2].style.fill;
-                x[2].style.fill=x[1].style.fill;
-                x[1].style.fill=temp;
-                temp = x[4].style.fill;
-                x[4].style.fill=x[20].style.fill;
-                x[20].style.fill=x[16].style.fill;
-                x[16].style.fill=x[8].style.fill;
-                x[8].style.fill=temp;
-                temp=x[5].style.fill;
-                x[5].style.fill=x[21].style.fill;
-                x[21].style.fill=x[17].style.fill;
-                x[17].style.fill=x[9].style.fill;
-                x[9].style.fill=temp;
-                break;
-            case 1:
-                var temp = x[1].style.fill;
-                x[1].style.fill=x[9].style.fill;
-                x[9].style.fill=x[13].style.fill;
-                x[13].style.fill=x[23].style.fill;
-                x[23].style.fill=temp;
-                temp = x[2].style.fill;
-                x[2].style.fill=x[10].style.fill;
-                x[10].style.fill=x[14].style.fill;
-                x[14].style.fill=x[20].style.fill;
-                x[20].style.fill=temp;
-                temp=x[4].style.fill;
-                x[4].style.fill=x[7].style.fill;
-                x[7].style.fill=x[6].style.fill;
-                x[6].style.fill=x[5].style.fill;
-                x[5].style.fill=temp;
-                break;
-            case 2:
-                var temp = x[2].style.fill;
-                x[2].style.fill=x[17].style.fill;
-                x[17].style.fill=x[12].style.fill;
-                x[12].style.fill=x[7].style.fill;
-                x[7].style.fill=temp;
-                temp = x[3].style.fill;
-                x[3].style.fill=x[18].style.fill;
-                x[18].style.fill=x[13].style.fill;
-                x[13].style.fill=x[4].style.fill;
-                x[4].style.fill=temp;
-                temp=x[8].style.fill;
-                x[8].style.fill=x[11].style.fill;
-                x[11].style.fill=x[10].style.fill;
-                x[10].style.fill=x[9].style.fill;
-                x[9].style.fill=temp;
-                break;
-            case 3:
-                var temp = x[6].style.fill;
-                x[6].style.fill=x[10].style.fill;
-                x[10].style.fill=x[18].style.fill;
-                x[18].style.fill=x[22].style.fill;
-                x[22].style.fill=temp;
-                temp = x[7].style.fill;
-                x[7].style.fill=x[11].style.fill;
-                x[11].style.fill=x[19].style.fill;
-                x[19].style.fill=x[23].style.fill;
-                x[23].style.fill=temp;
-                temp=x[12].style.fill;
-                x[12].style.fill=x[15].style.fill;
-                x[15].style.fill=x[14].style.fill;
-                x[14].style.fill=x[13].style.fill;
-                x[13].style.fill=temp;
-                break;
-            case 4:
-                var temp = x[0].style.fill;
-                x[0].style.fill=x[22].style.fill;
-                x[22].style.fill=x[12].style.fill;
-                x[12].style.fill=x[8].style.fill;
-                x[8].style.fill=temp;
-                temp = x[3].style.fill;
-                x[3].style.fill=x[21].style.fill;
-                x[21].style.fill=x[15].style.fill;
-                x[15].style.fill=x[11].style.fill;
-                x[11].style.fill=temp;
-                temp=x[16].style.fill;
-                x[16].style.fill=x[19].style.fill;
-                x[19].style.fill=x[18].style.fill;
-                x[18].style.fill=x[17].style.fill;
-                x[17].style.fill=temp;
-                break;
-            case 5:
-                var temp = x[0].style.fill;
-                x[0].style.fill=x[5].style.fill;
-                x[5].style.fill=x[14].style.fill;
-                x[14].style.fill=x[19].style.fill;
-                x[19].style.fill=temp;
-                temp = x[1].style.fill;
-                x[1].style.fill=x[6].style.fill;
-                x[6].style.fill=x[15].style.fill;
-                x[15].style.fill=x[16].style.fill;
-                x[16].style.fill=temp;
-                temp=x[20].style.fill;
-                x[20].style.fill=x[23].style.fill;
-                x[23].style.fill=x[22].style.fill;
-                x[22].style.fill=x[21].style.fill;
-                x[21].style.fill=temp;
-                break;
-                
-            case 6:
-                var temp = x[0].style.fill;
-                x[0].style.fill=x[1].style.fill;
-                x[1].style.fill=x[2].style.fill;
-                x[2].style.fill=x[3].style.fill;
-                x[3].style.fill=temp;
-                temp = x[4].style.fill;
-                x[4].style.fill=x[8].style.fill;
-                x[8].style.fill=x[16].style.fill;
-                x[16].style.fill=x[20].style.fill;
-                x[20].style.fill=temp;
-                temp=x[5].style.fill;
-                x[5].style.fill=x[9].style.fill;
-                x[9].style.fill=x[17].style.fill;
-                x[17].style.fill=x[21].style.fill;
-                x[21].style.fill=temp;
-                break;
-            case 7:
-                var temp = x[1].style.fill;
-                x[1].style.fill=x[23].style.fill;
-                x[23].style.fill=x[13].style.fill;
-                x[13].style.fill=x[9].style.fill;
-                x[9].style.fill=temp;
-                temp = x[2].style.fill;
-                x[2].style.fill=x[20].style.fill;
-                x[20].style.fill=x[14].style.fill;
-                x[14].style.fill=x[10].style.fill;
-                x[10].style.fill=temp;
-                temp=x[4].style.fill;
-                x[4].style.fill=x[5].style.fill;
-                x[5].style.fill=x[6].style.fill;
-                x[6].style.fill=x[7].style.fill;
-                x[7].style.fill=temp;
-                break;
-            case 8:
-                var temp = x[2].style.fill;
-                x[2].style.fill=x[7].style.fill;
-                x[7].style.fill=x[12].style.fill;
-                x[12].style.fill=x[17].style.fill;
-                x[17].style.fill=temp;
-                temp = x[3].style.fill;
-                x[3].style.fill=x[4].style.fill;
-                x[4].style.fill=x[13].style.fill;
-                x[13].style.fill=x[18].style.fill;
-                x[18].style.fill=temp;
-                temp=x[8].style.fill;
-                x[8].style.fill=x[9].style.fill;
-                x[9].style.fill=x[10].style.fill;
-                x[10].style.fill=x[11].style.fill;
-                x[11].style.fill=temp;
-                break;
-            case 9:
-                var temp = x[6].style.fill;
-                x[6].style.fill=x[22].style.fill;
-                x[22].style.fill=x[18].style.fill;
-                x[18].style.fill=x[10].style.fill;
-                x[10].style.fill=temp;
-                temp = x[7].style.fill;
-                x[7].style.fill=x[23].style.fill;
-                x[23].style.fill=x[19].style.fill;
-                x[19].style.fill=x[11].style.fill;
-                x[11].style.fill=temp;
-                temp=x[12].style.fill;
-                x[12].style.fill=x[13].style.fill;
-                x[13].style.fill=x[14].style.fill;
-                x[14].style.fill=x[15].style.fill;
-                x[15].style.fill=temp;
-                break;
-            case 10:
-                var temp = x[0].style.fill;
-                x[0].style.fill=x[8].style.fill;
-                x[8].style.fill=x[12].style.fill;
-                x[12].style.fill=x[22].style.fill;
-                x[22].style.fill=temp;
-                temp = x[3].style.fill;
-                x[3].style.fill=x[11].style.fill;
-                x[11].style.fill=x[15].style.fill;
-                x[15].style.fill=x[21].style.fill;
-                x[21].style.fill=temp;
-                temp=x[16].style.fill;
-                x[16].style.fill=x[17].style.fill;
-                x[17].style.fill=x[18].style.fill;
-                x[18].style.fill=x[19].style.fill;
-                x[19].style.fill=temp;
-                break;
-            case 11:
-                var temp = x[0].style.fill;
-                x[0].style.fill=x[19].style.fill;
-                x[19].style.fill=x[14].style.fill;
-                x[14].style.fill=x[5].style.fill;
-                x[5].style.fill=temp;
-                temp = x[1].style.fill;
-                x[1].style.fill=x[16].style.fill;
-                x[16].style.fill=x[15].style.fill;
-                x[15].style.fill=x[6].style.fill;
-                x[6].style.fill=temp;
-                temp=x[20].style.fill;
-                x[20].style.fill=x[21].style.fill;
-                x[21].style.fill=x[22].style.fill;
-                x[22].style.fill=x[23].style.fill;
-                x[23].style.fill=temp;
-                break;
-                
-            case 12:
-                var temp = x[0].style.fill;
-                x[0].style.fill=x[2].style.fill;
-                x[2].style.fill=temp;
-                temp = x[1].style.fill;
-                x[1].style.fill=x[3].style.fill;
-                x[3].style.fill=temp;
-                temp = x[4].style.fill;
-                x[4].style.fill=x[16].style.fill;
-                x[16].style.fill=temp;
-                temp = x[8].style.fill;
-                x[8].style.fill=x[20].style.fill;
-                x[20].style.fill=temp;
-                temp = x[5].style.fill;
-                x[5].style.fill=x[17].style.fill;
-                x[17].style.fill=temp;
-                temp = x[9].style.fill;
-                x[9].style.fill=x[21].style.fill;
-                x[21].style.fill=temp;
-                break;
-            case 13:
-                var temp = x[1].style.fill;
-                x[1].style.fill=x[13].style.fill;
-                x[13].style.fill=temp;
-                temp = x[23].style.fill;
-                x[23].style.fill=x[9].style.fill;
-                x[9].style.fill=temp;
-                temp = x[2].style.fill;
-                x[2].style.fill=x[14].style.fill;
-                x[14].style.fill=temp;
-                temp = x[20].style.fill;
-                x[20].style.fill=x[10].style.fill;
-                x[10].style.fill=temp;
-                temp = x[4].style.fill;
-                x[4].style.fill=x[6].style.fill;
-                x[6].style.fill=temp;
-                temp = x[5].style.fill;
-                x[5].style.fill=x[7].style.fill;
-                x[7].style.fill=temp;
-                break;
-            case 14:
-                var temp = x[2].style.fill;
-                x[2].style.fill=x[12].style.fill;
-                x[12].style.fill=temp;
-                temp = x[7].style.fill;
-                x[7].style.fill=x[17].style.fill;
-                x[17].style.fill=temp;
-                temp = x[3].style.fill;
-                x[3].style.fill=x[13].style.fill;
-                x[13].style.fill=temp;
-                temp = x[4].style.fill;
-                x[4].style.fill=x[18].style.fill;
-                x[18].style.fill=temp;
-                temp = x[8].style.fill;
-                x[8].style.fill=x[10].style.fill;
-                x[10].style.fill=temp;
-                temp = x[9].style.fill;
-                x[9].style.fill=x[11].style.fill;
-                x[11].style.fill=temp;
-                break;
-            case 15:                
-                var temp = x[6].style.fill;
-                x[6].style.fill=x[18].style.fill;
-                x[18].style.fill=temp;
-                temp = x[22].style.fill;
-                x[22].style.fill=x[10].style.fill;
-                x[10].style.fill=temp;
-                temp = x[7].style.fill;
-                x[7].style.fill=x[19].style.fill;
-                x[19].style.fill=temp;
-                temp = x[23].style.fill;
-                x[23].style.fill=x[11].style.fill;
-                x[11].style.fill=temp;
-                temp = x[12].style.fill;
-                x[12].style.fill=x[14].style.fill;
-                x[14].style.fill=temp;
-                temp = x[13].style.fill;
-                x[13].style.fill=x[15].style.fill;
-                x[15].style.fill=temp;
-                break;
-            case 16:
-                var temp = x[0].style.fill;
-                x[0].style.fill=x[12].style.fill;
-                x[12].style.fill=temp;
-                temp = x[8].style.fill;
-                x[8].style.fill=x[22].style.fill;
-                x[22].style.fill=temp;
-                temp = x[3].style.fill;
-                x[3].style.fill=x[15].style.fill;
-                x[15].style.fill=temp;
-                temp = x[11].style.fill;
-                x[11].style.fill=x[21].style.fill;
-                x[21].style.fill=temp;
-                temp = x[16].style.fill;
-                x[16].style.fill=x[18].style.fill;
-                x[18].style.fill=temp;
-                temp = x[17].style.fill;
-                x[17].style.fill=x[19].style.fill;
-                x[19].style.fill=temp;
-                break;
-            default:
-                var temp = x[0].style.fill;
-                x[0].style.fill=x[14].style.fill;
-                x[14].style.fill=temp;
-                temp = x[19].style.fill;
-                x[19].style.fill=x[5].style.fill;
-                x[5].style.fill=temp;
-                temp = x[1].style.fill;
-                x[1].style.fill=x[15].style.fill;
-                x[15].style.fill=temp;
-                temp = x[16].style.fill;
-                x[16].style.fill=x[6].style.fill;
-                x[6].style.fill=temp;
-                temp = x[20].style.fill;
-                x[20].style.fill=x[22].style.fill;
-                x[22].style.fill=temp;
-                temp = x[21].style.fill;
-                x[21].style.fill=x[23].style.fill;
-                x[23].style.fill=temp;
-                break;
-        }
-    }
-    </script>
-    
-    <button onclick="doMove(0)">U</button>
-    <button onclick="doMove(1)">R</button>
-    <button onclick="doMove(2)">F</button>
-    <button onclick="doMove(3)">D</button>
-    <button onclick="doMove(4)">L</button>
-    <button onclick="doMove(5)">B</button>
+    <button onclick="doMove2(0)">U</button>
+    <button onclick="doMove2(1)">R</button>
+    <button onclick="doMove2(2)">F</button>
+    <button onclick="doMove2(3)">D</button>
+    <button onclick="doMove2(4)">L</button>
+    <button onclick="doMove2(5)">B</button>
     <div></div>
-    <button onclick="doMove(6)">U'</button>
-    <button onclick="doMove(7)">R'</button>
-    <button onclick="doMove(8)">F'</button>
-    <button onclick="doMove(9)">D'</button>
-    <button onclick="doMove(10)">L'</button>
-    <button onclick="doMove(11)">B'</button>
+    <button onclick="doMove2(6)">U'</button>
+    <button onclick="doMove2(7)">R'</button>
+    <button onclick="doMove2(8)">F'</button>
+    <button onclick="doMove2(9)">D'</button>
+    <button onclick="doMove2(10)">L'</button>
+    <button onclick="doMove2(11)">B'</button>
     <div></div>
-    <button onclick="doMove(12)">U2</button>
-    <button onclick="doMove(13)">R2</button>
-    <button onclick="doMove(14)">F2</button>
-    <button onclick="doMove(15)">D2</button>
-    <button onclick="doMove(16)">L2</button>
-    <button onclick="doMove(17)">B2</button>
+    <button onclick="doMove2(12)">U2</button>
+    <button onclick="doMove2(13)">R2</button>
+    <button onclick="doMove2(14)">F2</button>
+    <button onclick="doMove2(15)">D2</button>
+    <button onclick="doMove2(16)">L2</button>
+    <button onclick="doMove2(17)">B2</button>
     
 </body>
 </html>
