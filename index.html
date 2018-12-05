@@ -33,6 +33,7 @@
     <p style="text-align:center;" title="Coming soon..."><i>Coming soon... </i><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ/" target="_blank">In the meantime, you can use this</a></p>
     
     <button onclick="pocketOn()">2x2</button>
+    <button onclick="cubeOn()">3x3</button>
     <hr>
     
     <script>
@@ -52,10 +53,23 @@
     function pocketOn() {
         var x = document.getElementById("pocket");
         x.style.display = "block";
+        var y = document.getElementById("3cube");
+        y.style.display = "none";
+    }
+        
+    function cubeOn() {
+        var x = document.getElementById("3cube");
+        x.style.display = "block";
+        var y = document.getElementById("pocket");
+        y.style.display = "none";
     }
     </script>
     
-    <svg id="pocket" width="400" height="400" style="display:none">
+    <svg id="3cube" width="600" height="450">
+    
+    </svg>
+    
+    <svg id="pocket" width="400" height="300" style="display:none">
         
         <rect class="sticker" id="rect1" x="101" y="1" width=48 height=48 style="fill:white;"
         onclick="setColor(0,hold)"/>
