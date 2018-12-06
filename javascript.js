@@ -614,3 +614,10 @@ function doMove3(n) {
         doMove3(5);
     }
 }
+
+function scramble2() {
+    "use strict";
+    for (var i = 0; i < 100; i++) {
+        doMove2(Math.floor(Math.random * 18));
+    }
+}
