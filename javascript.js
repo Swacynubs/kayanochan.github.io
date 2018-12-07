@@ -507,55 +507,85 @@ function doMove3(n) {
         x[23].style.fill = temp;
         break;
     case 3:
-        temp = x[6].style.fill;
-        x[6].style.fill = x[10].style.fill;
-        x[10].style.fill = x[18].style.fill;
-        x[18].style.fill = x[22].style.fill;
-        x[22].style.fill = temp;
-        temp = x[7].style.fill;
-        x[7].style.fill = x[11].style.fill;
-        x[11].style.fill = x[19].style.fill;
-        x[19].style.fill = x[23].style.fill;
-        x[23].style.fill = temp;
-        temp = x[12].style.fill;
-        x[12].style.fill = x[15].style.fill;
-        x[15].style.fill = x[14].style.fill;
-        x[14].style.fill = x[13].style.fill;
-        x[13].style.fill = temp;
+        temp = x[15].style.fill;
+        x[15].style.fill = x[24].style.fill;
+        x[24].style.fill = x[42].style.fill;
+        x[42].style.fill = x[51].style.fill;
+        x[51].style.fill = temp;
+        temp = x[17].style.fill;
+        x[17].style.fill = x[26].style.fill;
+        x[26].style.fill = x[44].style.fill;
+        x[44].style.fill = x[53].style.fill;
+        x[53].style.fill = temp;
+        temp = x[27].style.fill;
+        x[27].style.fill = x[33].style.fill;
+        x[33].style.fill = x[35].style.fill;
+        x[35].style.fill = x[29].style.fill;
+        x[29].style.fill = temp;
+        temp = x[16].style.fill;
+        x[16].style.fill = x[25].style.fill;
+        x[25].style.fill = x[43].style.fill;
+        x[43].style.fill = x[52].style.fill;
+        x[52].style.fill = temp;
+        temp = x[28].style.fill;
+        x[28].style.fill = x[30].style.fill;
+        x[30].style.fill = x[34].style.fill;
+        x[34].style.fill = x[32].style.fill;
+        x[32].style.fill = temp;
         break;
     case 4:
         temp = x[0].style.fill;
-        x[0].style.fill = x[22].style.fill;
-        x[22].style.fill = x[12].style.fill;
-        x[12].style.fill = x[8].style.fill;
-        x[8].style.fill = temp;
+        x[0].style.fill = x[53].style.fill;
+        x[53].style.fill = x[27].style.fill;
+        x[27].style.fill = x[18].style.fill;
+        x[18].style.fill = temp;
+        temp = x[6].style.fill;
+        x[6].style.fill = x[47].style.fill;
+        x[47].style.fill = x[33].style.fill;
+        x[33].style.fill = x[24].style.fill;
+        x[24].style.fill = temp;
+        temp = x[36].style.fill;
+        x[36].style.fill = x[42].style.fill;
+        x[42].style.fill = x[44].style.fill;
+        x[44].style.fill = x[38].style.fill;
+        x[38].style.fill = temp;
         temp = x[3].style.fill;
-        x[3].style.fill = x[21].style.fill;
-        x[21].style.fill = x[15].style.fill;
-        x[15].style.fill = x[11].style.fill;
-        x[11].style.fill = temp;
-        temp = x[16].style.fill;
-        x[16].style.fill = x[19].style.fill;
-        x[19].style.fill = x[18].style.fill;
-        x[18].style.fill = x[17].style.fill;
-        x[17].style.fill = temp;
+        x[3].style.fill = x[50].style.fill;
+        x[50].style.fill = x[30].style.fill;
+        x[30].style.fill = x[21].style.fill;
+        x[21].style.fill = temp;
+        temp = x[37].style.fill;
+        x[37].style.fill = x[39].style.fill;
+        x[39].style.fill = x[43].style.fill;
+        x[43].style.fill = x[41].style.fill;
+        x[41].style.fill = temp;
         break;
     case 5:
         temp = x[0].style.fill;
-        x[0].style.fill = x[5].style.fill;
-        x[5].style.fill = x[14].style.fill;
-        x[14].style.fill = x[19].style.fill;
-        x[19].style.fill = temp;
+        x[0].style.fill = x[11].style.fill;
+        x[11].style.fill = x[35].style.fill;
+        x[35].style.fill = x[42].style.fill;
+        x[42].style.fill = temp;
+        temp = x[2].style.fill;
+        x[2].style.fill = x[17].style.fill;
+        x[17].style.fill = x[33].style.fill;
+        x[33].style.fill = x[36].style.fill;
+        x[36].style.fill = temp;
+        temp = x[45].style.fill;
+        x[45].style.fill = x[51].style.fill;
+        x[51].style.fill = x[53].style.fill;
+        x[53].style.fill = x[47].style.fill;
+        x[47].style.fill = temp;
         temp = x[1].style.fill;
-        x[1].style.fill = x[6].style.fill;
-        x[6].style.fill = x[15].style.fill;
-        x[15].style.fill = x[16].style.fill;
-        x[16].style.fill = temp;
-        temp = x[20].style.fill;
-        x[20].style.fill = x[23].style.fill;
-        x[23].style.fill = x[22].style.fill;
-        x[22].style.fill = x[21].style.fill;
-        x[21].style.fill = temp;
+        x[1].style.fill = x[14].style.fill;
+        x[14].style.fill = x[34].style.fill;
+        x[34].style.fill = x[39].style.fill;
+        x[39].style.fill = temp;
+        temp = x[46].style.fill;
+        x[46].style.fill = x[48].style.fill;
+        x[48].style.fill = x[52].style.fill;
+        x[52].style.fill = x[50].style.fill;
+        x[50].style.fill = temp;
         break;
             
     case 6:
@@ -618,6 +648,28 @@ function doMove3(n) {
 function scramble2() {
     "use strict";
     for (var i = 0; i < 100; i++) {
-        doMove2(Math.floor(Math.random * 18));
+        doMove2(Math.floor(Math.random()*18));
     }
+}
+
+function scramble3() {
+    "use strict";
+    for (var i = 0; i < 500; i++) {
+        doMove3(Math.floor(Math.random()*18));
+    }
+}
+
+function isSolved2() {
+    "use strict";
+    var out = true;
+    var x = document.getElementsByClassName("sticker2");
+    for (var i = 0; i < 6; i++) {
+        if (!(x[4*i].style.fill==x[4*i+1].style.fill && x[4*i+1].style.fill==x[4*i+2].style.fill && x[4*i+1].style.fill==x[4*i+3].style.fill)){
+            out = false;
+            break;
+        }
+    }
+    console.log(out);
+    
+    return out;
 }
