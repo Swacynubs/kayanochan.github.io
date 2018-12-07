@@ -659,17 +659,243 @@ function scramble3() {
     }
 }
 
-function isSolved2() {
+function isSolved2(state) {
     "use strict";
     var out = true;
-    var x = document.getElementsByClassName("sticker2");
     for (var i = 0; i < 6; i++) {
-        if (!(x[4*i].style.fill==x[4*i+1].style.fill && x[4*i+1].style.fill==x[4*i+2].style.fill && x[4*i+1].style.fill==x[4*i+3].style.fill)){
+        if (!(state[4*i].style.fill == state[4*i+1].style.fill && state[4*i+1].style.fill == state[4*i+2].style.fill && state[4*i+1].style.fill == state[4*i+3].style.fill)) {
             out = false;
             break;
         }
     }
-    console.log(out);
     
     return out;
+}
+
+function copyCube2() {
+    var x = document.getElementsByClassName("sticker2")
+    return x.slice();
+}
+
+function solveByMove2(cube, maxlen, lastmove, currlen) {
+    var solution, partial,
+        tempcube, done = false;
+    for (var i = 0; i < 9; i++) {
+        if (lastmove%3 != i%3 || currlen == 1) {
+            solution = [];
+            tempcube = cube;
+            doRUF2(tempcube,i);
+            solution.push(i);
+            if(currlen==maxlen && isSolved2(tempcube)){
+                done = true;
+                break;
+            }
+            else if (currlen < maxlen) {
+                partial=solveByMove2(tempcube, maxlen, i, currlen+1);
+                if(trySolution2(tempcube, partial)) {
+                    for(int j=0;j<partial.length;j++){
+                        solution.push(partial[j]);
+                    }
+                    done=true;
+                    break;
+                }
+            }
+        }
+    }
+    
+    if(!done){
+        solution=[-1];
+    }
+    return solution;
+    
+}
+
+function completeSolve2() {
+    var solution;
+    
+    for (var i = 1; i < 12; i++) {
+        solution = solveByMove2(copyCube(),i,0,1);
+        if (solution[0]!=-1) {
+            break;
+        }
+    }
+    
+    return solution;
+}
+
+function trySolution2(cube, solution) {
+    for (var i = 0; i < solution.length; i++) {
+        doRUF2(cube, solution[i]);
+    }
+    
+    return isSolved2(cube);
+}
+
+function doRUF2(x, n) {
+    "use strict";
+    switch (n) {
+    case 0:
+        temp = x[0].style.fill;
+        x[0].style.fill = x[3].style.fill;
+        x[3].style.fill = x[2].style.fill;
+        x[2].style.fill = x[1].style.fill;
+        x[1].style.fill = temp;
+        temp = x[4].style.fill;
+        x[4].style.fill = x[20].style.fill;
+        x[20].style.fill = x[16].style.fill;
+        x[16].style.fill = x[8].style.fill;
+        x[8].style.fill = temp;
+        temp = x[5].style.fill;
+        x[5].style.fill = x[21].style.fill;
+        x[21].style.fill = x[17].style.fill;
+        x[17].style.fill = x[9].style.fill;
+        x[9].style.fill = temp;
+        break;
+    case 1:
+        temp = x[1].style.fill;
+        x[1].style.fill = x[9].style.fill;
+        x[9].style.fill = x[13].style.fill;
+        x[13].style.fill = x[23].style.fill;
+        x[23].style.fill = temp;
+        temp = x[2].style.fill;
+        x[2].style.fill = x[10].style.fill;
+        x[10].style.fill = x[14].style.fill;
+        x[14].style.fill = x[20].style.fill;
+        x[20].style.fill = temp;
+        temp = x[4].style.fill;
+        x[4].style.fill = x[7].style.fill;
+        x[7].style.fill = x[6].style.fill;
+        x[6].style.fill = x[5].style.fill;
+        x[5].style.fill = temp;
+        break;
+    case 2:
+        temp = x[2].style.fill;
+        x[2].style.fill = x[17].style.fill;
+        x[17].style.fill = x[12].style.fill;
+        x[12].style.fill = x[7].style.fill;
+        x[7].style.fill = temp;
+        temp = x[3].style.fill;
+        x[3].style.fill = x[18].style.fill;
+        x[18].style.fill = x[13].style.fill;
+        x[13].style.fill = x[4].style.fill;
+        x[4].style.fill = temp;
+        temp = x[8].style.fill;
+        x[8].style.fill = x[11].style.fill;
+        x[11].style.fill = x[10].style.fill;
+        x[10].style.fill = x[9].style.fill;
+        x[9].style.fill = temp;
+        break;
+            
+    case 3:
+        temp = x[0].style.fill;
+        x[0].style.fill = x[1].style.fill;
+        x[1].style.fill = x[2].style.fill;
+        x[2].style.fill = x[3].style.fill;
+        x[3].style.fill = temp;
+        temp = x[4].style.fill;
+        x[4].style.fill = x[8].style.fill;
+        x[8].style.fill = x[16].style.fill;
+        x[16].style.fill = x[20].style.fill;
+        x[20].style.fill = temp;
+        temp = x[5].style.fill;
+        x[5].style.fill = x[9].style.fill;
+        x[9].style.fill = x[17].style.fill;
+        x[17].style.fill = x[21].style.fill;
+        x[21].style.fill = temp;
+        break;
+    case 4:
+        temp = x[1].style.fill;
+        x[1].style.fill = x[23].style.fill;
+        x[23].style.fill = x[13].style.fill;
+        x[13].style.fill = x[9].style.fill;
+        x[9].style.fill = temp;
+        temp = x[2].style.fill;
+        x[2].style.fill = x[20].style.fill;
+        x[20].style.fill = x[14].style.fill;
+        x[14].style.fill = x[10].style.fill;
+        x[10].style.fill = temp;
+        temp = x[4].style.fill;
+        x[4].style.fill = x[5].style.fill;
+        x[5].style.fill = x[6].style.fill;
+        x[6].style.fill = x[7].style.fill;
+        x[7].style.fill = temp;
+        break;
+    case 5:
+        temp = x[2].style.fill;
+        x[2].style.fill = x[7].style.fill;
+        x[7].style.fill = x[12].style.fill;
+        x[12].style.fill = x[17].style.fill;
+        x[17].style.fill = temp;
+        temp = x[3].style.fill;
+        x[3].style.fill = x[4].style.fill;
+        x[4].style.fill = x[13].style.fill;
+        x[13].style.fill = x[18].style.fill;
+        x[18].style.fill = temp;
+        temp = x[8].style.fill;
+        x[8].style.fill = x[9].style.fill;
+        x[9].style.fill = x[10].style.fill;
+        x[10].style.fill = x[11].style.fill;
+        x[11].style.fill = temp;
+        break;
+            
+    case 6:
+        temp = x[0].style.fill;
+        x[0].style.fill = x[2].style.fill;
+        x[2].style.fill = temp;
+        temp = x[1].style.fill;
+        x[1].style.fill = x[3].style.fill;
+        x[3].style.fill = temp;
+        temp = x[4].style.fill;
+        x[4].style.fill = x[16].style.fill;
+        x[16].style.fill = temp;
+        temp = x[8].style.fill;
+        x[8].style.fill = x[20].style.fill;
+        x[20].style.fill = temp;
+        temp = x[5].style.fill;
+        x[5].style.fill = x[17].style.fill;
+        x[17].style.fill = temp;
+        temp = x[9].style.fill;
+        x[9].style.fill = x[21].style.fill;
+        x[21].style.fill = temp;
+        break;
+    case 7:
+        temp = x[1].style.fill;
+        x[1].style.fill = x[13].style.fill;
+        x[13].style.fill = temp;
+        temp = x[23].style.fill;
+        x[23].style.fill = x[9].style.fill;
+        x[9].style.fill = temp;
+        temp = x[2].style.fill;
+        x[2].style.fill = x[14].style.fill;
+        x[14].style.fill = temp;
+        temp = x[20].style.fill;
+        x[20].style.fill = x[10].style.fill;
+        x[10].style.fill = temp;
+        temp = x[4].style.fill;
+        x[4].style.fill = x[6].style.fill;
+        x[6].style.fill = temp;
+        temp = x[5].style.fill;
+        x[5].style.fill = x[7].style.fill;
+        x[7].style.fill = temp;
+        break;
+    default:
+        temp = x[2].style.fill;
+        x[2].style.fill = x[12].style.fill;
+        x[12].style.fill = temp;
+        temp = x[7].style.fill;
+        x[7].style.fill = x[17].style.fill;
+        x[17].style.fill = temp;
+        temp = x[3].style.fill;
+        x[3].style.fill = x[13].style.fill;
+        x[13].style.fill = temp;
+        temp = x[4].style.fill;
+        x[4].style.fill = x[18].style.fill;
+        x[18].style.fill = temp;
+        temp = x[8].style.fill;
+        x[8].style.fill = x[10].style.fill;
+        x[10].style.fill = temp;
+        temp = x[9].style.fill;
+        x[9].style.fill = x[11].style.fill;
+        x[11].style.fill = temp;
+    }
 }
