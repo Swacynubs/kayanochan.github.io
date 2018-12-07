@@ -283,7 +283,8 @@
     <button class="move2" onclick="doMove2(17)" style="display:none">B2</button>
     <div></div>
     <button class="move2" onclick="scramble2()" style="display:none">Scramble</button>
-    <button class="move2" onclick="isSolved2()" style="display:none">Solved</button>
+    <button class="move2" onclick="document.getElementById('solution').innerHTML=completeSolve2()" style="display:none">Solved</button>
+    <p id="solution" class="move2"></p>
     
     <button class="move3" onclick="doMove3(0)">U</button>
     <button class="move3" onclick="doMove3(1)">R</button>
