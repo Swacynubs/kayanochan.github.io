@@ -1011,4 +1011,78 @@ function solvedc(n) {
     }
     
     return out;
+    
+}
+
+function solvede(n) {
+    "use strict";
+    var x = document.getElementsByClassName("sticker3"),
+        out = false;
+    for(var i=0;i<x.length;i++){
+        x[i]=x[i].style.fill;
+    }
+    switch(n) {
+        case 0:
+            if (x[1]==color[0]&&x[46]==color[5]){
+                out = true;
+            }
+            break;
+        case 1:
+            if (x[5]==color[0]&&x[10]==color[1]){
+                out = true;
+            }
+            break;
+        case 2:
+            if (x[7]==color[0]&&x[19]==color[2]){
+                out = true;
+            }
+            break;
+        case 3:
+            if (x[3]==color[0]&&x[37]==color[4]){
+                out = true;
+            }
+            break;
+        case 4:
+            if (x[39]==color[4]&&x[50]==color[5]){
+                out = true;
+            }
+            break;
+        case 5:
+            if (x[14]==color[1]&&x[48]==color[5]){
+                out = true;
+            }
+            break;
+        case 6:
+            if (x[12]==color[1]&&x[23]==color[2]){
+                out = true;
+            }
+            break;
+        case 7:
+            if (x[21]==color[2]&&x[41]==color[4]){
+                out = true;
+            }
+            break;
+        case 8:
+            if (x[25]==color[2]&&x[28]==color[3]){
+                out = true;
+            }
+            break;
+        case 9:
+            if (x[16]==color[1]&&x[32]==color[3]){
+                out = true;
+            }
+            break;
+        case 10:
+            if (x[33]==color[3]&&x[52]==color[5]){
+                out = true;
+            }
+            break;
+        default:
+            if (x[30]==color[3]&&x[43]==color[4]){
+                out = true;
+            }
+    }
+    
+    return out;
+    
 }
