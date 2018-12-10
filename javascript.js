@@ -50,6 +50,22 @@ function cube2On() {
     }
 }
 
+function reset2() {
+    "use strict";
+    var x = document.getElementsByClassName("sticker2");
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.fill = color[Math.floor(i/4)];
+    }
+}
+
+function reset3() {
+    "use strict";
+    var x = document.getElementsByClassName("sticker3");
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.fill = color[Math.floor(i/9)];
+    }
+}
+
 function cube3On() {
     "use strict";
     var x = document.getElementById("cube3");
@@ -654,7 +670,7 @@ function scramble2() {
 
 function scramble3() {
     "use strict";
-    for (var i = 0; i < 500; i++) {
+    for (var i = 0; i < 100; i++) {
         doMove3(Math.floor(Math.random()*18));
     }
 }
@@ -943,4 +959,56 @@ function doRUF2(x, n) {
         x[9] = x[11];
         x[11] = temp;
     }
+}
+
+function solvedc(n) {
+    "use strict";
+    var x = document.getElementsByClassName("sticker3"),
+        out = false;
+    for(var i=0;i<x.length;i++){
+        x[i]=x[i].style.fill;
+    }
+    switch (n) {
+        case 0:
+            if (x[0]==color[0]&&x[36]==color[4]&&x[47]==color[5]){
+                out = true;
+            }
+            break;
+        case 1:
+            if (x[2]==color[0]&&x[11]==color[1]&&x[45]==color[5]){
+                out = true;
+            }
+            break;
+        case 2:
+            if (x[8]==color[0]&&x[9]==color[1]&&x[20]==color[2]){
+                out = true;
+            }
+            break;
+        case 3:
+            if (x[6]==color[0]&&x[18]==color[2]&&x[38]==color[4]){
+                out = true;
+            }
+            break;
+        case 4:
+            if (x[24]==color[2]&&x[27]==color[3]&&x[44]==color[4]){
+                out = true;
+            }
+            break;
+        case 5:
+            if (x[26]==color[2]&&x[15]==color[1]&&x[29]==color[3]){
+                out = true;
+            }
+            break;
+        case 6:
+            if (x[17]==color[1]&&x[35]==color[3]&&x[51]==color[5]){
+                out = true;
+            }
+            break;
+        default:
+            if (x[33]==color[3]&&x[42]==color[4]&&x[53]==color[5]){
+                out = true;
+            }
+    }
+    
+    return out;
 }
