@@ -961,13 +961,9 @@ function doRUF2(x, n) {
     }
 }
 
-function solvedc(n) {
+function solvedc(x, n) {
     "use strict";
-    var x = document.getElementsByClassName("sticker3"),
-        out = false;
-    for(var i=0;i<x.length;i++){
-        x[i]=x[i].style.fill;
-    }
+    var out = false;
     switch (n) {
         case 0:
             if (x[0]==color[0]&&x[36]==color[4]&&x[47]==color[5]){
@@ -1014,13 +1010,9 @@ function solvedc(n) {
     
 }
 
-function solvede(n) {
+function solvede(x, n) {
     "use strict";
-    var x = document.getElementsByClassName("sticker3"),
-        out = false;
-    for(var i=0;i<x.length;i++){
-        x[i]=x[i].style.fill;
-    }
+    var out = false;
     switch(n) {
         case 0:
             if (x[1]==color[0]&&x[46]==color[5]){
@@ -1223,4 +1215,28 @@ function solveF2LByMove(cube, n, maxlen, lastmove, currlen) {
     }
     
     return solution;
+}
+
+function thisCrossSolved(cube, n) {
+    var out = false;
+    if (!n&&solvede(cube,0)&&solvede(cube,1)&&solvede(cube,2)&&solvede(cube,3)){
+        out=true;
+    }
+    else if (n==1&&solvede(cube,1)&&solvede(cube,5)&&solvede(cube,6)&&solvede(cube,9)){
+        out=true;
+    }
+    else if (n==2&&solvede(cube,2)&&solvede(cube,6)&&solvede(cube,7)&&solvede(cube,8)){
+        out=true;
+    }
+    else if (n==3&&solvede(cube,8)&&solvede(cube,9)&&solvede(cube,10)&&solvede(cube,11)){
+        out=true;
+    }
+    else if (n==4&&solvede(cube,3)&&solvede(cube,4)&&solvede(cube,7)&&solvede(cube,11)){
+        out=true;
+    }
+    else if (n==5&&solvede(cube,0)&&solvede(cube,4)&&solvede(cube,5)&&solvede(cube,10)){
+        out=true;
+    }
+    
+    return out;
 }
