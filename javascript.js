@@ -1243,4 +1243,106 @@ function thisCrossSolved(cube, n) {
 
 function numPairsSolved(cube, n=0) {
     var temp, out=0;
+    
+    if (thisCrossSolved(cube,0)) {
+        if(solvedc(cube,0)&&solvede(cube,4)){
+            out++;
+        }
+        if(solvedc(cube,1)&&solvede(cube,5)){
+            out++;
+        }
+        if(solvedc(cube,2)&&solvede(cube,6)){
+            out++;
+        }
+        if(solvedc(cube,3)&&solvede(cube,7)){
+            out++;
+        }
+    }
+    if (n>1&&thisCrossSolved(cube,1)) {
+        if(solvedc(cube,1)&&solvede(cube,0)){
+            temp++;
+        }
+        if(solvedc(cube,2)&&solvede(cube,2)){
+            temp++;
+        }
+        if(solvedc(cube,5)&&solvede(cube,8)){
+            temp++;
+        }
+        if(solvedc(cube,6)&&solvede(cube,10)){
+            temp++;
+        }
+        if (temp>out){
+            out=temp;
+        }
+    }
+    if (n>2&&thisCrossSolved(cube,2)) {
+        if(solvedc(cube,2)&&solvede(cube,1)){
+            temp++;
+        }
+        if(solvedc(cube,3)&&solvede(cube,3)){
+            temp++;
+        }
+        if(solvedc(cube,4)&&solvede(cube,11)){
+            temp++;
+        }
+        if(solvedc(cube,5)&&solvede(cube,9)){
+            temp++;
+        }
+        if (temp>out){
+            out=temp;
+        }
+    }
+    if (n>3&&thisCrossSolved(cube,3)) {
+        if(solvedc(cube,4)&&solvede(cube,7)){
+            temp++;
+        }
+        if(solvedc(cube,5)&&solvede(cube,6)){
+            temp++;
+        }
+        if(solvedc(cube,6)&&solvede(cube,5)){
+            temp++;
+        }
+        if(solvedc(cube,7)&&solvede(cube,4)){
+            temp++;
+        }
+        if (temp>out){
+            out=temp;
+        }
+    }
+    if (n>4&&thisCrossSolved(cube,4)) {
+        if(solvedc(cube,0)&&solvede(cube,0)){
+            temp++;
+        }
+        if(solvedc(cube,3)&&solvede(cube,2)){
+            temp++;
+        }
+        if(solvedc(cube,4)&&solvede(cube,8)){
+            temp++;
+        }
+        if(solvedc(cube,7)&&solvede(cube,10)){
+            temp++;
+        }
+        if (temp>out){
+            out=temp;
+        }
+    }
+    if (n>5&&thisCrossSolved(cube,5)) {
+        if(solvedc(cube,0)&&solvede(cube,3)){
+            temp++;
+        }
+        if(solvedc(cube,1)&&solvede(cube,1)){
+            temp++;
+        }
+        if(solvedc(cube,6)&&solvede(cube,9)){
+            temp++;
+        }
+        if(solvedc(cube,7)&&solvede(cube,11)){
+            temp++;
+        }
+        if (temp>out){
+            out=temp;
+        }
+    }
+    
+    return out;
 }
