@@ -1240,3 +1240,7 @@ function thisCrossSolved(cube, n) {
     
     return out;
 }
+
+function numPairsSolved(cube, n=0) {
+    var temp, out=0;
+}
