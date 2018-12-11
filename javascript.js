@@ -1086,3 +1086,141 @@ function solvede(n) {
     return out;
     
 }
+
+function doX3(m,n) {
+    
+    var out = m;
+    for (var i=0;i<n;i++) {
+        switch (out % 6) {
+            case 0:
+                out +=5;
+                break;
+            case 2:
+                out -= 2;
+                break;
+            case 3:
+                out -= 1;
+                break;
+            case 5:
+                out -= 2;
+        }
+    }
+    
+    return out;
+    
+}
+
+function doY3(m,n) {
+    
+    var out = m;
+    for (var i=0;i<n;i++) {
+        switch (out % 6) {
+            case 1:
+                out += 1;
+                break;
+            case 2:
+                out += 2;
+                break;
+            case 4:
+                out += 5;
+                break;
+            case 5:
+                out -= 4;
+        }
+    }
+    
+    return out;
+    
+}
+
+function doZ3(m,n) {
+    
+    var out = m;
+    for (var i = 0; i < n; i++) {
+        switch (out % 6) {
+            case 0:
+                out += 1;
+                break;
+            case 1:
+                out += 2;
+                break;
+            case 3:
+                out += 1;
+            case 4:
+                out -= 4;
+        }
+    }
+    
+    return out;
+    
+}
+
+function copyCube3() {
+    var x = document.getElementsByClassName("sticker3"), out=[];
+    for (var i = 0; i < 54; i++) {
+        out.push(x[i].style.fill);
+    }
+    return out;
+}
+
+function completeF2LSolve() {
+    var solution, temp, cube = copyCube3();
+    
+    for (var i = 1; i < 3; i++) {
+        console.log(i);
+        if (numPairsSolved(cube) < i) {
+            for (var j = 1; j < 11; j++) {
+                console.log(j);
+                temp=[];
+                temp = solveF2LByMove(cube, i , j);
+                if (temp[0] != -1) {
+                    break;
+                }
+            }
+            for (var j = 0; j < temp.length; j++) {
+                cube.doMove3(temp[j]);
+                solution.push(temp[j]);
+            }
+        }
+    }
+    
+    return solution;
+    
+}
+
+// Solves up to 3 pairs (4th is slow)
+function solveF2LByMove(cube, n, maxlen, lastmove, currlen) {
+    var solution, partial, temp, done=false;
+    for (var i=0;i<18;i++){
+        if(lastmove%6!=i%6||currlen==1){
+            solution=[];
+            temp=[];
+            for(var j=0;j<54;j++){
+                temp.push(cube[j]);
+            }
+            doSolMove3(temp,i);
+            solution.push(i);
+            if(currlen=maxlen&&numPairsSolved(temp)>=n){
+                done=true;
+                break;
+            }
+        }
+        else if (currlen<maxlen){
+            partial=solveF2lMyMove(temp,n,maxlen,i,currlen+1);
+            if(partial[0]!=-1){
+                for(var j=0;j<partial.length;j++){
+                    solution.push(partial[j]);
+                }
+                done=true;
+                break;
+            }
+        }
+    }
+    
+    if(!done){
+        solution=[];
+        solution.push(-1);
+    }
+    
+    return solution;
+}
