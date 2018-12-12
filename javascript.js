@@ -1346,3 +1346,227 @@ function numPairsSolved(cube, n=0) {
     
     return out;
 }
+
+function doSolMove3(x, n) {
+    "use strict";
+    var temp;
+    switch (n) {
+    case 0:
+        temp = x[0];
+        x[0] = x[6];
+        x[6] = x[8];
+        x[8] = x[2];
+        x[2] = temp;
+        temp = x[9];
+        x[9] = x[45];
+        x[45] = x[36];
+        x[36] = x[18];
+        x[18] = temp;
+        temp = x[11];
+        x[11] = x[47];
+        x[47] = x[38];
+        x[38] = x[20];
+        x[20] = temp;
+        temp = x[1];
+        x[1] = x[3];
+        x[3] = x[7];
+        x[7] = x[5];
+        x[5] = temp;  
+        temp = x[10];
+        x[10] = x[46];
+        x[46] = x[37];
+        x[37] = x[19];
+        x[19] = temp;
+        break;
+    case 1:
+        temp = x[2];
+        x[2] = x[20];
+        x[20] = x[29];
+        x[29] = x[51];
+        x[51] = temp;
+        temp = x[8];
+        x[8] = x[26];
+        x[26] = x[35];
+        x[35] = x[45];
+        x[45] = temp;
+        temp = x[9];
+        x[9] = x[15];
+        x[15] = x[17];
+        x[17] = x[11];
+        x[11] = temp;
+        temp = x[5];
+        x[5] = x[23];
+        x[23] = x[32];
+        x[32] = x[48];
+        x[48] = temp;  
+        temp = x[10];
+        x[10] = x[12];
+        x[12] = x[16];
+        x[16] = x[14];
+        x[14] = temp;
+        break;
+    case 2:
+        temp = x[6];
+        x[6] = x[44];
+        x[44] = x[29];
+        x[29] = x[9];
+        x[9] = temp;
+        temp = x[8];
+        x[8] = x[38];
+        x[38] = x[27];
+        x[27] = x[15];
+        x[15] = temp;
+        temp = x[18];
+        x[18] = x[24];
+        x[24] = x[26];
+        x[26] = x[20];
+        x[20] = temp;
+        temp = x[7];
+        x[7] = x[41];
+        x[41] = x[28];
+        x[28] = x[12];
+        x[12] = temp;
+        temp = x[19];
+        x[19] = x[21];
+        x[21] = x[25];
+        x[25] = x[23];
+        x[23] = temp;
+        break;
+    case 3:
+        temp = x[15];
+        x[15] = x[24];
+        x[24] = x[42];
+        x[42] = x[51];
+        x[51] = temp;
+        temp = x[17];
+        x[17] = x[26];
+        x[26] = x[44];
+        x[44] = x[53];
+        x[53] = temp;
+        temp = x[27];
+        x[27] = x[33];
+        x[33] = x[35];
+        x[35] = x[29];
+        x[29] = temp;
+        temp = x[16];
+        x[16] = x[25];
+        x[25] = x[43];
+        x[43] = x[52];
+        x[52] = temp;
+        temp = x[28];
+        x[28] = x[30];
+        x[30] = x[34];
+        x[34] = x[32];
+        x[32] = temp;
+        break;
+    case 4:
+        temp = x[0];
+        x[0] = x[53];
+        x[53] = x[27];
+        x[27] = x[18];
+        x[18] = temp;
+        temp = x[6];
+        x[6] = x[47];
+        x[47] = x[33];
+        x[33] = x[24];
+        x[24] = temp;
+        temp = x[36];
+        x[36] = x[42];
+        x[42] = x[44];
+        x[44] = x[38];
+        x[38] = temp;
+        temp = x[3];
+        x[3] = x[50];
+        x[50] = x[30];
+        x[30] = x[21];
+        x[21] = temp;
+        temp = x[37];
+        x[37] = x[39];
+        x[39] = x[43];
+        x[43] = x[41];
+        x[41] = temp;
+        break;
+    case 5:
+        temp = x[0];
+        x[0] = x[11];
+        x[11] = x[35];
+        x[35] = x[42];
+        x[42] = temp;
+        temp = x[2];
+        x[2] = x[17];
+        x[17] = x[33];
+        x[33] = x[36];
+        x[36] = temp;
+        temp = x[45];
+        x[45] = x[51];
+        x[51] = x[53];
+        x[53] = x[47];
+        x[47] = temp;
+        temp = x[1];
+        x[1] = x[14];
+        x[14] = x[34];
+        x[34] = x[39];
+        x[39] = temp;
+        temp = x[46];
+        x[46] = x[48];
+        x[48] = x[52];
+        x[52] = x[50];
+        x[50] = temp;
+        break;
+            
+    case 6:
+        for(var i=0; i < 3; i++){
+            doMove3(0);
+        }
+        break;
+    case 7:
+        for(var i=0; i < 3; i++){
+            doMove3(1);
+        }
+        break;
+    case 8:
+        for(var i=0; i < 3; i++){
+            doMove3(2);
+        }
+        break;
+    case 9:
+        for(var i=0; i < 3; i++){
+            doMove3(3);
+        }
+        break;
+    case 10:
+        for(var i=0; i < 3; i++){
+            doMove3(4);
+        }
+        break;
+    case 11:
+        for(var i=0; i < 3; i++){
+            doMove3(5);
+        }
+        break;
+            
+    case 12:
+        doMove3(0);
+        doMove3(0);
+        break;
+    case 13:
+        doMove3(1);
+        doMove3(1);
+        break;
+    case 14:
+        doMove3(2);
+        doMove3(2);
+        break;
+    case 15:
+        doMove3(3);
+        doMove3(3);
+        break;
+    case 16:
+        doMove3(4);
+        doMove3(4);
+        break;
+    default:
+        doMove3(5);
+        doMove3(5);
+    }
+}
