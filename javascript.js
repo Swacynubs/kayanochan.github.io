@@ -757,36 +757,73 @@ function trySolution2(cube, solution) {
 }
 
 function translate2(solution) {
-    var out=[];
+    var out = [];
     for(var i=0;i<solution.length;i++){
         switch(solution[i]){
-            case(0):
+            case 0:
                 out.push('U');
                 break;
-            case(1):
+            case 1:
                 out.push('R');
                 break;
-            case(2):
+            case 2:
                 out.push('F');
                 break;
-            case(3):
+            case 3:
                 out.push("U'");
                 break;
-            case(4):
+            case 4:
                 out.push("R'");
                 break;
-            case(5):
+            case 5:
                 out.push("F'");
                 break;
-            case(6):
+            case 6:
                 out.push('U2');
                 break;
-            case(7):
+            case 7:
                 out.push('R2');
                 break;
-            case(8):
+            default:
                 out.push('F2');
         }
+    }
+    return out;
+}
+
+function translate2(solution) {
+    var out = [], temp;
+    for (var i = 0; i < solution.length; i++) {
+        switch (solution[i] % 6) {
+            case 0:
+                temp = 'U';
+                break;
+            case 1:
+                temp = 'R';
+                break;
+            case 2:
+                temp = 'F';
+                break;
+            case 3:
+                temp = 'D';
+                break;
+            case 4:
+                temp = 'L';
+                break;
+            default:
+                temp = 'B';
+                break;
+        }
+        switch (Math.floor(solution[i] / 6)) {
+            case 1:
+                temp += "'";
+                break;
+            case 2:
+                temp += '2';
+        }
+        
+        out.push(temp);
+        temp = '';
     }
     return out;
 }
@@ -1156,26 +1193,26 @@ function copyCube3() {
 }
 
 function completeF2LSolve() {
-    var solution, temp, cube = copyCube3();
+    var solution=[], temp, cube = copyCube3();
     
-    for (var i = 1; i < 3; i++) {
+    for (var i = 1; i < 4; i++) {
         console.log(i);
         if (numPairsSolved(cube) < i) {
             for (var j = 1; j < 11; j++) {
                 console.log(j);
                 temp=[];
-                temp = solveF2LByMove(cube, i , j);
+                temp = solveF2LByMove(cube, i , j, 0, 1);
                 if (temp[0] != -1) {
                     break;
                 }
             }
             for (var j = 0; j < temp.length; j++) {
-                cube.doMove3(temp[j]);
+                doSolMove3(cube,temp[j]);
                 solution.push(temp[j]);
             }
         }
     }
-    
+    console.log(solution);
     return solution;
     
 }
@@ -1183,28 +1220,29 @@ function completeF2LSolve() {
 // Solves up to 3 pairs (4th is slow)
 function solveF2LByMove(cube, n, maxlen, lastmove, currlen) {
     var solution, partial, temp, done=false;
-    for (var i=0;i<18;i++){
-        if(lastmove%6!=i%6||currlen==1){
+    for (var i = 0; i < 18; i++) {
+        if (lastmove % 6 != i % 6 || currlen == 1) {
             solution=[];
             temp=[];
-            for(var j=0;j<54;j++){
+            for (var j = 0; j < 54; j++) {
                 temp.push(cube[j]);
             }
-            doSolMove3(temp,i);
+            doSolMove3(temp, i);
             solution.push(i);
-            if(currlen=maxlen&&numPairsSolved(temp)>=n){
-                done=true;
+            if (currlen == maxlen && numPairsSolved(temp, 0) >= n) {
+                console.log('a');
+                done = true;
                 break;
             }
-        }
-        else if (currlen<maxlen){
-            partial=solveF2lMyMove(temp,n,maxlen,i,currlen+1);
-            if(partial[0]!=-1){
-                for(var j=0;j<partial.length;j++){
-                    solution.push(partial[j]);
+            else if (currlen < maxlen) {
+                partial = solveF2LByMove(temp, n, maxlen, i, currlen + 1);
+                if (partial[0] != -1) {
+                    for (var j = 0; j < partial.length; j++) {
+                        solution.push(partial[j]);
+                    }
+                    done = true;
+                    break;
                 }
-                done=true;
-                break;
             }
         }
     }
@@ -1219,8 +1257,8 @@ function solveF2LByMove(cube, n, maxlen, lastmove, currlen) {
 
 function thisCrossSolved(cube, n) {
     var out = false;
-    if (!n&&solvede(cube,0)&&solvede(cube,1)&&solvede(cube,2)&&solvede(cube,3)){
-        out=true;
+    if (!n && solvede(cube,0) && solvede(cube,1) && solvede(cube,2) && solvede(cube,3)) {
+        out = true;
     }
     else if (n==1&&solvede(cube,1)&&solvede(cube,5)&&solvede(cube,6)&&solvede(cube,9)){
         out=true;
@@ -1241,20 +1279,20 @@ function thisCrossSolved(cube, n) {
     return out;
 }
 
-function numPairsSolved(cube, n=0) {
+function numPairsSolved(cube, n) {
     var temp, out=0;
     
-    if (thisCrossSolved(cube,0)) {
-        if(solvedc(cube,0)&&solvede(cube,4)){
+    if (thisCrossSolved(cube, 0)) {
+        if (solvedc(cube,0) && solvede(cube,4)){
             out++;
         }
-        if(solvedc(cube,1)&&solvede(cube,5)){
+        if (solvedc(cube,1) && solvede(cube,5)){
             out++;
         }
-        if(solvedc(cube,2)&&solvede(cube,6)){
+        if (solvedc(cube,2) && solvede(cube,6)){
             out++;
         }
-        if(solvedc(cube,3)&&solvede(cube,7)){
+        if (solvedc(cube,3) && solvede(cube,7)){
             out++;
         }
     }
@@ -1516,57 +1554,58 @@ function doSolMove3(x, n) {
             
     case 6:
         for(var i=0; i < 3; i++){
-            doMove3(0);
+            doSolMove3(x,0);
         }
         break;
     case 7:
         for(var i=0; i < 3; i++){
-            doMove3(1);
+            doSolMove3(x,1);
         }
         break;
     case 8:
         for(var i=0; i < 3; i++){
-            doMove3(2);
+            doSolMove3(x,2);
         }
         break;
     case 9:
         for(var i=0; i < 3; i++){
-            doMove3(3);
+            doSolMove3(x,3);
         }
         break;
     case 10:
         for(var i=0; i < 3; i++){
-            doMove3(4);
+            doSolMove3(x,4);
         }
         break;
     case 11:
         for(var i=0; i < 3; i++){
-            doMove3(5);
+            doSolMove3(x,5);
         }
         break;
             
     case 12:
-        doMove3(0);
-        doMove3(0);
+        doSolMove3(x,0);
+        doSolMove3(x,0);
         break;
     case 13:
-        doMove3(1);
-        doMove3(1);
+        doSolMove3(x,1);
+        doSolMove3(x,1);
         break;
     case 14:
-        doMove3(2);
-        doMove3(2);
+        doSolMove3(x,2);
+        doSolMove3(x,2);
         break;
     case 15:
-        doMove3(3);
-        doMove3(3);
+        doSolMove3(x,3);
+        doSolMove3(x,3);
         break;
     case 16:
-        doMove3(4);
-        doMove3(4);
+        doSolMove3(x,4);
+        doSolMove3(x,4);
         break;
     default:
-        doMove3(5);
-        doMove3(5);
+        doSolMove3(x,5);
+        doSolMove3(x,5);
+        doSolMove3(x,5);
     }
 }
