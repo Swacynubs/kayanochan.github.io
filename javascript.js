@@ -706,7 +706,7 @@ function solveByMove2(cube, maxlen, lastmove, currlen) {
             for(var j=0;j<24;j++){
                 tempcube.push(cube[j]);
             }
-            doRUF2(tempcube,i);
+            doRUF2(tempcube, i);
             solution.push(i);
             if(currlen==maxlen && isSolved2(tempcube)){
                 done = true;
@@ -791,7 +791,7 @@ function translate2(solution) {
     return out;
 }
 
-function translate2(solution) {
+function translate3(solution) {
     var out = [], temp;
     for (var i = 0; i < solution.length; i++) {
         switch (solution[i] % 6) {
@@ -976,7 +976,7 @@ function doRUF2(x, n) {
         x[5] = x[7];
         x[7] = temp;
         break;
-    default:
+    case 8:
         temp = x[2];
         x[2] = x[12];
         x[12] = temp;
@@ -995,6 +995,7 @@ function doRUF2(x, n) {
         temp = x[9];
         x[9] = x[11];
         x[11] = temp;
+        break;
     }
 }
 
