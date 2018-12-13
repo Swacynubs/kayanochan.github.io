@@ -1779,6 +1779,5 @@ function doSolMove3(x, n) {
     default:
         doSolMove3(x,5);
         doSolMove3(x,5);
-        doSolMove3(x,5);
     }
 }
