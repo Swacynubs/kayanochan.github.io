@@ -39,6 +39,8 @@
     <p style="text-align:center;" title="Coming soon..."><i>Coming soon... </i></p>
     
     <script src="javascript.js"></script>
+    <script src="pocket.js"></script>
+    <script src="rubik.js"></script>
     
     <button onclick="cube2On()">2x2</button>
     <button onclick="cube3On()">3x3</button>
@@ -283,7 +285,7 @@
     <button class="move2" onclick="doMove2(17)" style="display:none">B2</button>
     <div></div>
     <button class="move2" onclick="scramble2()" style="display:none">Scramble</button>
-    <button class="move2" onclick="document.getElementById('solution2').innerHTML=translate2(completeSolve2())" style="display:none">Solve</button>
+    <button class="move2" onclick="document.getElementById('solution2').innerHTML=completeSolve2()" style="display:none">Solve</button>
     <button class="move2" onclick="reset2()" style="display:none">Reset</button>
     <p id="solution2" class="move2"></p>
     
