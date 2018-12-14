@@ -716,17 +716,17 @@ function solveF2L4ByMove(cube, cross, slot, maxlen, lastmove = 0, currlen = 1) {
 function solveCross(cube) {
     var solution = [], temp;
     if (!crossSolved(cube)) {
-        for (var j = 1; j < 9; j++) {
+        for (var i = 1; i < 9; i++) {
             console.log(i);
             temp = [];
-            temp = solveCrossByMove(cube, j);
+            temp = solveCrossByMove(cube, i);
             if (temp[0] != -1) {
                 break;
             }
         }
-        for (var j = 0; j < temp.length; j++) {
-            doSolMove3(cube, temp[j]);
-            solution.push(temp[j]);
+        for (var i = 0; i < temp.length; i++) {
+            doSolMove3(cube, temp[i]);
+            solution.push(temp[i]);
         }
     }
     return solution;

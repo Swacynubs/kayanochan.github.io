@@ -370,12 +370,16 @@ function isSolved2(state) {
 
 function isValid2() {
     "use strict"
-    var x = document.getElementsByClassName("sticker2");
+    var x = document.getElementsByClassName("sticker2"),
+        cube = [];
+    for (var i = 0; i < 24; i++) {
+        cube[i] = x[i].style.fill;
+    }
     var out = true, count = [0, 0, 0, 0, 0, 0],
         ocount = 0, temp;
     for (var i = 0; i < 24; i++) {
         for (var j = 0; j < 6; j++) {
-            if (x[i] == color[j]) {
+            if (cube[i] == color[j]) {
                 count[j]++;
                 break;
             }
@@ -389,7 +393,7 @@ function isValid2() {
     }
     if (out) {
         for (var i = 0; i < 8; i++) {
-            temp = findOrient(x, i);
+            temp = findOrient(cube, i);
             if (temp == -1) {
                 out = false;
                 break;
@@ -399,7 +403,6 @@ function isValid2() {
             }
         }
     }
-    console.log(out);
     if (ocount % 3) {
         out = false;
     }
@@ -409,87 +412,95 @@ function isValid2() {
 
 function findOrient(cube, n) {
     "use strict"
-    var corner;
+    var corner = [];
     switch (n) {
         case 0:
             corner.push(cube[0]);
-            corner.push(cube[16]);
             corner.push(cube[21]);
+            corner.push(cube[16]);
             break;
         case 1:
             corner.push(cube[1]);
-            corner.push(cube[20]);
             corner.push(cube[5]);
+            corner.push(cube[20]);
             break;
         case 2:
             corner.push(cube[2]);
-            corner.push(cube[4]);
             corner.push(cube[9]);
+            corner.push(cube[4]);
             break;
         case 3:
             corner.push(cube[3]);
-            corner.push(cube[8]);
             corner.push(cube[17]);
+            corner.push(cube[8]);
             break;
         case 4:
             corner.push(cube[12]);
-            corner.push(cube[14]);
-            corner.push(cube[19]);
+            corner.push(cube[11]);
+            corner.push(cube[18]);
             break;
         case 5:
             corner.push(cube[13]);
-            corner.push(cube[6]);
-            corner.push(cube[11]);
+            corner.push(cube[7]);
+            corner.push(cube[10]);
             break;
         case 6:
-            corner.push(cube[15]);
-            corner.push(cube[22]);
-            corner.push(cube[7]);
+            corner.push(cube[14]);
+            corner.push(cube[23]);
+            corner.push(cube[6]);
             break;
         default:
-            corner.push(cube[14]);
-            corner.push(cube[18]);
-            corner.push(cube[23]);
+            corner.push(cube[15]);
+            corner.push(cube[19]);
+            corner.push(cube[22]);
     }
     var out = -1;
     if (contains(corner, color[0]) &&
         contains(corner, color[4]) &&
-        contains(corner, color[5])) {
+        contains(corner, color[5]) &&
+        corner[contains(corner, color[0]) % 3] == color[5]) {
         out = contains(corner, color[0]) - 1;
     }
     else if (contains(corner, color[0]) &&
              contains(corner, color[1]) &&
-             contains(corner, color[5])) {
+             contains(corner, color[5]) &&
+             corner[contains(corner, color[0]) % 3] == color[1]) {
         out = contains(corner, color[0]) - 1;
     }
     else if (contains(corner, color[0]) &&
              contains(corner, color[1]) &&
-             contains(corner, color[2])) {
+             contains(corner, color[2]) &&
+             corner[contains(corner, color[0]) % 3] == color[2]) {
         out = contains(corner, color[0]) - 1;
     }
     else if (contains(corner, color[0]) &&
              contains(corner, color[2]) &&
-             contains(corner, color[4])) {
+             contains(corner, color[4]) &&
+             corner[contains(corner, color[0]) % 3] == color[4]) {
         out = contains(corner, color[0]) - 1;
     }
     else if (contains(corner, color[3]) &&
              contains(corner, color[2]) &&
-             contains(corner, color[4])) {
+             contains(corner, color[4]) &&
+             corner[contains(corner, color[3]) % 3] == color[2]) {
         out = contains(corner, color[3]) - 1;
     }
     else if (contains(corner, color[3]) &&
              contains(corner, color[1]) &&
-             contains(corner, color[2])) {
+             contains(corner, color[2]) &&
+             corner[contains(corner, color[3]) % 3] == color[1]) {
         out = contains(corner, color[3]) - 1;
     }
     else if (contains(corner, color[3]) &&
              contains(corner, color[1]) &&
-             contains(corner, color[5])) {
+             contains(corner, color[5]) &&
+             corner[contains(corner, color[3]) % 3] == color[5]) {
         out = contains(corner, color[3]) - 1;
     }
     else if (contains(corner, color[3]) &&
              contains(corner, color[4]) &&
-             contains(corner, color[5])) {
+             contains(corner, color[5]) &&
+             corner[contains(corner, color[3]) % 3] == color[4]) {
         out = contains(corner, color[3]) - 1;
     }
     
@@ -507,7 +518,7 @@ function contains(s, c) {
     return out;
 }
 function copyCube2() {
-    var x = document.getElementsByClassName("sticker2"), out=[];
+    var x = document.getElementsByClassName("sticker2"), out = [];
     for (var i = 0; i < 24; i++) {
         out.push(x[i].style.fill);
     }
@@ -571,7 +582,6 @@ function completeSolve2() {
         }
         solution = translate2(solution);
     }
-    console.log(solution);
     return solution;
 }
 
