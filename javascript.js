@@ -1004,7 +1004,7 @@ function solvedc(x, n) {
     var out = false;
     switch (n) {
         case 0:
-            if (x[0]==color[0]&&x[36]==color[4]&&x[47]==color[5]){
+            if (x[0] == color[0] && x[36] == color[4] && x[47] == color[5]) {
                 out = true;
             }
             break;
@@ -1314,15 +1314,15 @@ function copyCube3() {
     return out;
 }
 
-function completeF2LSolve() {
-    var solution=[], temp, cube = copyCube3();
-    
+function completeSolve() {
+    var solution = [], temp, cube = copyCube3();
+    solution = solveCross(cube);
     for (var i = 1; i < 4; i++) {
         console.log(i);
         if (numPairsSolved(cube) < i) {
             for (var j = 1; j < 11; j++) {
                 console.log(j);
-                temp=[];
+                temp = [];
                 temp = solveF2LByMove(cube, i , j);
                 if (temp[0] != -1) {
                     break;
@@ -1334,11 +1334,11 @@ function completeF2LSolve() {
             }
         }
     }
-    console.log(4);
     if (numPairsSolved(cube) < 4) {
         var missing = missingSlot(cube),
             cross = Math.floor(missing / 4),
             slot = missing % 4;
+            console.log(cross+' '+slot);
         for (var j = 1; j < 11; j++) {
             console.log(j);
             temp=[];
@@ -1359,11 +1359,11 @@ function completeF2LSolve() {
 
 // Solves up to 3 pairs (4th is slow)
 function solveF2LByMove(cube, n, maxlen, lastmove = 0, currlen = 1) {
-    var solution, partial, temp, done = false;
+    var solution, partial = [], temp, done = false;
     for (var i = 0; i < 18; i++) {
-        if (lastmove % 6 != i % 6 || currlen == 1) {
-            solution=[];
-            temp=[];
+        if (currlen == 1 || lastmove % 6 != i % 6) {
+            solution = [];
+            temp = [];
             for (var j = 0; j < 54; j++) {
                 temp.push(cube[j]);
             }
@@ -1397,7 +1397,7 @@ function solveF2LByMove(cube, n, maxlen, lastmove = 0, currlen = 1) {
 function solveF2L4ByMove(cube, cross, slot, maxlen, lastmove = 0, currlen = 1) {
     var solution, partial, temp, done = false;
     for (var i = 0; i < 9; i++) {
-        if (lastmove % 3 != i % 3 || currlen == 1) {
+        if (currlen == 1 || lastmove % 3 != i % 3) {
             solution = [];
             temp = [];
             for (var j = 0; j < 54; j++) {
@@ -1426,6 +1426,71 @@ function solveF2L4ByMove(cube, cross, slot, maxlen, lastmove = 0, currlen = 1) {
         solution.push(-1);
     }    
     return solution;
+}
+
+function solveCross(cube) {
+    var solution = [], temp;
+    if (!crossSolved(cube)) {
+        for (var j = 1; j < 9; j++) {
+            console.log(i);
+            temp = [];
+            temp = solveCrossByMove(cube, j);
+            if (temp[0] != -1) {
+                break;
+            }
+        }
+        for (var j = 0; j < temp.length; j++) {
+            doSolMove3(cube, temp[j]);
+            solution.push(temp[j]);
+        }
+    }
+    return solution;
+}
+
+function solveCrossByMove(cube, maxlen, lastmove = 0, currlen = 1) {
+    var solution, partial = [], temp, done = false;
+    for (var i = 0; i < 18; i++) {
+        if (currlen == 1 || lastmove % 6 != i % 6) {
+            solution = [];
+            temp = [];
+            for (var j = 0; j < 54; j++) {
+                temp.push(cube[j]);
+            }
+            doSolMove3(temp, i);
+            solution.push(i);
+            if (currlen == maxlen && crossSolved(cube)) {
+                done = true;
+                break;
+            }
+            else if (currlen < maxlen) {
+                partial = solveCrossByMove(temp, maxlen, i, currlen + 1);
+                if (partial[0] != -1) {
+                    for (var j = 0; j < partial.length; j++) {
+                        solution.push(partial[j]);
+                    }
+                    done = true;
+                    break;
+                }
+            }
+        }
+    }
+    
+    if (!done) {
+        solution = [];
+        solution.push(-1);
+    }
+    return solution;
+}
+
+function crossSolved(cube) {
+    var out = false;
+    for (var i = 0; i < 6; i++) {
+        if (thisCrossSolved(cube, i)) {
+            out = true;
+                break;
+        }
+    }
+    return out;
 }
 
 function thisCrossSolved(cube, n) {
