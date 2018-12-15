@@ -517,6 +517,7 @@ function contains(s, c) {
     }
     return out;
 }
+
 function copyCube2() {
     var x = document.getElementsByClassName("sticker2"), out = [];
     for (var i = 0; i < 24; i++) {
