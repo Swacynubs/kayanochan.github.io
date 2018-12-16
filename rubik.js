@@ -995,113 +995,113 @@ function atTop(cube, n) {
         numPairsSolved(cube) >= n) {
         if (cAtTop(cube, 0, 0) &&
             eAtTop(cube, 0, 4)) {
-            out = findOrient(4);
+            out = findOrient(cube, 0, 4);
         }
         else if (cAtTop(cube, 0, 1) &&
                  eAtTop(cube, 0, 5)) {
-                 out = cube.oriente[5];
+                 out = findOrient(cube, 0, 5);
         }
         else if (cAtTop(cube, 0, 2) &&
                  eAtTop(cube, 0, 6)) {
-                 out = cube.oriente[6];
+                 out = findOrient(cube, 0, 6);
         }
         else if (cAtTop(cube, 0, 3) &&
                  eAtTop(cube, 0, 7)) {
-                 out = cube.oriente[7];
+                 out = findOrient(cube, 0, 7);
         }
     }
     else if (thisCrossSolved(cube, 1) &&
         numPairsSolved(cube, 1) >= n) {
         if (cAtTop(cube, 1, 1) &&
             eAtTop(cube, 1, 0)) {
-            out = cube.oriente[0];
+            out = findOrient(cube, 1, 0);
         }
         else if (cAtTop(cube, 1, 2) &&
                  eAtTop(cube, 1, 2)) {
-                 out = cube.oriente[2];
+                 out = findOrient(cube, 1, 2);
         }
         else if (cAtTop(cube, 1, 5) &&
                  eAtTop(cube, 1, 8)) {
-                 out = cube.oriente[8];
+                 out = findOrient(cube, 1, 8);
         }
         else if (cAtTop(cube, 1, 6) &&
                  eAtTop(cube, 1, 10)) {
-                 out = cube.oriente[10];
+                 out = findOrient(cube, 1, 10);
         }
     }
     else if (thisCrossSolved(cube, 2) &&
         numPairsSolved(cube, 2) >= n) {
         if (cAtTop(cube, 2, 2) &&
             eAtTop(cube, 2, 1)) {
-            out = cube.oriente[1];
+            out = findOrient(cube, 2, 1);
         }
         else if (cAtTop(cube, 2, 3) &&
                  eAtTop(cube, 2, 3)) {
-                 out = cube.oriente[3];
+                 out = findOrient(cube, 2, 3);
         }
         else if (cAtTop(cube, 2, 4) &&
                  eAtTop(cube, 2, 11)) {
-                 out = cube.oriente[11];
+                 out = findOrient(cube, 2, 11);
         }
         else if (cAtTop(cube, 2, 5) &&
                  eAtTop(cube, 2, 9)) {
-                 out = cube.oriente[9];
+                 out = findOrient(cube, 2, 9);
         }
     }
     else if (thisCrossSolved(cube, 3) &&
         numPairsSolved(cube, 3) >= n) {
         if (cAtTop(cube, 3, 4) &&
             eAtTop(cube, 3, 7)) {
-            out = cube.oriente[4];
+            out = findOrient(cube, 3, 7);
         }
         else if (cAtTop(cube, 3, 5) &&
                  eAtTop(cube, 3, 6)) {
-                 out = cube.oriente[6];
+                 out = findOrient(cube, 3, 6);
         }
         else if (cAtTop(cube, 3, 6) &&
                  eAtTop(cube, 3, 5)) {
-                 out = cube.oriente[5];
+                 out = findOrient(cube, 3, 5);
         }
         else if (cAtTop(cube, 3, 7) &&
                  eAtTop(cube, 3, 4)) {
-                 out = cube.oriente[4];
+                 out = findOrient(cube, 3, 4);
         }
     }
     else if (thisCrossSolved(cube, 4) &&
         numPairsSolved(cube, 4) >= n) {
         if (cAtTop(cube, 4, 0) &&
             eAtTop(cube, 4, 0)) {
-            out = cube.oriente[0];
+            out =findOrient(cube, 4, 0);
         }
         else if (cAtTop(cube, 4, 3) &&
                  eAtTop(cube, 4, 2)) {
-                 out = cube.oriente[2];
+                 out = findOrient(cube, 4, 2);
         }
         else if (cAtTop(cube, 4, 4) &&
                  eAtTop(cube, 4, 8)) {
-                 out = cube.oriente[8];
+                 out = findOrient(cube, 4, 8);
         }
         else if (cAtTop(cube, 4, 7) &&
                  eAtTop(cube, 4, 10)) {
-                 out = cube.oriente[10];
+                 out = findOrient(cube, 4, 10);
         }
     }
     else {
         if (cAtTop(cube, 5, 0) &&
             eAtTop(cube, 5, 3)) {
-            out = cube.oriente[3];
+            out = findOrient(cube, 5, 3);
         }
         else if (cAtTop(cube, 5, 1) &&
                  eAtTop(cube, 5, 1)) {
-                 out = cube.oriente[1];
+                 out = findOrient(cube, 5, 1);
         }
         else if (cAtTop(cube, 5, 6) &&
                  eAtTop(cube, 5, 9)) {
-                 out = cube.oriente[9];
+                 out = findOrient(cube, 5, 9);
         }
         else if (cAtTop(cube, 5, 7) &&
                  eAtTop(cube, 5, 11)) {
-                 out = cube.oriente[11];
+                 out = findOrient(cube, 5, 11);
         }
     }
     return out;
@@ -1213,6 +1213,16 @@ function eAtTop(cube, cross, p) {
             }
     }
     return out;
+}
+
+function findOrient(cube, cross, e) {
+    var out;
+    switch (cross) {
+        case 0:
+            switch (e) {
+                case 
+            }
+    }
 }
 
 // Solves up to 3 pairs (4th is slow)
