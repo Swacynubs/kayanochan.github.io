@@ -3,7 +3,6 @@ function setColor3(pos) {
     if (isHold) {
         var x = document.getElementsByClassName("sticker3");
         x[pos].style.fill = color[hold];
-        state[pos] = hold;
     }
     console.log(pos);
 }
@@ -241,227 +240,174 @@ function doMove3(n) {
     }
 }
 
-function doSolMove3(x, n) {
+function doSolMove3(cube, m) {
     "use strict";
     var temp;
-    switch (n) {
-    case 0:
-        temp = x[0];
-        x[0] = x[6];
-        x[6] = x[8];
-        x[8] = x[2];
-        x[2] = temp;
-        temp = x[9];
-        x[9] = x[45];
-        x[45] = x[36];
-        x[36] = x[18];
-        x[18] = temp;
-        temp = x[11];
-        x[11] = x[47];
-        x[47] = x[38];
-        x[38] = x[20];
-        x[20] = temp;
-        temp = x[1];
-        x[1] = x[3];
-        x[3] = x[7];
-        x[7] = x[5];
-        x[5] = temp;  
-        temp = x[10];
-        x[10] = x[46];
-        x[46] = x[37];
-        x[37] = x[19];
-        x[19] = temp;
-        break;
-    case 1:
-        temp = x[2];
-        x[2] = x[20];
-        x[20] = x[29];
-        x[29] = x[51];
-        x[51] = temp;
-        temp = x[8];
-        x[8] = x[26];
-        x[26] = x[35];
-        x[35] = x[45];
-        x[45] = temp;
-        temp = x[9];
-        x[9] = x[15];
-        x[15] = x[17];
-        x[17] = x[11];
-        x[11] = temp;
-        temp = x[5];
-        x[5] = x[23];
-        x[23] = x[32];
-        x[32] = x[48];
-        x[48] = temp;  
-        temp = x[10];
-        x[10] = x[12];
-        x[12] = x[16];
-        x[16] = x[14];
-        x[14] = temp;
-        break;
-    case 2:
-        temp = x[6];
-        x[6] = x[44];
-        x[44] = x[29];
-        x[29] = x[9];
-        x[9] = temp;
-        temp = x[8];
-        x[8] = x[38];
-        x[38] = x[27];
-        x[27] = x[15];
-        x[15] = temp;
-        temp = x[18];
-        x[18] = x[24];
-        x[24] = x[26];
-        x[26] = x[20];
-        x[20] = temp;
-        temp = x[7];
-        x[7] = x[41];
-        x[41] = x[28];
-        x[28] = x[12];
-        x[12] = temp;
-        temp = x[19];
-        x[19] = x[21];
-        x[21] = x[25];
-        x[25] = x[23];
-        x[23] = temp;
-        break;
-    case 3:
-        temp = x[15];
-        x[15] = x[24];
-        x[24] = x[42];
-        x[42] = x[51];
-        x[51] = temp;
-        temp = x[17];
-        x[17] = x[26];
-        x[26] = x[44];
-        x[44] = x[53];
-        x[53] = temp;
-        temp = x[27];
-        x[27] = x[33];
-        x[33] = x[35];
-        x[35] = x[29];
-        x[29] = temp;
-        temp = x[16];
-        x[16] = x[25];
-        x[25] = x[43];
-        x[43] = x[52];
-        x[52] = temp;
-        temp = x[28];
-        x[28] = x[30];
-        x[30] = x[34];
-        x[34] = x[32];
-        x[32] = temp;
-        break;
-    case 4:
-        temp = x[0];
-        x[0] = x[53];
-        x[53] = x[27];
-        x[27] = x[18];
-        x[18] = temp;
-        temp = x[6];
-        x[6] = x[47];
-        x[47] = x[33];
-        x[33] = x[24];
-        x[24] = temp;
-        temp = x[36];
-        x[36] = x[42];
-        x[42] = x[44];
-        x[44] = x[38];
-        x[38] = temp;
-        temp = x[3];
-        x[3] = x[50];
-        x[50] = x[30];
-        x[30] = x[21];
-        x[21] = temp;
-        temp = x[37];
-        x[37] = x[39];
-        x[39] = x[43];
-        x[43] = x[41];
-        x[41] = temp;
-        break;
-    case 5:
-        temp = x[0];
-        x[0] = x[11];
-        x[11] = x[35];
-        x[35] = x[42];
-        x[42] = temp;
-        temp = x[2];
-        x[2] = x[17];
-        x[17] = x[33];
-        x[33] = x[36];
-        x[36] = temp;
-        temp = x[45];
-        x[45] = x[51];
-        x[51] = x[53];
-        x[53] = x[47];
-        x[47] = temp;
-        temp = x[1];
-        x[1] = x[14];
-        x[14] = x[34];
-        x[34] = x[39];
-        x[39] = temp;
-        temp = x[46];
-        x[46] = x[48];
-        x[48] = x[52];
-        x[52] = x[50];
-        x[50] = temp;
-        break;
-            
-    case 6:
-        for(var i=0; i < 3; i++){
-            doSolMove3(x,0);
-        }
-        break;
-    case 7:
-        for(var i=0; i < 3; i++){
-            doSolMove3(x,1);
-        }
-        break;
-    case 8:
-        for(var i=0; i < 3; i++){
-            doSolMove3(x,2);
-        }
-        break;
-    case 9:
-        for(var i=0; i < 3; i++){
-            doSolMove3(x,3);
-        }
-        break;
-    case 10:
-        for(var i=0; i < 3; i++){
-            doSolMove3(x,4);
-        }
-        break;
-    case 11:
-        for(var i=0; i < 3; i++){
-            doSolMove3(x,5);
-        }
-        break;
-            
-    case 12:
-        doSolMove3(x,0);
-        doSolMove3(x,0);
-        break;
-    case 13:
-        doSolMove3(x,1);
-        doSolMove3(x,1);
-        break;
-    case 14:
-        doSolMove3(x,2);
-        doSolMove3(x,2);
-        break;
-    case 15:
-        doSolMove3(x,3);
-        doSolMove3(x,3);
-        break;
-    case 16:
-        doSolMove3(x,4);
-        doSolMove3(x,4);
-        break;
-    default:
-        doSolMove3(x,5);
-        doSolMove3(x,5);
+    
+    switch (m) {
+        // U
+        case 0:
+            temp = cube.permc[0];
+            cube.permc[0] = cube.permc[3];
+            cube.permc[3] = cube.permc[2];
+            cube.permc[2] = cube.permc[1];
+            cube.permc[1] = temp;
+            temp = cube.perme[0];
+            cube.perme[0] = cube.perme[3];
+            cube.perme[3] = cube.perme[2];
+            cube.perme[2] = cube.perme[1];
+            cube.perme[1] = temp;
+            break;
+        // R
+        case 1:
+            cube.orientc[cube.permc[1]] = (cube.orientc[cube.permc[1]] + 1) % 3;
+            cube.orientc[cube.permc[2]] = (cube.orientc[cube.permc[2]] + 2) % 3;
+            cube.orientc[cube.permc[5]] = (cube.orientc[cube.permc[5]] + 1) % 3;
+            cube.orientc[cube.permc[6]] = (cube.orientc[cube.permc[6]] + 2) % 3;
+            temp = cube.permc[1];
+            cube.permc[1] = cube.permc[2];
+            cube.permc[2] = cube.permc[5];
+            cube.permc[5] = cube.permc[6];
+            cube.permc[6] = temp;
+            temp = cube.perme[1];
+            cube.perme[1] = cube.perme[6];
+            cube.perme[6] = cube.perme[9];
+            cube.perme[9] = cube.perme[5];
+            cube.perme[5] = temp;
+            break;
+        // F
+        case 2:
+            cube.orientc[cube.permc[2]] = (cube.orientc[cube.permc[2]] + 1) % 3;
+            cube.orientc[cube.permc[3]] = (cube.orientc[cube.permc[3]] + 2) % 3;
+            cube.orientc[cube.permc[4]] = (cube.orientc[cube.permc[4]] + 1) % 3;
+            cube.orientc[cube.permc[5]] = (cube.orientc[cube.permc[5]] + 2) % 3;
+            cube.oriente[cube.perme[2]] = (cube.oriente[cube.perme[2]] + 1) % 2;
+            cube.oriente[cube.perme[6]] = (cube.oriente[cube.perme[6]] + 1) % 2;
+            cube.oriente[cube.perme[7]] = (cube.oriente[cube.perme[7]] + 1) % 2;
+            cube.oriente[cube.perme[8]] = (cube.oriente[cube.perme[8]] + 1) % 2;
+            temp = cube.permc[2];
+            cube.permc[2] = cube.permc[3];
+            cube.permc[3] = cube.permc[4];
+            cube.permc[4] = cube.permc[5];
+            cube.permc[5] = temp;
+            temp = cube.perme[2];
+            cube.perme[2] = cube.perme[7];
+            cube.perme[7] = cube.perme[8];
+            cube.perme[8] = cube.perme[6];
+            cube.perme[6] = temp;
+            break;
+        // D
+        case 3:
+            temp = cube.permc[4];
+            cube.permc[4] = cube.permc[7];
+            cube.permc[7] = cube.permc[6];
+            cube.permc[6] = cube.permc[5];
+            cube.permc[5] = temp;
+            temp = cube.perme[8];
+            cube.perme[8] = cube.perme[11];
+            cube.perme[11] = cube.perme[10];
+            cube.perme[10] = cube.perme[9];
+            cube.perme[9] = temp;
+            break;
+        // L
+        case 4:
+            cube.orientc[cube.permc[0]] = (cube.orientc[cube.permc[0]] + 2) % 3;
+            cube.orientc[cube.permc[3]]=(cube.orientc[cube.permc[3]]+1)%3;
+            cube.orientc[cube.permc[4]]=(cube.orientc[cube.permc[4]]+2)%3;
+            cube.orientc[cube.permc[7]]=(cube.orientc[cube.permc[7]]+1)%3;
+            temp=cube.permc[0];
+            cube.permc[0]=cube.permc[7];
+            cube.permc[7]=cube.permc[4];
+            cube.permc[4]=cube.permc[3];
+            cube.permc[3]=temp;
+            temp = cube.perme[3];
+            cube.perme[3] = cube.perme[4];
+            cube.perme[4] = cube.perme[11];
+            cube.perme[11] = cube.perme[7];
+            cube.perme[7] = temp;
+            break;
+        // B
+        case 5:
+            cube.orientc[cube.permc[0]]=(cube.orientc[cube.permc[0]]+1)%3;
+            cube.orientc[cube.permc[1]]=(cube.orientc[cube.permc[1]]+2)%3;
+            cube.orientc[cube.permc[6]]=(cube.orientc[cube.permc[6]]+1)%3;
+            cube.orientc[cube.permc[7]]=(cube.orientc[cube.permc[7]]+2)%3;
+            cube.oriente[cube.perme[0]]=(cube.oriente[cube.perme[0]]+1)%2;
+            cube.oriente[cube.perme[4]]=(cube.oriente[cube.perme[4]]+1)%2;
+            cube.oriente[cube.perme[5]]=(cube.oriente[cube.perme[5]]+1)%2;
+            cube.oriente[cube.perme[10]]=(cube.oriente[cube.perme[10]]+1)%2;
+            temp=cube.permc[0];
+            cube.permc[0]=cube.permc[1];
+            cube.permc[1]=cube.permc[6];
+            cube.permc[6]=cube.permc[7];
+            cube.permc[7]=temp;
+            temp = cube.perme[0];
+            cube.perme[0] = cube.perme[5];
+            cube.perme[5] = cube.perme[10];
+            cube.perme[10] = cube.perme[4];
+            cube.perme[4] = temp;
+            break;
+
+        // U'
+        case 6:
+            doSolMove3(cube, 0);
+            doSolMove3(cube, 12);
+            break;
+        // R'
+        case 7:
+            doSolMove3(cube, 1);
+            doSolMove3(cube, 13);
+            break;
+        // F'
+        case 8:
+            doSolMove3(cube, 2);
+            doSolMove3(cube, 14);
+            break;
+        // D'
+        case 9:
+            doSolMove3(cube, 3);
+            doSolMove3(cube, 15);
+            break;
+        // L'
+        case 10:
+            doSolMove3(cube, 4);
+            doSolMove3(cube, 16);
+            break;
+        // B'
+        case 11:
+            doSolMove3(cube, 5);
+            doSolMove3(cube, 17);
+            break;
+
+        // U2
+        case 12:
+            doSolMove3(cube, 0);
+            doSolMove3(cube, 0);
+            break;
+        // R2
+        case 13:
+            doSolMove3(cube, 1);
+            doSolMove3(cube, 1);
+            break;
+        // F2
+        case 14:
+            doSolMove3(cube, 2);
+            doSolMove3(cube, 2);
+            break;
+        // D2
+        case 15:
+            doSolMove3(cube, 3);
+            doSolMove3(cube, 3);
+            break;
+        // L2
+        case 16:
+            doSolMove3(cube, 4);
+            doSolMove3(cube, 4);
+            break;
+        // B2
+        default:
+            doSolMove3(cube, 5);
+            doSolMove3(cube, 5);
     }
 }
 
@@ -474,25 +420,41 @@ function scramble3() {
 
 function toCubie() {
     "use strict"
-    var x = document.getElementsByClassName("sticker3"), cube = [], out = [], temp;
+    var x = document.getElementsByClassName("sticker3"), cube = [], out = {permc : [], orientc : [], perme : [], oriente : []}, temp;
     for (var i = 0; i < 54; i++) {
         cube.push(x[i].style.fill);
     }
-    
     for (var i = 0; i < 8; i++) {
-        temp = [];
+        out.orientc.push(0);
+    }
+    for (var i = 0; i < 12; i++) {
+        out.oriente.push(0);
+    }
+    for (var i = 0; i < 8; i++) {
         temp = getCorner(cube, i);
-        out.push(temp[0]);
-        out.push(temp[1]);
+        out.permc.push(temp[0]);
+        out.orientc[temp[0]] = temp[1];
     }
     
     for (var i = 0; i < 12; i++) {
-        temp = [];
         temp = getEdge(cube, i);
-        out.push(temp[0]);
-        out.push(temp[1]);
+        out.perme.push(temp[0]);
+        out.oriente[temp[0]] = temp[1];
     }
     
+    return out;
+}
+
+function copyCube3(cube) {
+    var out = {permc : [], orientc : [], perme : [], oriente : []};
+    for (var i = 0; i < 8; i++) {
+        out.permc.push(cube.permc[i]);
+        out.orientc.push(cube.orientc[i]);
+    }
+    for (var i = 0; i < 12; i++) {
+        out.perme.push(cube.perme[i]);
+        out.oriente.push(cube.oriente[i]);
+    }
     return out;
 }
 
@@ -539,25 +501,25 @@ function getCorner(cube, n) {
             corner.push(cube[42]);
             corner.push(cube[53]);
     }
-    var out = -1;
+    var out = [];
     if (contains(corner, cube[4]) &&
-        contains(corner, cube[40]) &&
         contains(corner, cube[49]) &&
-        corner[contains(corner, cube[4]) % 3] == cube[40]) {
+        contains(corner, cube[40]) &&
+        corner[contains(corner, cube[4]) % 3] == cube[49]) {
         out.push(0);
         out.push(contains(corner, cube[4]) - 1);
     }
     else if (contains(corner, cube[4]) &&
              contains(corner, cube[13]) &&
              contains(corner, cube[49]) &&
-             corner[contains(corner, color[0]) % 3] == cube[13]) {
+             corner[contains(corner, cube[4]) % 3] == cube[13]) {
         out.push(1);
         out.push(contains(corner, cube[4]) - 1);
     }
     else if (contains(corner, cube[4]) &&
              contains(corner, cube[22]) &&
              contains(corner, cube[13]) &&
-             corner[contains(corner, color[0]) % 3] == cube[22]) {
+             corner[contains(corner, cube[4]) % 3] == cube[22]) {
         out.push(2);
         out.push(contains(corner, cube[4]) - 1);
     }
@@ -604,113 +566,113 @@ function getEdge(cube, n) {
     var out = [], edge = [];
     switch (n) {
         case 0:
-            corner.push(cube[1]);
-            corner.push(cube[46]);
+            edge.push(cube[1]);
+            edge.push(cube[46]);
             break;
         case 1:
-            corner.push(cube[5]);
-            corner.push(cube[10]);
+            edge.push(cube[5]);
+            edge.push(cube[10]);
             break;
         case 2:
-            corner.push(cube[7]);
-            corner.push(cube[19]);
+            edge.push(cube[7]);
+            edge.push(cube[19]);
             break;
         case 3:
-            corner.push(cube[3]);
-            corner.push(cube[37]);
+            edge.push(cube[3]);
+            edge.push(cube[37]);
             break;
         case 4:
-            corner.push(cube[50]);
-            corner.push(cube[39]);
+            edge.push(cube[50]);
+            edge.push(cube[39]);
             break;
         case 5:
-            corner.push(cube[48]);
-            corner.push(cube[14]);
+            edge.push(cube[48]);
+            edge.push(cube[14]);
             break;
         case 6:
-            corner.push(cube[23]);
-            corner.push(cube[12]);
+            edge.push(cube[23]);
+            edge.push(cube[12]);
             break;
         case 7:
-            corner.push(cube[21]);
-            corner.push(cube[41]);
+            edge.push(cube[21]);
+            edge.push(cube[41]);
             break;
         case 8:
-            corner.push(cube[28]);
-            corner.push(cube[25]);
+            edge.push(cube[28]);
+            edge.push(cube[25]);
             break;
         case 9:
-            corner.push(cube[32]);
-            corner.push(cube[16]);
+            edge.push(cube[32]);
+            edge.push(cube[16]);
             break;
         case 10:
-            corner.push(cube[34]);
-            corner.push(cube[52]);
+            edge.push(cube[34]);
+            edge.push(cube[52]);
             break;
         default:
-            corner.push(cube[30]);
-            corner.push(cube[43]);
+            edge.push(cube[30]);
+            edge.push(cube[43]);
     }
-    var out = -1;
-    if (contains(corner, cube[4]) &&
-        contains(corner, cube[49])) {
+    var out = [];
+    if (contains(edge, cube[4]) &&
+        contains(edge, cube[49])) {
         out.push(0);
-        out.push(contains(corner, cube[4]) - 1);
+        out.push(contains(edge, cube[4]) - 1);
     }
-    else if (contains(corner, cube[4]) &&
-        contains(corner, cube[13])) {
+    else if (contains(edge, cube[4]) &&
+        contains(edge, cube[13])) {
         out.push(1);
-        out.push(contains(corner, cube[4]) - 1);
+        out.push(contains(edge, cube[4]) - 1);
     }
-    else if (contains(corner, cube[4]) &&
-        contains(corner, cube[22])) {
+    else if (contains(edge, cube[4]) &&
+        contains(edge, cube[22])) {
         out.push(2);
-        out.push(contains(corner, cube[4]) - 1);
+        out.push(contains(edge, cube[4]) - 1);
     }
-    else if (contains(corner, cube[4]) &&
-        contains(corner, cube[40])) {
+    else if (contains(edge, cube[4]) &&
+        contains(edge, cube[40])) {
         out.push(3);
-        out.push(contains(corner, cube[4]) - 1);
+        out.push(contains(edge, cube[4]) - 1);
     }
-    else if (contains(corner, cube[49]) &&
-        contains(corner, cube[40])) {
+    else if (contains(edge, cube[49]) &&
+        contains(edge, cube[40])) {
         out.push(4);
-        out.push(contains(corner, cube[49]) - 1);
+        out.push(contains(edge, cube[49]) - 1);
     }
-    else if (contains(corner, cube[49]) &&
-        contains(corner, cube[13])) {
+    else if (contains(edge, cube[49]) &&
+        contains(edge, cube[13])) {
         out.push(5);
-        out.push(contains(corner, cube[49]) - 1);
+        out.push(contains(edge, cube[49]) - 1);
     }
-    else if (contains(corner, cube[22]) &&
-        contains(corner, cube[13])) {
+    else if (contains(edge, cube[22]) &&
+        contains(edge, cube[13])) {
         out.push(6);
-        out.push(contains(corner, cube[22]) - 1);
+        out.push(contains(edge, cube[22]) - 1);
     }
-    else if (contains(corner, cube[22]) &&
-        contains(corner, cube[40])) {
+    else if (contains(edge, cube[22]) &&
+        contains(edge, cube[40])) {
         out.push(7);
-        out.push(contains(corner, cube[22]) - 1);
+        out.push(contains(edge, cube[22]) - 1);
     }
-    else if (contains(corner, cube[31]) &&
-        contains(corner, cube[22])) {
+    else if (contains(edge, cube[31]) &&
+        contains(edge, cube[22])) {
         out.push(8);
-        out.push(contains(corner, cube[31]) - 1);
+        out.push(contains(edge, cube[31]) - 1);
     }
-    else if (contains(corner, cube[31]) &&
-        contains(corner, cube[13])) {
+    else if (contains(edge, cube[31]) &&
+        contains(edge, cube[13])) {
         out.push(9);
-        out.push(contains(corner, cube[31]) - 1);
+        out.push(contains(edge, cube[31]) - 1);
     }
-    else if (contains(corner, cube[31]) &&
-        contains(corner, cube[49])) {
+    else if (contains(edge, cube[31]) &&
+        contains(edge, cube[49])) {
         out.push(10);
-        out.push(contains(corner, cube[31]) - 1);
+        out.push(contains(edge, cube[31]) - 1);
     }
-    else if (contains(corner, cube[31]) &&
-        contains(corner, cube[40])) {
+    else if (contains(edge, cube[31]) &&
+        contains(edge, cube[40])) {
         out.push(11);
-        out.push(contains(corner, cube[31]) - 1);
+        out.push(contains(edge, cube[31]) - 1);
     }
     
     return out;
@@ -718,7 +680,7 @@ function getEdge(cube, n) {
 
 function contains(s, c) {
     var out = 0;
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < s.length; i++) {
         if (s[i] == c) {
             out = i + 1;
             break;
@@ -799,122 +761,14 @@ function doZ3(m, n = 1) {
     
 }
 
-function solvedc(x, n) {
+function solvedc(cube, c) {
     "use strict";
-    var out = false;
-    switch (n) {
-        case 0:
-            if (x[0] == color[0] && x[36] == color[4] && x[47] == color[5]) {
-                out = true;
-            }
-            break;
-        case 1:
-            if (x[2]==color[0]&&x[11]==color[1]&&x[45]==color[5]) {
-                out = true;
-            }
-            break;
-        case 2:
-            if (x[8]==color[0]&&x[9]==color[1]&&x[20]==color[2]){
-                out = true;
-            }
-            break;
-        case 3:
-            if (x[6]==color[0]&&x[18]==color[2]&&x[38]==color[4]){
-                out = true;
-            }
-            break;
-        case 4:
-            if (x[24]==color[2]&&x[27]==color[3]&&x[44]==color[4]){
-                out = true;
-            }
-            break;
-        case 5:
-            if (x[26]==color[2]&&x[15]==color[1]&&x[29]==color[3]){
-                out = true;
-            }
-            break;
-        case 6:
-            if (x[17]==color[1]&&x[35]==color[3]&&x[51]==color[5]){
-                out = true;
-            }
-            break;
-        default:
-            if (x[33]==color[3]&&x[42]==color[4]&&x[53]==color[5]){
-                out = true;
-            }
-    }
-    
-    return out;
-    
+    return (cube.permc[c] == c && !cube.orientc[c]);
 }
 
-function solvede(x, n) {
+function solvede(cube, e) {
     "use strict";
-    var out = false;
-    switch(n) {
-        case 0:
-            if (x[1]==color[0]&&x[46]==color[5]){
-                out = true;
-            }
-            break;
-        case 1:
-            if (x[5]==color[0]&&x[10]==color[1]){
-                out = true;
-            }
-            break;
-        case 2:
-            if (x[7]==color[0]&&x[19]==color[2]){
-                out = true;
-            }
-            break;
-        case 3:
-            if (x[3]==color[0]&&x[37]==color[4]){
-                out = true;
-            }
-            break;
-        case 4:
-            if (x[39]==color[4]&&x[50]==color[5]){
-                out = true;
-            }
-            break;
-        case 5:
-            if (x[14]==color[1]&&x[48]==color[5]){
-                out = true;
-            }
-            break;
-        case 6:
-            if (x[12]==color[1]&&x[23]==color[2]){
-                out = true;
-            }
-            break;
-        case 7:
-            if (x[21]==color[2]&&x[41]==color[4]){
-                out = true;
-            }
-            break;
-        case 8:
-            if (x[25]==color[2]&&x[28]==color[3]){
-                out = true;
-            }
-            break;
-        case 9:
-            if (x[16]==color[1]&&x[32]==color[3]){
-                out = true;
-            }
-            break;
-        case 10:
-            if (x[33]==color[3]&&x[52]==color[5]){
-                out = true;
-            }
-            break;
-        default:
-            if (x[30]==color[3]&&x[43]==color[4]){
-                out = true;
-            }
-    }
-    
-    return out;
-    
+    return (cube.perme[e] == e && !cube.oriente[e]);
 }
 
 // Slot 0 is least corner, others are counter-clockwise determined
@@ -944,6 +798,7 @@ function RUFRotate(m, cross = 0, slot = 0) {
 
 function completeSolve() {
     var solution = [], temp, cube = toCubie();
+    console.log(cube);
     solution = solveCross(cube);
     console.log(translate3(solution));
     for (var i = 1; i < 4; i++) {
@@ -1007,6 +862,7 @@ function solveCross(cube) {
             doSolMove3(cube, temp[i]);
             solution.push(temp[i]);
         }
+        console.log(cube);
     }
     return solution;
 }
@@ -1016,13 +872,10 @@ function solveCrossByMove(cube, maxlen, lastmove = 0, currlen = 1) {
     for (var i = 0; i < 18; i++) {
         if (currlen == 1 || lastmove % 6 != i % 6) {
             solution = [];
-            temp = [];
-            for (var j = 0; j < 54; j++) {
-                temp.push(cube[j]);
-            }
+            temp = copyCube3(cube);
             doSolMove3(temp, i);
             solution.push(i);
-            if (currlen == maxlen && crossSolved(cube)) {
+            if (currlen == maxlen && crossSolved(temp)) {
                 done = true;
                 break;
             }
@@ -1051,7 +904,7 @@ function crossSolved(cube) {
     for (var i = 0; i < 6; i++) {
         if (thisCrossSolved(cube, i)) {
             out = true;
-                break;
+            break;
         }
     }
     return out;
@@ -1059,25 +912,24 @@ function crossSolved(cube) {
 
 function thisCrossSolved(cube, n) {
     var out = false;
-    if (!n && solvede(cube,0) && solvede(cube,1) && solvede(cube,2) && solvede(cube,3)) {
+    if (!n && solvede(cube, 0) && solvede(cube, 1) && solvede(cube, 2) && solvede(cube, 3)) {
         out = true;
     }
-    else if (n==1&&solvede(cube,1)&&solvede(cube,5)&&solvede(cube,6)&&solvede(cube,9)){
-        out=true;
+    else if (n == 1 && solvede(cube, 1) && solvede(cube, 5) && solvede(cube, 6) && solvede(cube, 9)) {
+        out = true;
     }
-    else if (n==2&&solvede(cube,2)&&solvede(cube,6)&&solvede(cube,7)&&solvede(cube,8)){
-        out=true;
+    else if (n == 2 && solvede(cube, 2) && solvede(cube, 6) && solvede(cube, 7) && solvede(cube, 8)) {
+        out = true;
     }
-    else if (n==3&&solvede(cube,8)&&solvede(cube,9)&&solvede(cube,10)&&solvede(cube,11)){
-        out=true;
+    else if (n == 3 && solvede(cube, 8) && solvede(cube, 9) && solvede(cube, 10) && solvede(cube, 11)) {
+        out = true;
     }
-    else if (n==4&&solvede(cube,3)&&solvede(cube,4)&&solvede(cube,7)&&solvede(cube,11)){
-        out=true;
+    else if (n == 4 && solvede(cube, 3) && solvede(cube, 4) && solvede(cube, 7) && solvede(cube, 11)) {
+        out = true;
     }
-    else if (n==5&&solvede(cube,0)&&solvede(cube,4)&&solvede(cube,5)&&solvede(cube,10)){
-        out=true;
+    else if (n == 5 && solvede(cube, 0) && solvede(cube, 4) && solvede(cube, 5) && solvede(cube, 10)) {
+        out = true;
     }
-    
     return out;
 }
 
