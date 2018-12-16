@@ -411,6 +411,47 @@ function doSolMove3(cube, m) {
     }
 }
 
+function doRULMove(cube, orient, m) {
+    var out = m;
+    if (m % 3 == 2) {
+        out = Math.floor(m / 3) * 6 + 4;
+    }
+    switch (orient) {
+        case 0:
+            m = doX3(m, 2);
+            break;
+        case 1:
+            m = doY3(doX3(m, 2));
+            break;
+        case 2:
+            m = doZ3(m);
+            break;
+        case 3:
+            m = doY3(doZ3(m));
+            break;
+        case 4:
+            m = doX3(m, 3);
+            break;
+        case 5:
+            m = doY3(doX3(m, 3), 3);
+            break;
+        case 6:
+            m = doY3(m, 3);
+            break;
+        case 8:
+            m = doY3(doZ3(m, 3), 2);
+            break;
+        case 9:
+            m = doY3(doZ3(m, 3), 3);
+            break;
+        case 10:
+            m = doY3(doX3(m), 2);
+            break;
+        case 11:
+            m = doY3(doX3(m));
+    }
+}
+
 function scramble3() {
     "use strict";
     for (var i = 0; i < 100; i++) {
@@ -801,14 +842,16 @@ function completeSolve() {
     console.log(cube);
     solution = solveCross(cube);
     console.log(translate3(solution));
-    for (var i = 1; i < 4; i++) {
+    for (var i = 1; i <= 4; i++) {
         console.log(i);
         if (numPairsSolved(cube) < i) {
-            temp = [];
-            temp = bringToTop(cube, i);
-            for (var j = 0; j < temp.length; j++) {
-                doSolMove3(cube, temp[j]);
-                solution.push(temp[j]);
+            if (atTop(cube, i) == -1) {
+                temp = [];
+                temp = bringToTop(cube, i);
+                for (var j = 0; j < temp.length; j++) {
+                    doSolMove3(cube, temp[j]);
+                    solution.push(temp[j]);
+                }
             }
             for (var j = 1; j < 11; j++) {
                 console.log(j);
@@ -822,24 +865,6 @@ function completeSolve() {
                 doSolMove3(cube,temp[j]);
                 solution.push(temp[j]);
             }
-        }
-    }
-    if (numPairsSolved(cube) < 4) {
-        var missing = missingSlot(cube),
-            cross = Math.floor(missing / 4),
-            slot = missing % 4;
-            console.log(cross+' '+slot);
-        for (var j = 1; j < 11; j++) {
-            console.log(j);
-            temp=[];
-            temp = solveF2L4ByMove(cube, cross, slot, j);
-            if (temp[0] != -1) {
-                break;
-            }
-        }
-        for (var j = 0; j < temp.length; j++) {
-            doSolMove3(cube, temp[j]);
-            solution.push(temp[j]);
         }
     }
     console.log(solution);
@@ -933,23 +958,271 @@ function thisCrossSolved(cube, n) {
     return out;
 }
 
-function bringToTop(cube, n) {
-    if (!atTop(cube, n)) {
-        
-    }
-}
-
-// Solves up to 3 pairs (4th is slow)
-function solveF2LByMove(cube, n, maxlen, lastmove = 0, currlen = 1) {
+function bringToTop(cube, n, lastmove = 0, currlen = 0) {
     var solution, partial = [], temp, done = false;
     for (var i = 0; i < 18; i++) {
         if (currlen == 1 || lastmove % 6 != i % 6) {
             solution = [];
-            temp = [];
-            for (var j = 0; j < 54; j++) {
-                temp.push(cube[j]);
-            }
+            temp = copyCube3(cube);
             doSolMove3(temp, i);
+            solution.push(i);
+            if (currlen == 3 && atTop(temp, n)) {
+                done = true;
+                break;
+            }
+            else if (currlen < 3) {
+                partial = bringToTop(temp, i, currlen + 1);
+                if (partial[0] != -1) {
+                    for (var j = 0; j < partial.length; j++) {
+                        solution.push(partial[j]);
+                    }
+                    done = true;
+                    break;
+                }
+            }
+        }
+    }
+    if (!done) {
+        solution = [];
+        solution.push(-1);
+    }
+    return solution;
+}
+
+function atTop(cube, n) {
+    var out = -1;
+    if (thisCrossSolved(cube, 0) &&
+        numPairsSolved(cube) >= n) {
+        if (cAtTop(cube, 0, 0) &&
+            eAtTop(cube, 0, 4)) {
+            out = findOrient(4);
+        }
+        else if (cAtTop(cube, 0, 1) &&
+                 eAtTop(cube, 0, 5)) {
+                 out = cube.oriente[5];
+        }
+        else if (cAtTop(cube, 0, 2) &&
+                 eAtTop(cube, 0, 6)) {
+                 out = cube.oriente[6];
+        }
+        else if (cAtTop(cube, 0, 3) &&
+                 eAtTop(cube, 0, 7)) {
+                 out = cube.oriente[7];
+        }
+    }
+    else if (thisCrossSolved(cube, 1) &&
+        numPairsSolved(cube, 1) >= n) {
+        if (cAtTop(cube, 1, 1) &&
+            eAtTop(cube, 1, 0)) {
+            out = cube.oriente[0];
+        }
+        else if (cAtTop(cube, 1, 2) &&
+                 eAtTop(cube, 1, 2)) {
+                 out = cube.oriente[2];
+        }
+        else if (cAtTop(cube, 1, 5) &&
+                 eAtTop(cube, 1, 8)) {
+                 out = cube.oriente[8];
+        }
+        else if (cAtTop(cube, 1, 6) &&
+                 eAtTop(cube, 1, 10)) {
+                 out = cube.oriente[10];
+        }
+    }
+    else if (thisCrossSolved(cube, 2) &&
+        numPairsSolved(cube, 2) >= n) {
+        if (cAtTop(cube, 2, 2) &&
+            eAtTop(cube, 2, 1)) {
+            out = cube.oriente[1];
+        }
+        else if (cAtTop(cube, 2, 3) &&
+                 eAtTop(cube, 2, 3)) {
+                 out = cube.oriente[3];
+        }
+        else if (cAtTop(cube, 2, 4) &&
+                 eAtTop(cube, 2, 11)) {
+                 out = cube.oriente[11];
+        }
+        else if (cAtTop(cube, 2, 5) &&
+                 eAtTop(cube, 2, 9)) {
+                 out = cube.oriente[9];
+        }
+    }
+    else if (thisCrossSolved(cube, 3) &&
+        numPairsSolved(cube, 3) >= n) {
+        if (cAtTop(cube, 3, 4) &&
+            eAtTop(cube, 3, 7)) {
+            out = cube.oriente[4];
+        }
+        else if (cAtTop(cube, 3, 5) &&
+                 eAtTop(cube, 3, 6)) {
+                 out = cube.oriente[6];
+        }
+        else if (cAtTop(cube, 3, 6) &&
+                 eAtTop(cube, 3, 5)) {
+                 out = cube.oriente[5];
+        }
+        else if (cAtTop(cube, 3, 7) &&
+                 eAtTop(cube, 3, 4)) {
+                 out = cube.oriente[4];
+        }
+    }
+    else if (thisCrossSolved(cube, 4) &&
+        numPairsSolved(cube, 4) >= n) {
+        if (cAtTop(cube, 4, 0) &&
+            eAtTop(cube, 4, 0)) {
+            out = cube.oriente[0];
+        }
+        else if (cAtTop(cube, 4, 3) &&
+                 eAtTop(cube, 4, 2)) {
+                 out = cube.oriente[2];
+        }
+        else if (cAtTop(cube, 4, 4) &&
+                 eAtTop(cube, 4, 8)) {
+                 out = cube.oriente[8];
+        }
+        else if (cAtTop(cube, 4, 7) &&
+                 eAtTop(cube, 4, 10)) {
+                 out = cube.oriente[10];
+        }
+    }
+    else {
+        if (cAtTop(cube, 5, 0) &&
+            eAtTop(cube, 5, 3)) {
+            out = cube.oriente[3];
+        }
+        else if (cAtTop(cube, 5, 1) &&
+                 eAtTop(cube, 5, 1)) {
+                 out = cube.oriente[1];
+        }
+        else if (cAtTop(cube, 5, 6) &&
+                 eAtTop(cube, 5, 9)) {
+                 out = cube.oriente[9];
+        }
+        else if (cAtTop(cube, 5, 7) &&
+                 eAtTop(cube, 5, 11)) {
+                 out = cube.oriente[11];
+        }
+    }
+    return out;
+}
+
+function cAtTop(cube, cross, p) {
+    var out = false;
+    switch(cross) {
+        case 0:
+            if (cube.permc[4] == p ||
+                cube.permc[5] == p ||
+                cube.permc[6] == p ||
+                cube.permc[7] == p) {
+                out = true;
+            }
+            break;
+        case 1:
+            if (cube.permc[0] == p ||
+                cube.permc[3] == p ||
+                cube.permc[4] == p ||
+                cube.permc[7] == p) {
+                out = true;
+            }
+            break;
+        case 2:
+            if (cube.permc[0] == p ||
+                cube.permc[1] == p ||
+                cube.permc[6] == p ||
+                cube.permc[7] == p) {
+                out = true;
+            }
+            break;
+        case 3:
+            if (cube.permc[0] == p ||
+                cube.permc[1] == p ||
+                cube.permc[2] == p ||
+                cube.permc[3] == p) {
+                out = true;
+            }
+            break;
+        case 4:
+            if (cube.permc[1] == p ||
+                cube.permc[2] == p ||
+                cube.permc[5] == p ||
+                cube.permc[6] == p) {
+                out = true;
+            }
+            break;
+        default:
+            if (cube.permc[2] == p ||
+                cube.permc[3] == p ||
+                cube.permc[4] == p ||
+                cube.permc[5] == p) {
+                out = true;
+            }
+    }
+    return out;
+}
+
+function eAtTop(cube, cross, p) {
+    var out = false;
+    switch(cross) {
+        case 0:
+            if (cube.perme[8] == p ||
+                cube.perme[9] == p ||
+                cube.perme[10] == p ||
+                cube.perme[11] == p) {
+                out = true;
+            }
+            break;
+        case 1:
+            if (cube.perme[3] == p ||
+                cube.perme[4] == p ||
+                cube.perme[7] == p ||
+                cube.perme[11] == p) {
+                out = true;
+            }
+            break;
+        case 2:
+            if (cube.perme[0] == p ||
+                cube.perme[4] == p ||
+                cube.perme[5] == p ||
+                cube.perme[10] == p) {
+                out = true;
+            }
+            break;
+        case 3:
+            if (cube.perme[0] == p ||
+                cube.perme[1] == p ||
+                cube.perme[2] == p ||
+                cube.perme[3] == p) {
+                out = true;
+            }
+            break;
+        case 4:
+            if (cube.perme[1] == p ||
+                cube.perme[5] == p ||
+                cube.perme[6] == p ||
+                cube.perme[9] == p) {
+                out = true;
+            }
+            break;
+        default:
+            if (cube.perme[2] == p ||
+                cube.perme[6] == p ||
+                cube.perme[7] == p ||
+                cube.perme[8] == p) {
+                out = true;
+            }
+    }
+    return out;
+}
+
+// Solves up to 3 pairs (4th is slow)
+function solveF2LByMove(cube, n, orient, maxlen, lastmove = 0, currlen = 1) {
+    var solution, partial = [], temp, done = false;
+    for (var i = 0; i < 9; i++) {
+        if (currlen == 1 || lastmove % 3 != i % 3) {
+            solution = [];
+            temp = copyCube3(cube);
+            doRULMove(temp, i);
             solution.push(i);
             if (currlen == maxlen && numPairsSolved(temp) >= n) {
                 done = true;
@@ -976,189 +1249,59 @@ function solveF2LByMove(cube, n, maxlen, lastmove = 0, currlen = 1) {
     return solution;
 }
 
-function solveF2L4ByMove(cube, cross, slot, maxlen, lastmove = 0, currlen = 1) {
-    var solution, partial, temp, done = false;
-    for (var i = 0; i < 9; i++) {
-        if (currlen == 1 || lastmove % 3 != i % 3) {
-            solution = [];
-            temp = [];
-            for (var j = 0; j < 54; j++) {
-                temp.push(cube[j]);
-            }
-            doSolMove3(temp, RUFRotate(i, cross, slot));
-            solution.push(RUFRotate(i, cross, slot));
-            if (currlen == maxlen && numPairsSolved(temp) == 4) {
-                done = true;
-                break;
-            }
-            else if (currlen < maxlen) {
-                partial = solveF2L4ByMove(temp, cross, slot, maxlen, i, currlen + 1);
-                if (partial[0] != -1) {
-                    for (var j = 0; j < partial.length; j++) {
-                        solution.push(partial[j]);
-                    }
-                    done = true;
-                    break;
-                }
-            }
-        }
-    }
-    if (!done) {
-        solution = [];
-        solution.push(-1);
-    }    
-    return solution;
-}
-
-function missingSlot(cube) {
-    var out;
-    // U Cross
-    if (thisCrossSolved(cube, 0) && numPairsSolved(cube, 0) >= 3) {
-        if (!(solvedc(0) && solvede(4))) {
-            out = 0;
-        }
-        else if (!(solvedc(1) && solvede(5))) {
-            out = 1;
-        }
-        else if (!(solvedc(2) && solvede(6))) {
-            out = 2;
-        }
-        else {
-            out = 3;
-        }
-    }
-    // R cross
-    else if (thisCrossSolved(cube, 1) && numPairsSolved(cube, 1) >= 3) {
-        if (!(solvedc(1) && solvede(0))) {
-            out = 4;
-        }
-        else if (!(solvedc(6) && solvede(10))) {
-            out = 5;
-        }
-        else if (!(solvedc(5) && solvede(8))) {
-            out = 6;
-        }
-        else {
-            out = 7;
-        }
-    }
-    // F cross
-    else if (thisCrossSolved(cube, 2) && numPairsSolved(cube, 2) >= 3) {
-        if (!(solvedc(2) && solvede(1))) {
-            out = 8;
-        }
-        else if (!(solvedc(5) && solvede(9))) {
-            out = 9;
-        }
-        else if (!(solvedc(4) && solvede(11))) {
-            out = 10;
-        }
-        else {
-            out = 11;
-        }
-    }
-    // D cross
-    else if (thisCrossSolved(cube, 3) && numPairsSolved(cube, 3) >= 3) {
-        if (!(solvedc(4) && solvede(7))) {
-            out = 12;
-        }
-        else if (!(solvedc(5) && solvede(6))) {
-            out = 13;
-        }
-        else if (!(solvedc(6) && solvede(5))) {
-            out = 14;
-        }
-        else {
-            out = 15;
-        }
-    }
-    // L cross
-    else if (thisCrossSolved(cube, 4) && numPairsSolved(cube, 4) >= 3) {
-        if (!(solvedc(0) && solvede(0))) {
-            out = 16;
-        }
-        else if (!(solvedc(3) && solvede(2))) {
-            out = 17;
-        }
-        else if (!(solvedc(4) && solvede(8))) {
-            out = 18;
-        }
-        else {
-            out = 19;
-        }
-    }
-    // B cross
-    else {
-        if (!(solvedc(0) && solvede(3))) {
-            out = 20;
-        }
-        else if (!(solvedc(8) && solvede(11))) {
-            out = 21;
-        }
-        else if (!(solvedc(6) && solvede(9))) {
-            out = 22;
-        }
-        else {
-            out = 23;
-        }
-    }
-
-    return out;
-}
-
 function numPairsSolved(cube, n = 6) {
-    var temp, out=0;
+    var temp, out = 0;
     
     if (thisCrossSolved(cube, 0)) {
-        if (solvedc(cube,0) && solvede(cube,4)){
+        if (solvedc(cube, 0) && solvede(cube, 4)) {
             out++;
         }
-        if (solvedc(cube,1) && solvede(cube,5)){
+        if (solvedc(cube, 1) && solvede(cube, 5)) {
             out++;
         }
-        if (solvedc(cube,2) && solvede(cube,6)){
+        if (solvedc(cube, 2) && solvede(cube, 6)) {
             out++;
         }
-        if (solvedc(cube,3) && solvede(cube,7)){
+        if (solvedc(cube, 3) && solvede(cube, 7)) {
             out++;
         }
     }
-    if (n > 1 && thisCrossSolved(cube,1)) {
-        if(solvedc(cube,1)&&solvede(cube,0)){
+    if (n > 0 && thisCrossSolved(cube, 1)) {
+        if (solvedc(cube, 1) && solvede(cube, 0)) {
             temp++;
         }
-        if(solvedc(cube,2)&&solvede(cube,2)){
+        if (solvedc(cube, 2) && solvede(cube, 2)) {
             temp++;
         }
-        if(solvedc(cube,5)&&solvede(cube,8)){
+        if (solvedc(cube, 5) && solvede(cube, 8)) {
             temp++;
         }
-        if(solvedc(cube,6)&&solvede(cube,10)){
+        if (solvedc(cube, 6) && solvede(cube, 10)) {
             temp++;
         }
-        if (temp>out){
+        if (temp > out) {
+            out = temp;
+        }
+    }
+    if (n > 1 && thisCrossSolved(cube, 2)) {
+        if (solvedc(cube, 2) && solvede(cube, 1)) {
+            temp++;
+        }
+        if (solvedc(cube, 3) && solvede(cube, 3)) {
+            temp++;
+        }
+        if (solvedc(cube, 4) && solvede(cube, 11)) {
+            temp++;
+        }
+        if (solvedc(cube, 5) && solvede(cube, 9)) {
+            temp++;
+        }
+        if (temp > out) {
             out=temp;
         }
     }
-    if (n>2&&thisCrossSolved(cube,2)) {
-        if(solvedc(cube,2)&&solvede(cube,1)){
-            temp++;
-        }
-        if(solvedc(cube,3)&&solvede(cube,3)){
-            temp++;
-        }
-        if(solvedc(cube,4)&&solvede(cube,11)){
-            temp++;
-        }
-        if(solvedc(cube,5)&&solvede(cube,9)){
-            temp++;
-        }
-        if (temp>out){
-            out=temp;
-        }
-    }
-    if (n>3&&thisCrossSolved(cube,3)) {
-        if(solvedc(cube,4)&&solvede(cube,7)){
+    if (n > 2 && thisCrossSolved(cube, 3)) {
+        if (solvedc(cube, 4) &&solvede(cube,7)){
             temp++;
         }
         if(solvedc(cube,5)&&solvede(cube,6)){
@@ -1174,7 +1317,7 @@ function numPairsSolved(cube, n = 6) {
             out=temp;
         }
     }
-    if (n>4&&thisCrossSolved(cube,4)) {
+    if (n>3&&thisCrossSolved(cube,4)) {
         if(solvedc(cube,0)&&solvede(cube,0)){
             temp++;
         }
@@ -1191,7 +1334,7 @@ function numPairsSolved(cube, n = 6) {
             out=temp;
         }
     }
-    if (n>5&&thisCrossSolved(cube,5)) {
+    if (n>4&&thisCrossSolved(cube,5)) {
         if(solvedc(cube,0)&&solvede(cube,3)){
             temp++;
         }
