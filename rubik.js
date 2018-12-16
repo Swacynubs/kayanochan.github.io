@@ -982,6 +982,7 @@ function solveF2LByMove(cube, n, maxlen, lastmove = 0, currlen = 1) {
         if (currlen == 1 || lastmove % 6 != i % 6) {
             solution = [];
             temp = copyCube3(cube);
+            console.log(temp.permc);
             doSolMove3(temp, i);
             solution.push(i);
             if (currlen == maxlen && numPairsSolved(temp) >= n) {
@@ -1001,7 +1002,7 @@ function solveF2LByMove(cube, n, maxlen, lastmove = 0, currlen = 1) {
         }
     }
     
-    if(!done){
+    if (!done) {
         solution=[];
         solution.push(-1);
     }
