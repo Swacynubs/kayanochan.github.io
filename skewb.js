@@ -11,7 +11,7 @@ function resetSkewb() {
     "use strict";
     var x = document.getElementsByClassName("stickerskewb");
     for (var i = 0; i < x.length; i++) {
-        x[i].style.fill = colorpyra[Math.floor(i/5)];
+        x[i].style.fill = color[Math.floor(i/5)];
     }
 }
 

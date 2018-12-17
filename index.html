@@ -22,6 +22,10 @@
                 stroke: black;
                 stroke-width: 1;
             }
+            polygon.stickerskewb {
+                stroke: black;
+                stroke-width: 1;
+            }
         </style>
         <script>
         color = ['white','red','green','yellow','orange','blue'];
@@ -277,8 +281,41 @@
     
     <svg id="cubeskewb" width="600" height="450" style="display:none">
         
-        <polygon class="stickerskewb" points="225 1 299 75 225 149 151 75" style="fill:white" onclick="setColorSkewb(0)"/>
-        <polygon class="stickerskewb" points="151 1 224 1 151 74" style="fill:white" onclick="setColorSkewb(1)"/>
+        <polygon class="stickerskewb" points="225 1 299 75 225 149 151 75" onclick="setColorSkewb(0)"/>
+        <polygon class="stickerskewb" points="151 1 224 1 151 74" onclick="setColorSkewb(1)"/>
+        <polygon class="stickerskewb" points="226 1 299 1 299 74" onclick="setColorSkewb(2)"/>
+        <polygon class="stickerskewb" points="299 76 299 149 226 149" onclick="setColorSkewb(3)"/>
+        <polygon class="stickerskewb" points="151 76 151 149 224 149" onclick="setColorSkewb(4)"/>
+        
+        <polygon class="stickerskewb" points="375 151 449 225 375 299 301 225" onclick="setColorSkewb(5)"/>
+        <polygon class="stickerskewb" points="301 151 374 151 301 224" onclick="setColorSkewb(6)"/>
+        <polygon class="stickerskewb" points="376 151 449 151 449 224" onclick="setColorSkewb(7)"/>
+        <polygon class="stickerskewb" points="449 226 449 299 376 299" onclick="setColorSkewb(8)"/>
+        <polygon class="stickerskewb" points="301 226 301 299 374 299" onclick="setColorSkewb(9)"/>
+        
+        <polygon class="stickerskewb" points="225 151 299 225 225 299 151 225" onclick="setColorSkewb(6)"/>
+        <polygon class="stickerskewb" points="151 151 224 151 151 224" onclick="setColorSkewb(7)"/>
+        <polygon class="stickerskewb" points="226 151 299 151 299 224" onclick="setColorSkewb(8)"/>
+        <polygon class="stickerskewb" points="299 226 299 299 226 299" onclick="setColorSkewb(9)"/>
+        <polygon class="stickerskewb" points="151 226 151 299 224 299" onclick="setColorSkewb(10)"/>
+        
+        <polygon class="stickerskewb" points="225 301 299 375 225 449 151 375" onclick="setColorSkewb(11)"/>
+        <polygon class="stickerskewb" points="151 301 224 301 151 374" onclick="setColorSkewb(12)"/>
+        <polygon class="stickerskewb" points="226 301 299 301 299 374" onclick="setColorSkewb(13)"/>
+        <polygon class="stickerskewb" points="299 376 299 449 226 449" onclick="setColorSkewb(14)"/>
+        <polygon class="stickerskewb" points="151 376 151 449 224 449" onclick="setColorSkewb(15)"/>
+        
+        <polygon class="stickerskewb" points="75 151 149 225 75 299 1 225" onclick="setColorSkewb(16)"/>
+        <polygon class="stickerskewb" points="1 151 74 151 1 224" onclick="setColorSkewb(17)"/>
+        <polygon class="stickerskewb" points="76 151 149 151 149 224" onclick="setColorSkewb(18)"/>
+        <polygon class="stickerskewb" points="149 226 149 299 76 299" onclick="setColorSkewb(19)"/>
+        <polygon class="stickerskewb" points="1 226 1 299 74 299" onclick="setColorSkewb(20)"/>
+        
+        <polygon class="stickerskewb" points="525 151 599 225 525 299 451 225" onclick="setColorSkewb(21)"/>
+        <polygon class="stickerskewb" points="451 151 524 151 451 224" onclick="setColorSkewb(22)"/>
+        <polygon class="stickerskewb" points="526 151 599 151 599 224" onclick="setColorSkewb(23)"/>
+        <polygon class="stickerskewb" points="599 226 599 299 526 299" onclick="setColorSkewb(24)"/>
+        <polygon class="stickerskewb" points="451 226 451 299 524 299" onclick="setColorSkewb(25)"/>
         
         Sorry, your browser does not support inline SVG.
     
