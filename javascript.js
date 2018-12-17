@@ -35,6 +35,10 @@ function cube2On() {
     for (var i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
+    x = document.getElementById("colorpicker");
+    x.style.display = "inline";
+    x = document.getElementById("colorpickerpyra");
+    x.style.display = "none";
 }
 
 function cube3On() {
@@ -58,6 +62,10 @@ function cube3On() {
     for (var i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
+    x = document.getElementById("colorpicker");
+    x.style.display = "inline";
+    x = document.getElementById("colorpickerpyra");
+    x.style.display = "none";
 }
         
 function cubepyraOn() {
@@ -80,4 +88,8 @@ function cubepyraOn() {
     for (var i = 0; i < x.length; i++) {
         x[i].style.display = "inline";
     }
+    x = document.getElementById("colorpicker");
+    x.style.display = "none";
+    x = document.getElementById("colorpickerpyra");
+    x.style.display = "inline";
 }

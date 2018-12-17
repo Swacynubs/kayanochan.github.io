@@ -2,7 +2,7 @@ function setColorPyra(pos) {
     "use strict";
     if (isHold) {
         var x = document.getElementsByClassName("stickerpyra");
-        x[pos] = color[hold];
+        x[pos].style.fill = colorpyra[hold];
     }
     console.log(pos);
 }
