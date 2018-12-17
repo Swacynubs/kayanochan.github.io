@@ -544,7 +544,7 @@ function solveByMove2(cube, maxlen, lastmove, currlen) {
             }
             else if (currlen < maxlen) {
                 partial=solveByMove2(tempcube, maxlen, i, currlen+1);
-                if(trySolution2(tempcube, partial)) {
+                if(partial[0] != -1) {
                     for(var j=0;j<partial.length;j++){
                         solution.push(partial[j]);
                     }
@@ -564,7 +564,7 @@ function solveByMove2(cube, maxlen, lastmove, currlen) {
 
 function completeSolve2() {
     var solution, cube = copyCube2();
-    if (!isValid2(cube)) {
+    if (!isValid2()) {
         solution = "Invalid state";
     }
     else if (isSolved2(cube)) {
@@ -573,7 +573,7 @@ function completeSolve2() {
     else {
         for (var i = 1; i < 12; i++) {
             console.log(i);
-            solution = solveByMove2(copyCube2(),i,0,1);
+            solution = solveByMove2(cube, i, 0, 1);
             if (solution[0]!=-1) {
                 break;
             }
@@ -584,14 +584,6 @@ function completeSolve2() {
         solution = translate2(solution);
     }
     return solution;
-}
-
-function trySolution2(cube, solution) {
-    for (var i = 0; i < solution.length; i++) {
-        doRUF2(cube, solution[i]);
-    }
-    
-    return isSolved2(cube);
 }
 
 function translate2(solution) {

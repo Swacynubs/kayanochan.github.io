@@ -951,30 +951,6 @@ function thisCrossSolved(cube, n) {
     return out;
 }
 
-// Based off orientation of cube in pair 0 
-function findOrient(cube, cross, e) {
-    var out = cube.oriente[e];
-    switch (cross) {
-        case 0:
-        case 1:
-        case 3:
-        case 4:
-            out++;
-            break;
-        case 2:
-            if (!e || e == 10) {
-                out++;
-            }
-            break;
-        case 5:
-            if (e == 2 || e == 8) {
-                out++;
-            }    
-    }
-    console.log(out);
-    return out % 2;
-}
-
 // Solves up to 3 pairs (4th is slow)
 function solveF2LByMove(cube, n, maxlen, lastmove = 0, currlen = 1) {
     var solution, partial = [], temp, done = false;

@@ -31,6 +31,10 @@ function cube2On() {
     for (var i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
+    x = document.getElementsByClassName("movepyra");
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
 }
 
 function cube3On() {
@@ -50,6 +54,10 @@ function cube3On() {
     for (var i = 0; i < x.length; i++) {
         x[i].style.display = "inline";
     }
+    x = document.getElementsByClassName("movepyra");
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
 }
         
 function cubepyraOn() {
@@ -67,5 +75,9 @@ function cubepyraOn() {
     x = document.getElementsByClassName("move3");
     for (var i = 0; i < x.length; i++) {
         x[i].style.display = "none";
+    }
+    x = document.getElementsByClassName("movepyra");
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "inline";
     }
 }

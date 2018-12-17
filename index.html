@@ -25,6 +25,7 @@
         </style>
         <script>
         color = ['white','red','green','yellow','orange','blue'];
+        colorpyra = ['green','red','yellow','blue'];
         hold = 0;
         isHold = false;
         </script>
@@ -41,6 +42,7 @@
     <script src="javascript.js"></script>
     <script src="pocket.js"></script>
     <script src="rubik.js"></script>
+    <script src="pyra.js"></script>
     
     <button onclick="cube2On()">2x2</button>
     <button onclick="cube3On()">3x3</button>
@@ -229,45 +231,45 @@
     
     <svg id="cubepyra" width="600" height="450" style="display:none">
         
-        <polygon class="stickerpyra" points="150 1 126 42 174 42" style="fill:green"/>
-        <polygon class="stickerpyra" points="125 44 101 85 149 85" style="fill:green"/>
-        <polygon class="stickerpyra" points="126 44 174 44 150 85" style="fill:green"/>
-        <polygon class="stickerpyra" points="175 44 151 85 198 85" style="fill:green"/>
-        <polygon class="stickerpyra" points="100 87 76 128 124 128" style="fill:green"/>
-        <polygon class="stickerpyra" points="101 87 151 87 125 128" style="fill:green"/>
-        <polygon class="stickerpyra" points="150 87 126 128 174 128" style="fill:green"/>
-        <polygon class="stickerpyra" points="151 87 199 87 175 128" style="fill:green"/>
-        <polygon class="stickerpyra" points="200 87 176 128 224 128" style="fill:green"/>
+        <polygon class="stickerpyra" points="150 1 126 42 174 42" style="fill:green" onclick="setColorPyra(0)"/>
+        <polygon class="stickerpyra" points="125 44 101 85 149 85" style="fill:green" onclick="setColorPyra(1)"/>
+        <polygon class="stickerpyra" points="126 44 174 44 150 85" style="fill:green" onclick="setColorPyra(2)"/>
+        <polygon class="stickerpyra" points="175 44 151 85 198 85" style="fill:green" onclick="setColorPyra(3)"/>
+        <polygon class="stickerpyra" points="100 87 76 128 124 128" style="fill:green" onclick="setColorPyra(4)"/>
+        <polygon class="stickerpyra" points="101 87 151 87 125 128" style="fill:green" onclick="setColorPyra(5)"/>
+        <polygon class="stickerpyra" points="150 87 126 128 174 128" style="fill:green" onclick="setColorPyra(6)"/>
+        <polygon class="stickerpyra" points="151 87 199 87 175 128" style="fill:green" onclick="setColorPyra(7)"/>
+        <polygon class="stickerpyra" points="200 87 176 128 224 128" style="fill:green" onclick="setColorPyra(8)"/>
         
-        <polygon class="stickerpyra" points="75 130 51 171 99 171" style="fill:red"/>
-        <polygon class="stickerpyra" points="50 173 26 214 74 214" style="fill:red"/>
-        <polygon class="stickerpyra" points="51 173 99 173 75 214" style="fill:red"/>
-        <polygon class="stickerpyra" points="100 173 76 214 123 214" style="fill:red"/>
-        <polygon class="stickerpyra" points="25 216 1 257 49 257" style="fill:red"/>
-        <polygon class="stickerpyra" points="26 216 76 216 50 257" style="fill:red"/>
-        <polygon class="stickerpyra" points="75 216 51 257 99 257" style="fill:red"/>
-        <polygon class="stickerpyra" points="76 216 124 216 100 257" style="fill:red"/>
-        <polygon class="stickerpyra" points="125 216 101 257 149 257" style="fill:red"/>
+        <polygon class="stickerpyra" points="75 130 51 171 99 171" style="fill:red" onclick="setColorPyra(9)"/>
+        <polygon class="stickerpyra" points="50 173 26 214 74 214" style="fill:red" onclick="setColorPyra(10)"/>
+        <polygon class="stickerpyra" points="51 173 99 173 75 214" style="fill:red" onclick="setColorPyra(11)"/>
+        <polygon class="stickerpyra" points="100 173 76 214 123 214" style="fill:red" onclick="setColorPyra(12)"/>
+        <polygon class="stickerpyra" points="25 216 1 257 49 257" style="fill:red" onclick="setColorPyra(13)"/>
+        <polygon class="stickerpyra" points="26 216 76 216 50 257" style="fill:red" onclick="setColorPyra(14)"/>
+        <polygon class="stickerpyra" points="75 216 51 257 99 257" style="fill:red" onclick="setColorPyra(15)"/>
+        <polygon class="stickerpyra" points="76 216 124 216 100 257" style="fill:red" onclick="setColorPyra(16)"/>
+        <polygon class="stickerpyra" points="125 216 101 257 149 257" style="fill:red" onclick="setColorPyra(17)"/>
         
-        <polygon class="stickerpyra" points="150 257 126 216 174 216" style="fill:yellow"/>
-        <polygon class="stickerpyra" points="125 214 101 173 149 173" style="fill:yellow"/>
-        <polygon class="stickerpyra" points="126 214 174 214 150 173" style="fill:yellow"/>
-        <polygon class="stickerpyra" points="175 214 151 173 198 173" style="fill:yellow"/>
-        <polygon class="stickerpyra" points="100 171 76 130 124 130" style="fill:yellow"/>
-        <polygon class="stickerpyra" points="101 171 151 171 125 130" style="fill:yellow"/>
-        <polygon class="stickerpyra" points="150 171 126 130 174 130" style="fill:yellow"/>
-        <polygon class="stickerpyra" points="151 171 199 171 175 130" style="fill:yellow"/>
-        <polygon class="stickerpyra" points="200 171 176 130 224 130" style="fill:yellow"/>
+        <polygon class="stickerpyra" points="150 257 126 216 174 216" style="fill:yellow" onclick="setColorPyra(18)"/>
+        <polygon class="stickerpyra" points="125 214 101 173 149 173" style="fill:yellow" onclick="setColorPyra(19)"/>
+        <polygon class="stickerpyra" points="126 214 174 214 150 173" style="fill:yellow" onclick="setColorPyra(20)"/>
+        <polygon class="stickerpyra" points="175 214 151 173 198 173" style="fill:yellow" onclick="setColorPyra(21)"/>
+        <polygon class="stickerpyra" points="100 171 76 130 124 130" style="fill:yellow" onclick="setColorPyra(22)"/>
+        <polygon class="stickerpyra" points="101 171 151 171 125 130" style="fill:yellow" onclick="setColorPyra(23)"/>
+        <polygon class="stickerpyra" points="150 171 126 130 174 130" style="fill:yellow" onclick="setColorPyra(24)"/>
+        <polygon class="stickerpyra" points="151 171 199 171 175 130" style="fill:yellow" onclick="setColorPyra(25)"/>
+        <polygon class="stickerpyra" points="200 171 176 130 224 130" style="fill:yellow" onclick="setColorPyra(26)"/>
         
-        <polygon class="stickerpyra" points="225 130 201 171 249 171" style="fill:blue"/>
-        <polygon class="stickerpyra" points="200 173 176 214 224 214" style="fill:blue"/>
-        <polygon class="stickerpyra" points="201 173 249 173 225 214" style="fill:blue"/>
-        <polygon class="stickerpyra" points="250 173 226 214 273 214" style="fill:blue"/>
-        <polygon class="stickerpyra" points="175 216 151 257 199 257" style="fill:blue"/>
-        <polygon class="stickerpyra" points="176 216 226 216 200 257" style="fill:blue"/>
-        <polygon class="stickerpyra" points="225 216 201 257 249 257" style="fill:blue"/>
-        <polygon class="stickerpyra" points="226 216 274 216 250 257" style="fill:blue"/>
-        <polygon class="stickerpyra" points="275 216 251 257 299 257" style="fill:blue"/>
+        <polygon class="stickerpyra" points="225 130 201 171 249 171" style="fill:blue" onclick="setColorPyra(27)"/>
+        <polygon class="stickerpyra" points="200 173 176 214 224 214" style="fill:blue" onclick="setColorPyra(28)"/>
+        <polygon class="stickerpyra" points="201 173 249 173 225 214" style="fill:blue" onclick="setColorPyra(29)"/>
+        <polygon class="stickerpyra" points="250 173 226 214 273 214" style="fill:blue" onclick="setColorPyra(30)"/>
+        <polygon class="stickerpyra" points="175 216 151 257 199 257" style="fill:blue" onclick="setColorPyra(31)"/>
+        <polygon class="stickerpyra" points="176 216 226 216 200 257" style="fill:blue" onclick="setColorPyra(32)"/>
+        <polygon class="stickerpyra" points="225 216 201 257 249 257" style="fill:blue" onclick="setColorPyra(33)"/>
+        <polygon class="stickerpyra" points="226 216 274 216 250 257" style="fill:blue" onclick="setColorPyra(34)"/>
+        <polygon class="stickerpyra" points="275 216 251 257 299 257" style="fill:blue" onclick="setColorPyra(35)"/>
         
         Sorry, your browser does not support inline SVG.
     
@@ -348,9 +350,34 @@
     <button class="move3" onclick="doMove3(17)">B2</button>
     <div></div>
     <button class="move3" onclick="scramble3()">Scramble</button>
-    <button class="move3" onclick="document.getElementById('solution3').innerHTML=translate3(completeSolve())">Solve</button>
+    <button class="move3">Solve</button>
     <button class="move3" onclick="reset3()">Reset</button>
     <p id="solution3" class="move3"></p>
+    
+    <button class="movepyra" onclick="doMovePyra(0)" style="display:none">U</button>
+    <button class="movepyra" onclick="doMovePyra(1)" style="display:none">R</button>
+    <button class="movepyra" onclick="doMovePyra(2)" style="display:none">L</button>
+    <button class="movepyra" onclick="doMovePyra(3)" style="display:none">B</button>
+    <div></div>
+    <button class="movepyra" onclick="doMovePyra(4)" style="display:none">U'</button>
+    <button class="movepyra" onclick="doMovePyra(5)" style="display:none">R'</button>
+    <button class="movepyra" onclick="doMovePyra(6)" style="display:none">L'</button>
+    <button class="movepyra" onclick="doMovePyra(7)" style="display:none">B'</button>
+    <div></div>
+    <button class="movepyra" onclick="doMovePyra(8)" style="display:none">u</button>
+    <button class="movepyra" onclick="doMovePyra(9)" style="display:none">r</button>
+    <button class="movepyra" onclick="doMovePyra(10)" style="display:none">l</button>
+    <button class="movepyra" onclick="doMovePyra(11)" style="display:none">b</button>
+    <div></div>
+    <button class="movepyra" onclick="doMovePyra(12)" style="display:none">u'</button>
+    <button class="movepyra" onclick="doMovePyra(13)" style="display:none">r'</button>
+    <button class="movepyra" onclick="doMovePyra(14)" style="display:none">l'</button>
+    <button class="movepyra" onclick="doMovePyra(15)" style="display:none">b'</button>
+    <div></div>
+    <button class="movepyra" onclick="scramblePyra()" style="display:none">Scramble</button>
+    <button class="movepyra" onclick="document.getElementById('solutionpyra').innerHTML=completeSolvePyra()" style="display:none">Solve</button>
+    <button class="movepyra" onclick="resetPyra()" style="display:none">Reset</button>
+    <p id="solutionpyra" class="movepyra"></p>
     
 </body>
 </html>
