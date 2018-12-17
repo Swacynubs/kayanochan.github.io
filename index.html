@@ -36,17 +36,17 @@
     <h1 style="text-align:center;">Rubik's Cube Solver</h1>
 
     <hr>
-
-    <p style="text-align:center;" title="Coming soon..."><i>Coming soon... </i></p>
     
     <script src="javascript.js"></script>
     <script src="pocket.js"></script>
     <script src="rubik.js"></script>
     <script src="pyra.js"></script>
+    <script src="skewb.js"></script>
     
     <button onclick="cube2On()">2x2</button>
     <button onclick="cube3On()">3x3</button>
     <button onclick="cubepyraOn()">Pyraminx</button>
+    <button onclick="cubeskewbOn()">Skewb</button>
 
     <hr>
     
@@ -275,6 +275,15 @@
     
     </svg>
     
+    <svg id="cubeskewb" width="600" height="450" style="display:none">
+        
+        <polygon class="stickerskewb" points="225 1 299 75 225 149 151 75" style="fill:white" onclick="setColorSkewb(0)"/>
+        <polygon class="stickerskewb" points="151 1 224 1 151 74" style="fill:white" onclick="setColorSkewb(1)"/>
+        
+        Sorry, your browser does not support inline SVG.
+    
+    </svg>
+    
     <hr>
     
     <svg id="colorpicker" width="300" height="50">
@@ -394,6 +403,21 @@
     <button class="movepyra" onclick="document.getElementById('solutionpyra').innerHTML=completeSolvePyra()" style="display:none">Solve</button>
     <button class="movepyra" onclick="resetPyra()" style="display:none">Reset</button>
     <p id="solutionpyra" class="movepyra"></p>
+    
+    <button class="moveskewb" onclick="doMoveSkewb(0)" style="display:none">U</button>
+    <button class="moveskewb" onclick="doMoveSkewb(1)" style="display:none">R</button>
+    <button class="moveskewb" onclick="doMoveSkewb(2)" style="display:none">L</button>
+    <button class="moveskewb" onclick="doMoveSkewb(3)" style="display:none">B</button>
+    <div></div>
+    <button class="moveskewb" onclick="doMoveSkewb(4)" style="display:none">U'</button>
+    <button class="moveskewb" onclick="doMoveSkewb(5)" style="display:none">R'</button>
+    <button class="moveskewb" onclick="doMoveSkewb(6)" style="display:none">L'</button>
+    <button class="moveskewb" onclick="doMoveSkewb(7)" style="display:none">B'</button>
+    <div></div>
+    <button class="moveskewb" onclick="scrambleSkewb()" style="display:none">Scramble</button>
+    <button class="moveskewb" onclick="document.getElementById('solutionskewb').innerHTML=completeSolveSkewb()" style="display:none">Solve</button>
+    <button class="moveskewb" onclick="resetSkewb()" style="display:none">Reset</button>
+    <p id="solutionskewb" class="moveskewb"></p>
     
 </body>
 </html>

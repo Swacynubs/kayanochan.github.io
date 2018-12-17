@@ -18,10 +18,12 @@ function cube2On() {
     "use strict";
     var x = document.getElementById("cube2");
     x.style.display = "inline";
+    reset2();
     x = document.getElementById("cube3");
     x.style.display = "none";
-    reset3();
     x = document.getElementById("cubepyra");
+    x.style.display = "none";
+    x = document.getElementById("cubeskewb");
     x.style.display = "none";
     x = document.getElementsByClassName("move2");
     for (var i = 0; i < x.length; i++) {
@@ -32,6 +34,10 @@ function cube2On() {
         x[i].style.display = "none";
     }
     x = document.getElementsByClassName("movepyra");
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x = document.getElementsByClassName("moveskewb");
     for (var i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
@@ -47,8 +53,10 @@ function cube3On() {
     x.style.display = "inline";
     x = document.getElementById("cube2");
     x.style.display = "none";
-    reset2();
+    reset3();
     x = document.getElementById("cubepyra");
+    x.style.display = "none";
+    x = document.getElementById("cubeskewb");
     x.style.display = "none";
     x = document.getElementsByClassName("move2");
     for (var i = 0; i < x.length; i++) {
@@ -59,6 +67,10 @@ function cube3On() {
         x[i].style.display = "inline";
     }
     x = document.getElementsByClassName("movepyra");
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x = document.getElementsByClassName("moveskewb");
     for (var i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
@@ -72,9 +84,12 @@ function cubepyraOn() {
     "use strict";
     var x = document.getElementById("cubepyra");
     x.style.display = "inline";
+    resetPyra();
     x = document.getElementById("cube2");
     x.style.display = "none";
     x = document.getElementById("cube3");
+    x.style.display = "none";
+    x = document.getElementById("cubeskewb");
     x.style.display = "none";
     x = document.getElementsByClassName("move2");
     for (var i = 0; i < x.length; i++) {
@@ -88,8 +103,45 @@ function cubepyraOn() {
     for (var i = 0; i < x.length; i++) {
         x[i].style.display = "inline";
     }
+    x = document.getElementsByClassName("moveskewb");
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
     x = document.getElementById("colorpicker");
     x.style.display = "none";
     x = document.getElementById("colorpickerpyra");
     x.style.display = "inline";
+}
+
+function cubeskewbOn() {
+    "use strict";
+    x = document.getElementById("cubeskewb");
+    x.style.display = "inline";
+    resetSkewb();
+    var x = document.getElementById("cube3");
+    x.style.display = "none";
+    x = document.getElementById("cube2");
+    x.style.display = "none";
+    x = document.getElementById("cubepyra");
+    x.style.display = "none";
+    x = document.getElementsByClassName("move2");
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x = document.getElementsByClassName("move3");
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x = document.getElementsByClassName("movepyra");
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x = document.getElementsByClassName("moveskewb");
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "inline";
+    }
+    x = document.getElementById("colorpicker");
+    x.style.display = "inline";
+    x = document.getElementById("colorpickerpyra");
+    x.style.display = "none";
 }
