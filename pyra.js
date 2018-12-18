@@ -4,7 +4,6 @@ function setColorPyra(pos) {
         var x = document.getElementsByClassName("stickerpyra");
         x[pos].style.fill = colorpyra[hold];
     }
-    console.log(pos);
 }
 
 function resetPyra() {
@@ -12,6 +11,14 @@ function resetPyra() {
     var x = document.getElementsByClassName("stickerpyra");
     for (var i = 0; i < x.length; i++) {
         x[i].style.fill = colorpyra[Math.floor(i/9)];
+    }
+}
+
+function doSolutionPyra() {
+    "use strict"
+    if (solNum < solLen) {
+        doMovePyra(sol[solNum]);
+        solNum++;
     }
 }
 
@@ -288,16 +295,16 @@ function solveTips(cube, maxlen, lastmove = 0, currlen = 1) {
 }
 
 function completeSolvePyra() {
+    "use strict"
     var solution, cube = copyCubePyra(), temp;
     if (!isValidPyra()) {
-        solution = "Invalid state";
+        document.getElementById('solutionpyra').innerHTML = "Invalid state";
     }
     else if (isSolvedPyra(cube)) {
-        solution = "Already solved";
+        document.getElementById('solutionpyra').innerHTML = "Already solved";
     }
     else {
         for (var i = 1; i < 12; i++) {
-            console.log(i);
             solution = solveByMovePyra(cube, i);
             if (solution[0] != -1) {
                 for (var j = 0; j < solution.length; j++) {
@@ -315,9 +322,15 @@ function completeSolvePyra() {
                 break;
             }
         }
-        solution = translatePyra(solution);
+        var out = "", str = translatePyra(solution);
+        sol = solution;
+        for (var i = 0; i < str.length; i++) {
+            out = out + str[i] + ' ';
+        }
+        document.getElementById('solutionpyra').innerHTML = out;
+        solLen = sol.length;
+        solNum = 0;
     }
-    console.log(solution);
     return solution;
 }
 

@@ -14,6 +14,14 @@ function reset2() {
     }
 }
 
+function doSolution2() {
+    "use strict"
+    if (solNum < solLen) {
+        doMove2(Math.floor(sol[solNum]/3)*6+sol[solNum]%3);
+        solNum++;
+    }
+}
+
 function doMove2(n) {
     "use strict";
     var x = document.getElementsByClassName("sticker2"),
@@ -565,23 +573,26 @@ function solveByMove2(cube, maxlen, lastmove, currlen) {
 function completeSolve2() {
     var solution, cube = copyCube2();
     if (!isValid2()) {
-        solution = "Invalid state";
+        document.getElementById('solution2').innerHTML = "Invalid state";
     }
     else if (isSolved2(cube)) {
-        solution = "Already solved";
+        document.getElementById('solution2').innerHTML = "Already solved";
     }
     else {
         for (var i = 1; i < 12; i++) {
-            console.log(i);
             solution = solveByMove2(cube, i, 0, 1);
             if (solution[0]!=-1) {
                 break;
             }
         }
-        for(var i=0;i<solution.length;i++){
-            console.log(solution[i]);
+        var out = "", str = translate2(solution);
+        sol = solution;
+        for (var i = 0; i < str.length; i++) {
+            out = out + str[i] + ' ';
         }
-        solution = translate2(solution);
+        document.getElementById('solution2').innerHTML = out;
+        solLen = sol.length;
+        solNum = 0;
     }
     return solution;
 }

@@ -778,7 +778,7 @@ function completeSolve3() {
 
 function orientCube(cube) {
     var solution = [], temp;
-    for (var i = 1; i < 9; i++) {
+    for (var i = 1; i < 15; i++) {
         temp = [];
         temp = orientCubeByMove(cube, i);
         if (temp[0] != -1) {
@@ -836,7 +836,7 @@ function oriented(cube) {
 
 function solveCross(cube) {
     var solution = [], temp;
-    for (var i = 1; i < 10; i++) {
+    for (var i = 1; i < 15; i++) {
         temp = [];
         temp = solveCrossByMove(cube, i);
         if (temp[0] != -1) {
@@ -910,7 +910,7 @@ function thisCrossSolved(cube, n) {
 
 function solveF2L(cube, n) {
     var solution = [], temp;
-    for (var i = 1; i < 11; i++) {
+    for (var i = 1; i < 15; i++) {
         temp = [];
         temp = solveF2LByMove(cube, n, i);
         if (temp[0] != -1) {

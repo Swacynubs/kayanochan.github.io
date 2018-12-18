@@ -236,7 +236,7 @@
     Sorry, your browser does not support inline SVG.
     </svg>
     
-    <svg id="cubepyra" width="600" height="450" style="display:none">
+    <svg id="cubepyra" width="300" height="300" style="display:none">
         
         <polygon class="stickerpyra" points="150 1 126 42 174 42" style="fill:green" onclick="setColorPyra(0)"/>
         <polygon class="stickerpyra" points="125 44 101 85 149 85" style="fill:green" onclick="setColorPyra(1)"/>
@@ -296,29 +296,29 @@
         <polygon class="stickerskewb" points="449 226 449 299 376 299" onclick="setColorSkewb(8)"/>
         <polygon class="stickerskewb" points="301 226 301 299 374 299" onclick="setColorSkewb(9)"/>
         
-        <polygon class="stickerskewb" points="225 151 299 225 225 299 151 225" onclick="setColorSkewb(6)"/>
-        <polygon class="stickerskewb" points="151 151 224 151 151 224" onclick="setColorSkewb(7)"/>
-        <polygon class="stickerskewb" points="226 151 299 151 299 224" onclick="setColorSkewb(8)"/>
-        <polygon class="stickerskewb" points="299 226 299 299 226 299" onclick="setColorSkewb(9)"/>
-        <polygon class="stickerskewb" points="151 226 151 299 224 299" onclick="setColorSkewb(10)"/>
+        <polygon class="stickerskewb" points="225 151 299 225 225 299 151 225" onclick="setColorSkewb(10)"/>
+        <polygon class="stickerskewb" points="151 151 224 151 151 224" onclick="setColorSkewb(11)"/>
+        <polygon class="stickerskewb" points="226 151 299 151 299 224" onclick="setColorSkewb(12)"/>
+        <polygon class="stickerskewb" points="299 226 299 299 226 299" onclick="setColorSkewb(13)"/>
+        <polygon class="stickerskewb" points="151 226 151 299 224 299" onclick="setColorSkewb(14)"/>
         
-        <polygon class="stickerskewb" points="225 301 299 375 225 449 151 375" onclick="setColorSkewb(11)"/>
-        <polygon class="stickerskewb" points="151 301 224 301 151 374" onclick="setColorSkewb(12)"/>
-        <polygon class="stickerskewb" points="226 301 299 301 299 374" onclick="setColorSkewb(13)"/>
-        <polygon class="stickerskewb" points="299 376 299 449 226 449" onclick="setColorSkewb(14)"/>
-        <polygon class="stickerskewb" points="151 376 151 449 224 449" onclick="setColorSkewb(15)"/>
+        <polygon class="stickerskewb" points="225 301 299 375 225 449 151 375" onclick="setColorSkewb(15)"/>
+        <polygon class="stickerskewb" points="151 301 224 301 151 374" onclick="setColorSkewb(16)"/>
+        <polygon class="stickerskewb" points="226 301 299 301 299 374" onclick="setColorSkewb(17)"/>
+        <polygon class="stickerskewb" points="299 376 299 449 226 449" onclick="setColorSkewb(18)"/>
+        <polygon class="stickerskewb" points="151 376 151 449 224 449" onclick="setColorSkewb(19)"/>
         
-        <polygon class="stickerskewb" points="75 151 149 225 75 299 1 225" onclick="setColorSkewb(16)"/>
-        <polygon class="stickerskewb" points="1 151 74 151 1 224" onclick="setColorSkewb(17)"/>
-        <polygon class="stickerskewb" points="76 151 149 151 149 224" onclick="setColorSkewb(18)"/>
-        <polygon class="stickerskewb" points="149 226 149 299 76 299" onclick="setColorSkewb(19)"/>
-        <polygon class="stickerskewb" points="1 226 1 299 74 299" onclick="setColorSkewb(20)"/>
+        <polygon class="stickerskewb" points="75 151 149 225 75 299 1 225" onclick="setColorSkewb(20)"/>
+        <polygon class="stickerskewb" points="1 151 74 151 1 224" onclick="setColorSkewb(21)"/>
+        <polygon class="stickerskewb" points="76 151 149 151 149 224" onclick="setColorSkewb(22)"/>
+        <polygon class="stickerskewb" points="149 226 149 299 76 299" onclick="setColorSkewb(23)"/>
+        <polygon class="stickerskewb" points="1 226 1 299 74 299" onclick="setColorSkewb(24)"/>
         
-        <polygon class="stickerskewb" points="525 151 599 225 525 299 451 225" onclick="setColorSkewb(21)"/>
-        <polygon class="stickerskewb" points="451 151 524 151 451 224" onclick="setColorSkewb(22)"/>
-        <polygon class="stickerskewb" points="526 151 599 151 599 224" onclick="setColorSkewb(23)"/>
-        <polygon class="stickerskewb" points="599 226 599 299 526 299" onclick="setColorSkewb(24)"/>
-        <polygon class="stickerskewb" points="451 226 451 299 524 299" onclick="setColorSkewb(25)"/>
+        <polygon class="stickerskewb" points="525 151 599 225 525 299 451 225" onclick="setColorSkewb(25)"/>
+        <polygon class="stickerskewb" points="451 151 524 151 451 224" onclick="setColorSkewb(26)"/>
+        <polygon class="stickerskewb" points="526 151 599 151 599 224" onclick="setColorSkewb(27)"/>
+        <polygon class="stickerskewb" points="599 226 599 299 526 299" onclick="setColorSkewb(28)"/>
+        <polygon class="stickerskewb" points="451 226 451 299 524 299" onclick="setColorSkewb(29)"/>
         
         Sorry, your browser does not support inline SVG.
     
@@ -389,7 +389,8 @@
     <button class="move2" onclick="doMove2(17)" style="display:none">B2</button>
     <div></div>
     <button class="move2" onclick="scramble2()" style="display:none">Scramble</button>
-    <button class="move2" onclick="document.getElementById('solution2').innerHTML=completeSolve2()" style="display:none">Solve</button>
+    <button class="move2" onclick="completeSolve2()" style="display:none">Solve</button>
+    <button class="move2" onclick="doSolution2()" style="display:none">Execute Solution</button>
     <button class="move2" onclick="reset2()" style="display:none">Reset</button>
     <p id="solution2" class="move2"></p>
     
@@ -453,7 +454,8 @@
     <button class="movepyra" onclick="doMovePyra(15)" style="display:none">b'</button>
     <div></div>
     <button class="movepyra" onclick="scramblePyra()" style="display:none">Scramble</button>
-    <button class="movepyra" onclick="document.getElementById('solutionpyra').innerHTML=completeSolvePyra()" style="display:none">Solve</button>
+    <button class="movepyra" onclick="completeSolvePyra()" style="display:none">Solve</button>
+    <button class="movepyra" onclick="doSolutionPyra()" style="display:none">Execute Solution</button>
     <button class="movepyra" onclick="resetPyra()" style="display:none">Reset</button>
     <p id="solutionpyra" class="movepyra"></p>
     
@@ -468,7 +470,8 @@
     <button class="moveskewb" onclick="doMoveSkewb(7)" style="display:none">B'</button>
     <div></div>
     <button class="moveskewb" onclick="scrambleSkewb()" style="display:none">Scramble</button>
-    <button class="moveskewb" onclick="document.getElementById('solutionskewb').innerHTML=completeSolveSkewb()" style="display:none">Solve</button>
+    <button class="moveskewb" onclick="completeSolveSkewb()" style="display:none">Solve</button>
+    <button class="moveskewb" onclick="doSolutionSkewb()" style="display:none">Execute Solution</button>
     <button class="moveskewb" onclick="resetSkewb()" style="display:none">Reset</button>
     <p id="solutionskewb" class="moveskewb"></p>
     
