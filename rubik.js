@@ -15,6 +15,14 @@ function reset3() {
     }
 }
 
+function doSolution3() {
+    "use strict"
+    if (solNum < solLen) {
+        doMove3(sol[solNum]);
+        solNum++;
+    }
+}
+
 function doMove3(n) {
     "use strict";
     var x = document.getElementsByClassName("sticker3"),
@@ -796,43 +804,16 @@ function solvede(cube, e) {
     return (cube.perme[e] == e && !cube.oriente[e]);
 }
 
-// Slot 0 is least corner, others are counter-clockwise determined
-function RUFRotate(m, cross = 0, slot = 0) {
-    m = Math.floor(m / 3) * 6 + m % 3;
-    switch (cross) {
-        case 0:
-            m = doY3(doX3(m, 2), 3);
-            break;
-        case 1:
-            m = doX3(doY3(m), 3);
-            break;
-        case 2:
-            m = doX3(m, 3);
-            break;
-        case 3:
-            m = doY3(m, 3);
-            break;
-        case 4:
-            m = doZ3(doX3(m, 2), 3);
-            break;
-        default:
-            m = doX3(doY3(m, 2));
-    }
-    m = doY3(m, slot);
-}
-
 function completeSolve3() {
     var solution = [], temp, cube = toCubie();
     if (!oriented(cube)) {
         solution = orientCube(cube);
-        console.log(translate3(solution));
     }
     if (!crossSolved(cube)) {
         temp = solveCross(cube);
         for (var i = 0; i < temp.length; i++) {
             solution.push(temp[i]);
         }
-        console.log(translate3(solution));
     }
     for (var i = 1; i < 5; i++) {
         if (numPairsSolved(cube) < i) {
@@ -840,10 +821,38 @@ function completeSolve3() {
             for (var j = 0; j < temp.length; j++) {
                 solution.push(temp[j]);
             }
-            console.log(translate3(solution));
         }
     }
-    console.log(solution);
+    if (!OLLDone(cube)) {
+        temp = solveOLL(cube);
+        for (var i = 0; i < temp.length; i++) {
+            solution.push(temp[i]);
+        }
+    }
+    console.log(translate3(solution));
+    for (var i = 0; i < solution.length; i++) {
+        doMove3(solution[i]);
+    }
+    if (!CPLLDone(cube)) {
+        console.log('CPLL');
+        console.log(getCPLL(cube));
+        temp = solveCPLL(cube);
+        for (var i = 0; i < temp.length; i++) {
+            solution.push(temp[i]);
+        }
+        console.log(translate3(solution));
+    }
+    if (!EPLLDone(cube)) {
+        console.log('EPLL');
+        console.log(getEPLL(cube));
+        temp = solveEPLL(cube);
+        for (var i = 0; i < temp.length; i++) {
+            solution.push(temp[i]);
+        }
+    }
+    console.log(translate3(solution));
+    solution = simplify(solution);
+    console.log(translate3(solution));
     return solution;
 }
 
@@ -1045,6 +1054,344 @@ function numPairsSolved(cube) {
         }
     }
     return out;
+}
+
+function solveOLL(cube) {
+    var oll = getOLL(cube), solution;
+    switch (oll) {
+        case 1:
+            solution = [14,13,2,16,8,13,2,16,2];
+            break;
+        case 2:
+            solution = [2,1,8,4,2,7,8,10];
+            break;
+        case 3:
+            solution = [7,8,10,2,1,8,4,2];
+            break;
+        case 4:
+            solution = [10,0,1,6,4,0,7];
+            break;
+        case 5:
+            solution = [13,9,1,12,7,3,1,12,1];
+            break;
+        case 6:
+            solution = [7,2,1,11,7,8,1,5];
+            break;
+        case 7:
+            solution = [7,8,1,11,7,2,1,5];
+            break;
+        case 8:
+            solution = [7,12,1,0,7,0,1];
+            break;
+        case 9:
+            solution = [2,1,11,7,8,1,5,7];
+            break;
+        case 10:
+            solution = [1,12,7,6,1,6,7];
+            break;
+        case 11:
+            solution = [1,11,7,2,1,5,7,8];
+            break;
+        case 12:
+            solution = [7,6,1,6,7,12,1];
+            break;
+        case 13:
+            solution = [4,12,10,6,4,6,10];
+            break;
+        case 14:
+            solution = [2,12,14,6,14,6,14,12,2];
+            break;
+        case 15:
+            solution = [14,9,2,12,8,3,2,12,2];
+            break;
+        case 16:
+            solution = [1,0,7,0,1,6,7,0,1,12,7];
+            break;
+        case 17:
+            solution = [4,12,16,6,16,6,16,12,4];
+            break;
+        case 18:
+            solution = [13,3,7,12,1,9,7,12,7];
+            break;
+        case 19:
+            solution = [8,4,2,7,8,10,2,1];
+            break;
+        case 20:
+            solution = [4,6,7,0,10,6,1];
+            break;
+        case 21:
+            solution = [7,8,4,2,1,8,10,2];
+            break;
+        case 22:
+            solution = [1,12,13,6,13,6,13,12,1];
+            break;
+        case 23:
+            solution = [1,12,7,6,1,0,7,6,1,6,7];
+            break;
+        case 24:
+            solution = [10,12,4,0,10,0,4];
+            break;
+        case 25:
+            solution = [5,12,17,6,17,6,17,12,5];
+            break;
+        default:
+            solution = [1,0,7,0,1,12,7];
+    }
+    for (var i = 0; i < solution.length; i++) {
+        doSolMove3(cube, solution[i]);
+    }
+    return solution;
+}
+
+function getOLL(cube) {
+    return (((3 - cube.orientc[cube.permc[0]]) % 3) + 3 * ((3 - cube.orientc[cube.permc[1]]) % 3) + 9 * ((3 - cube.orientc[cube.permc[2]]) % 3));
+}
+
+function OLLDone(cube) {
+    var out = true;
+    for (var i = 0; i < 3; i++) {
+        if (cube.orientc[i]) {
+            out = false;
+            break;
+        }
+    }
+    return out;
+}
+
+function solveCPLL(cube) {
+    var cpll = getCPLL(cube), solution;
+    switch (cpll) {
+        case 19:
+            solution = [6];
+            break;
+        case 14:
+            solution = [12];
+            break;
+        case 57:
+            solution = [0];
+            break;
+            
+        case 9:
+            solution = [7,2,7,17,1,8,7,17,13];
+            break;
+        case 39:
+            solution = [6,7,2,7,17,1,8,7,17,13];
+            break;
+        case 28:
+            solution = [12,7,2,7,17,1,8,7,17,13];
+            break;
+        case 50:
+            solution = [0,7,2,7,17,1,8,7,17,13];
+            break;
+        
+        case 35:
+            solution = [7,2,7,17,1,8,7,17,13,12];
+            break;
+        case 13:
+            solution = [6,7,2,7,17,1,8,7,17,13,12];
+            break;
+        case 54:
+            solution = [12,7,2,7,17,1,8,7,17,13,12];
+            break;
+        case 24:
+            solution = [0,7,2,7,17,1,8,7,17,13,12];
+            break;
+            
+        case 56:
+            solution = [13,14,7,11,1,14,7,5,7];
+            break;
+        case 33:
+            solution = [6,13,14,7,11,1,14,7,5,7];
+            break;
+        case 7:
+            solution = [12,13,14,7,11,1,14,7,5,7];
+            break;
+        case 30:
+            solution = [0,13,14,7,11,1,14,7,5,7];
+            break;
+            
+        case 18:
+            solution = [13,14,7,11,1,14,7,5,7,12];
+            break;
+        case 11:
+            solution = [6,13,14,7,11,1,14,7,5,7,12];
+            break;
+        case 45:
+            solution = [12,13,14,7,11,1,14,7,5,7,12];
+            break;
+        case 52:
+            solution = [0,13,14,7,11,1,14,7,5,7,12];
+            break;
+            
+        case 28:
+            solution = [1,11,1,14,7,5,1,14,13];
+            break;
+        case 50:
+            solution = [6,1,11,1,14,7,5,1,14,13];
+            break;
+        case 9:
+            solution = [12,1,11,1,14,7,5,1,14,13];
+            break;
+        case 39:
+            solution = [0,1,11,1,14,7,5,1,14,13];
+            break;
+            
+        case 54:
+            solution = [1,11,1,14,7,5,1,14,13,12];
+            break;
+        case 24:
+            solution = [6,1,11,1,14,7,5,1,14,13,12];
+            break;
+        case 35:
+            solution = [12,1,11,1,14,7,5,1,14,13,12];
+            break;
+        case 13:
+            solution = [0,1,11,1,14,7,5,1,14,13,12];
+            break;
+            
+        case 45:
+            solution = [16,17,10,8,4,17,10,2,10];
+            break;
+        case 52:
+            solution = [6,16,17,10,8,4,17,10,2,10];
+            break;
+        case 18:
+            solution = [12,16,17,10,8,4,17,10,2,10];
+            break;
+        case 11:
+            solution = [0,16,17,10,8,4,17,10,2,10];
+            break;
+            
+        case 7:
+            solution = [16,17,10,8,4,17,10,2,10,12];
+            break;
+        case 30:
+            solution = [6,16,17,10,8,4,17,10,2,10,12];
+            break;
+        case 56:
+            solution = [12,16,17,10,8,4,17,10,2,10,12];
+            break;
+        case 33:
+            solution = [0,16,17,10,8,4,17,10,2,10,12];
+            break;
+            
+        case 6:
+            solution = [13,6,13,6,13,0,2,0,8,13,2,6,8];
+            break;
+        case 27:
+            solution = [6,13,6,13,6,13,0,2,0,8,13,2,6,8];
+            break;
+        case 44:
+            solution = [12,13,6,13,6,13,0,2,0,8,13,2,6,8];
+            break;
+        case 49:
+            solution = [0,13,6,13,6,13,0,2,0,8,13,2,6,8];
+    }
+    for (var i = 0; i < solution.length; i++) {
+        doSolMove3(cube, solution[i]);
+    }
+    return solution;
+}
+            
+function getCPLL(cube) {
+    return cube.permc[0] + 4 * cube.permc[1] + 16 * cube.permc[2];
+}
+
+function CPLLDone(cube) {
+    var out = true;
+    for (var i = 0; i < 3; i++) {
+        if (cube.permc[i] != i) {
+            out = false;
+            break;
+        }
+    }
+    return out;
+}
+
+function solveEPLL(cube) {
+    var epll = getEPLL(cube), solution;
+    switch (epll) {
+        case 28:
+            solution = [14,6,7,4,14,1,10,6,14];
+            break;
+        case 56:
+            solution = [14,0,7,4,14,1,10,0,14];
+            break;
+        case 7:
+            solution = [16,6,8,5,16,2,11,6,16];
+            break;
+        case 54:
+            solution = [16,0,8,5,16,2,11,0,16];
+            break;
+        case 35:
+            solution = [17,6,1,10,17,7,4,6,17];
+            break;
+        case 45:
+            solution = [17,0,1,10,17,7,4,0,17];
+            break;
+        case 18:
+            solution = [13,6,2,11,13,8,5,6,13];
+            break;
+        case 9:
+            solution = [13,0,2,11,13,8,5,0,13];
+            break;
+        case 49:
+            solution = [1,10,12,15,1,10,3,13,16,6,14,17];
+            break;
+        case 27:
+            solution = [1,10,12,15,1,10,9,13,16,0,14,17];
+            break;
+        case 14:
+            solution = [0,13,14,17,16,9,13,14,17,16];
+    }
+    return solution;
+}
+
+function getEPLL(cube) {
+    return cube.perme[0] + 4 * cube.perme[1] + 16 * cube.perme[2];
+}
+
+function EPLLDone(cube) {
+    var out = true;
+    for (var i = 0; i < 3; i++) {
+        if (cube.perme[i] != i) {
+            out = false;
+            break;
+        }
+    }
+    return out;
+}
+
+function simplify(solution) {
+    var change = false;
+    do {
+        change = false;
+        for (var i = 1; i < solution.length; i++) {
+            if (solution[i] % 6 == solution[i-1] % 6) {
+                if (solution[i] > 11 && solution[i-1] < 11) {
+                    solution[i-1] = (1-Math.floor(solution[i-1]/6)) * 6 + solution[i-1] % 6;
+                    solution.splice(i,1);
+                }
+                else if (solution[i-1] > 11 && solution[i] < 11) {
+                    solution[i-1] = (1-Math.floor(solution[i]/6)) * 6 + solution[i] % 6;
+                    solution.splice(i,1);
+                }
+                else if (solution[i] > 11 && solution[i-1] > 11) {
+                    solution.splice(i - 1,2);
+                }
+                else if (Math.floor(solution[i]/6) == Math.floor(solution[i - 1] / 6)) {
+                    solution[i-1] = 12 + solution[i] % 6;
+                    solution.splice(i,1);
+                }
+                else {
+                    solution.splice(i - 1,2);
+                }
+                change = true;
+                break;
+            }
+        }
+    } while (change);
+    return solution;
 }
 
 function translate3(solution) {

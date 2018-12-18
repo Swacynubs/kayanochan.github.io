@@ -32,6 +32,9 @@
         colorpyra = ['green','red','yellow','blue'];
         hold = 0;
         isHold = false;
+        sol = [];
+        solNum = 0;
+        solLen = 0;
         </script>
     </head>
 <body>
@@ -412,9 +415,18 @@
     <button class="move3" onclick="doMove3(17)">B2</button>
     <div></div>
     <button class="move3" onclick="scramble3()">Scramble</button>
-    <button class="move3" onclick="document.getElementById('solution3').innerHTML=completeSolve3()">Solve</button>
+    <button class="move3" onclick="RubikSolve()">Solve</button>
+    <button class="move3" onclick="doSolution3()">Execute Solution</button>
     <button class="move3" onclick="reset3()">Reset</button>
     <p id="solution3" class="move3"></p>
+    <script>
+    function RubikSolve() {
+        sol = completeSolve3();
+        document.getElementById('solution3').innerHTML = translate3(sol);
+        solLen = sol.length;
+        solNum = 0;
+    }
+    </script>
     
     <button class="movepyra" onclick="doMovePyra(0)" style="display:none">U</button>
     <button class="movepyra" onclick="doMovePyra(1)" style="display:none">R</button>
