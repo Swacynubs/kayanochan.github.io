@@ -4,7 +4,6 @@ function setColor3(pos) {
         var x = document.getElementsByClassName("sticker3");
         x[pos].style.fill = color[hold];
     }
-    console.log(pos);
 }
 
 function reset3() {
@@ -726,74 +725,6 @@ function isValid3() {
     "use strict"
 }
 
-function doX3(m, n = 1) {
-    
-    var out = m;
-    for (var i=0;i<n;i++) {
-        switch (out % 6) {
-            case 0:
-                out +=5;
-                break;
-            case 2:
-                out -= 2;
-                break;
-            case 3:
-                out -= 1;
-                break;
-            case 5:
-                out -= 2;
-        }
-    }
-    
-    return out;
-    
-}
-
-function doY3(m, n = 1) {
-    
-    var out = m;
-    for (var i=0;i<n;i++) {
-        switch (out % 6) {
-            case 1:
-                out += 1;
-                break;
-            case 2:
-                out += 2;
-                break;
-            case 4:
-                out += 5;
-                break;
-            case 5:
-                out -= 4;
-        }
-    }
-    
-    return out;
-    
-}
-
-function doZ3(m, n = 1) {
-    
-    var out = m;
-    for (var i = 0; i < n; i++) {
-        switch (out % 6) {
-            case 0:
-                out += 1;
-                break;
-            case 1:
-                out += 2;
-                break;
-            case 3:
-                out += 1;
-            case 4:
-                out -= 4;
-        }
-    }
-    
-    return out;
-    
-}
-
 function solvedc(cube, c) {
     "use strict";
     return (cube.permc[c] == c && !cube.orientc[c]);
@@ -829,30 +760,19 @@ function completeSolve3() {
             solution.push(temp[i]);
         }
     }
-    console.log(translate3(solution));
-    for (var i = 0; i < solution.length; i++) {
-        doMove3(solution[i]);
-    }
     if (!CPLLDone(cube)) {
-        console.log('CPLL');
-        console.log(getCPLL(cube));
         temp = solveCPLL(cube);
         for (var i = 0; i < temp.length; i++) {
             solution.push(temp[i]);
         }
-        console.log(translate3(solution));
     }
     if (!EPLLDone(cube)) {
-        console.log('EPLL');
-        console.log(getEPLL(cube));
         temp = solveEPLL(cube);
         for (var i = 0; i < temp.length; i++) {
             solution.push(temp[i]);
         }
     }
-    console.log(translate3(solution));
     solution = simplify(solution);
-    console.log(translate3(solution));
     return solution;
 }
 
@@ -991,7 +911,6 @@ function thisCrossSolved(cube, n) {
 function solveF2L(cube, n) {
     var solution = [], temp;
     for (var i = 1; i < 11; i++) {
-        console.log(i);
         temp = [];
         temp = solveF2LByMove(cube, n, i);
         if (temp[0] != -1) {
@@ -1002,7 +921,6 @@ function solveF2L(cube, n) {
         doSolMove3(cube, temp[i]);
         solution.push(temp[i]);
     }
-    console.log(solution);
     return solution;
 }
 

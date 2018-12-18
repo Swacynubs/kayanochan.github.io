@@ -422,7 +422,11 @@
     <script>
     function RubikSolve() {
         sol = completeSolve3();
-        document.getElementById('solution3').innerHTML = translate3(sol);
+        var out = "", str = translate3(sol);
+        for (var i = 0; i < str.length; i++) {
+            out = out + str[i] + ' ';
+        }
+        document.getElementById('solution3').innerHTML = out;
         solLen = sol.length;
         solNum = 0;
     }
