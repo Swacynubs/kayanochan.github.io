@@ -17,7 +17,7 @@ function reset3() {
 }
 
 function doSolution3() {
-    "use strict"
+    "use strict";
     if (solNum < solLen) {
         doMove3(sol[solNum]);
         solNum++;
@@ -454,7 +454,7 @@ function scramble3() {
 }
 
 function toCubie() {
-    "use strict"
+    "use strict";
     var x = document.getElementsByClassName("sticker3"), cube = [], out = {permc : [], orientc : [], perme : [], oriente : []}, temp;
     for (var i = 0; i < 54; i++) {
         cube.push(x[i].style.fill);
