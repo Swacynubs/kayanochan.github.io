@@ -158,7 +158,7 @@ function isSolvedSkewb(state) {
 }
 
 function isValidSkewb() {
-    "use strict"
+    "use strict";
     var x = document.getElementsByClassName("stickerskewb"),
         cube = [];
     for (var i = 0; i < 30; i++) {
@@ -225,7 +225,7 @@ function solveByMoveSkewb(cube, maxlen, lastmove = 0, currlen = 1) {
 }
 
 function completeSolveSkewb() {
-    "use strict"
+    "use strict";
     var solution, cube = copyCubeSkewb(), temp;
     if (!isValidSkewb()) {
         document.getElementById('solutionskewb').innerHTML = "Invalid state";
