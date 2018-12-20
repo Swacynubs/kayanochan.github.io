@@ -724,10 +724,6 @@ function contains(s, c) {
     return out;
 }
 
-function isValid3() {
-    "use strict"
-}
-
 function solvedc(cube, c) {
     "use strict";
     return (cube.permc[c] == c && !cube.orientc[c]);
@@ -738,44 +734,118 @@ function solvede(cube, e) {
     return (cube.perme[e] == e && !cube.oriente[e]);
 }
 
-function completeSolve3() {
-    var solution = [], temp, cube = toCubie();
-    if (!oriented(cube)) {
-        solution = orientCube(cube);
-    }
-    if (!crossSolved(cube)) {
-        temp = solveCross(cube);
-        for (var i = 0; i < temp.length; i++) {
-            solution.push(temp[i]);
+function isSolvedRubik(cube) {
+    var out = true;
+    for (var i = 0; i < 8; i++) {
+        if (!solvedc(cube, i)) {
+            out = false;
+            break;
         }
     }
-    for (var i = 1; i < 5; i++) {
-        if (numPairsSolved(cube) < i) {
-            temp = solveF2L(cube, i);
-            for (var j = 0; j < temp.length; j++) {
-                solution.push(temp[j]);
+    if (out) {
+        for (var i = 0; i < 12; i++) {
+            if (!solvede(cube, i)) {
+                out = false;
+                break;
             }
         }
     }
-    if (!OLLDone(cube)) {
-        temp = solveOLL(cube);
-        for (var i = 0; i < temp.length; i++) {
-            solution.push(temp[i]);
+    return out;
+}
+
+function completeSolve3() {
+    var solution = [], temp, cube = toCubie(),
+        tempo = 0, tempp = [], valid = true;
+    for (var i = 0; i < 20; i++) {
+        tempp.push(0);
+    }
+    for (var i = 0; i < 8; i++) {
+        tempo += cube.orientc[i];
+        tempp[cube.permc]++;
+        if (cube.orientc[i] == undefined ||
+            cube.permc[i] == undefined ||
+            tempp[cube.permc] > 1) {
+            valid = false;
+            break;
         }
     }
-    if (!CPLLDone(cube)) {
-        temp = solveCPLL(cube);
-        for (var i = 0; i < temp.length; i++) {
-            solution.push(temp[i]);
+    if (tempo % 3) {
+        valid = false;
+    }
+    tempo = 0;
+    for (var i = 0; i < 12; i++) {
+        tempo += cube.oriente[i];
+        tempp[cube.perme+8]++;
+        if (cube.oriente[i] == undefined ||
+            cube.perme[i] == undefined ||
+            tempp[cube.perme+8] > 1) {
+            valid = false;
+            break;
         }
     }
-    if (!EPLLDone(cube)) {
-        temp = solveEPLL(cube);
-        for (var i = 0; i < temp.length; i++) {
-            solution.push(temp[i]);
+    if (tempo % 2) {
+        valid = false;
+    }
+    if (!valid) {
+        document.getElementById('solution3').innerHTML = "Invalid state";
+    }
+    else if (isSolvedRubik(cube)) {
+        document.getElementById('solution3').innerHTML = "Already solved";
+    }
+    else {
+        if (!oriented(cube)) {
+            solution = orientCube(cube);
+        }
+        if (!crossSolved(cube)) {
+            temp = solveCross(cube);
+            for (var i = 0; i < temp.length; i++) {
+                solution.push(temp[i]);
+            }
+        }
+        for (var i = 1; i < 5; i++) {
+            if (numPairsSolved(cube) < i) {
+                temp = solveF2L(cube, i);
+                for (var j = 0; j < temp.length; j++) {
+                    solution.push(temp[j]);
+                }
+            }
+        }
+        if (!OLLDone(cube)) {
+            temp = solveOLL(cube);
+            for (var i = 0; i < temp.length; i++) {
+                solution.push(temp[i]);
+            }
+        }
+        if (!CPLLDone(cube)) {
+            temp = solveCPLL(cube);
+            for (var i = 0; i < temp.length; i++) {
+                solution.push(temp[i]);
+            }
+        }
+        if (!EPLLDone(cube)) {
+            temp = solveEPLL(cube);
+            if (temp == undefined) {
+                valid = false;
+                document.getElementById('solution3').innerHTML = "Invalid state";
+            }
+            else {
+                for (var i = 0; i < temp.length; i++) {
+                    solution.push(temp[i]);
+                }
+            }
+        }
+        if (valid) {
+            solution = simplify(solution);
+            var out = "", str = translate3(solution);
+            sol = solution;
+            for (var i = 0; i < str.length; i++) {
+                out = out + str[i] + ' ';
+            }
+            document.getElementById('solution3').innerHTML = out;
+            solLen = sol.length;
+            solNum = 0;
         }
     }
-    solution = simplify(solution);
     return solution;
 }
 

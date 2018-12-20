@@ -242,14 +242,19 @@ function completeSolveSkewb() {
                 break;
             }
         }
-        var out = "", str = translateSkewb(solution);
-        sol = solution;
-        for (var i = 0; i < str.length; i++) {
-            out = out + str[i] + ' ';
+        if (temp[0] == -1) {
+            document.getElementById('solutionskewb').innerHTML = "Invalid state";
         }
-        document.getElementById('solutionskewb').innerHTML = out;
-        solLen = sol.length;
-        solNum = 0;
+        else {
+            var out = "", str = translateSkewb(solution);
+            sol = solution;
+            for (var i = 0; i < str.length; i++) {
+                out = out + str[i] + ' ';
+            }
+            document.getElementById('solutionskewb').innerHTML = out;
+            solLen = sol.length;
+            solNum = 0;
+        }
     }
     return solution;
 }
