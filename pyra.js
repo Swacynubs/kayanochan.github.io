@@ -299,7 +299,7 @@ function solveTips(cube, maxlen, lastmove = 0, currlen = 1) {
 
 function completeSolvePyra() {
     "use strict";
-    var solution, cube = copyCubePyra(), temp;
+    var solution = [], cube = copyCubePyra(), temp;
     if (!isValidPyra()) {
         document.getElementById('solutionpyra').innerHTML = "Invalid state";
     }
