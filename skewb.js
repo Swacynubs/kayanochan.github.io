@@ -17,7 +17,7 @@ function resetSkewb() {
 }
 
 function doSolutionSkewb() {
-    "use strict"
+    "use strict";
     if (solNum < solLen) {
         doMoveSkewb(sol[solNum]);
         solNum++;
