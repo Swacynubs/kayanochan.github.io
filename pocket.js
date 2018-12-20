@@ -4,6 +4,7 @@ function setColor2(pos) {
         var x = document.getElementsByClassName("sticker2");
         x[pos].style.fill = color[hold];
     }
+    solNum = solLen;
 }
 
 function reset2() {
@@ -355,7 +356,6 @@ function doMove2(n) {
         x[23].style.fill = temp;
         break;
     }
-    solNum = solLen;
 }
 
 function scramble2() {
@@ -363,6 +363,7 @@ function scramble2() {
     for (var i = 0; i < 100; i++) {
         doMove2(Math.floor(Math.random()*18));
     }
+    solNum = solLen;
 }
 
 function isSolved2(state) {

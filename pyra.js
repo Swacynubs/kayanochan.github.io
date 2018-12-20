@@ -4,6 +4,7 @@ function setColorPyra(pos) {
         var x = document.getElementsByClassName("stickerpyra");
         x[pos].style.fill = colorpyra[hold];
     }
+    solNum = solLen;
 }
 
 function resetPyra() {
@@ -157,7 +158,6 @@ function doMovePyra(n) {
         doMovePyra(11);
         doMovePyra(11);
     }
-    solNum = solLen;
 }
 
 function scramblePyra() {
@@ -165,6 +165,7 @@ function scramblePyra() {
     for (var i = 0; i < 100; i++) {
         doMovePyra(Math.floor(Math.random()*16));
     }
+    solNum = solLen;
 }
 
 function noTipsSolved(state) {

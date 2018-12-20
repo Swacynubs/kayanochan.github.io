@@ -4,6 +4,7 @@ function setColorSkewb(pos) {
         var x = document.getElementsByClassName("stickerskewb");
         x[pos].style.fill = color[hold];
     }
+    solNum = solLen;
 }
 
 function resetSkewb() {
@@ -132,7 +133,6 @@ function doMoveSkewb(n) {
         doMoveSkewb(3);
         doMoveSkewb(3);
     }
-    solNum = solLen;
 }
 
 function scrambleSkewb() {
@@ -140,6 +140,7 @@ function scrambleSkewb() {
     for (var i = 0; i < 100; i++) {
         doMoveSkewb(Math.floor(Math.random()*8));
     }
+    solNum = solLen;
 }
 
 function isSolvedSkewb(state) {

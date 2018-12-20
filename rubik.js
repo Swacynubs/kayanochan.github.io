@@ -4,6 +4,7 @@ function setColor3(pos) {
         var x = document.getElementsByClassName("sticker3");
         x[pos].style.fill = color[hold];
     }
+    solNum = solLen;
 }
 
 function reset3() {
@@ -246,7 +247,6 @@ function doMove3(n) {
         doMove3(5);
         doMove3(5);
     }
-    solNum = solLen;
 }
 
 function doSolMove3(cube, m) {
@@ -450,6 +450,7 @@ function scramble3() {
     for (var i = 0; i < 100; i++) {
         doMove3(Math.floor(Math.random()*18));
     }
+    solNum = solLen;
 }
 
 function toCubie() {
