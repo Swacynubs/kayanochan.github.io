@@ -17,7 +17,7 @@ function reset2() {
 }
 
 function doSolution2() {
-    "use strict"
+    "use strict";
     if (solNum < solLen) {
         doMove2(Math.floor(sol[solNum]/3)*6+sol[solNum]%3);
         solNum++;
@@ -380,7 +380,7 @@ function isSolved2(state) {
 }
 
 function isValid2() {
-    "use strict"
+    "use strict";
     var x = document.getElementsByClassName("sticker2"),
         cube = [];
     for (var i = 0; i < 24; i++) {
@@ -422,7 +422,7 @@ function isValid2() {
 }
 
 function findOrient(cube, n) {
-    "use strict"
+    "use strict";
     var corner = [];
     switch (n) {
         case 0:
