@@ -17,7 +17,7 @@ function resetPyra() {
 }
 
 function doSolutionPyra() {
-    "use strict"
+    "use strict";
     if (solNum < solLen) {
         doMovePyra(sol[solNum]);
         solNum++;
@@ -197,7 +197,7 @@ function isSolvedPyra(state) {
 }
 
 function isValidPyra() {
-    "use strict"
+    "use strict";
     var x = document.getElementsByClassName("stickerpyra"),
         cube = [];
     for (var i = 0; i < 36; i++) {
@@ -298,7 +298,7 @@ function solveTips(cube, maxlen, lastmove = 0, currlen = 1) {
 }
 
 function completeSolvePyra() {
-    "use strict"
+    "use strict";
     var solution, cube = copyCubePyra(), temp;
     if (!isValidPyra()) {
         document.getElementById('solutionpyra').innerHTML = "Invalid state";
