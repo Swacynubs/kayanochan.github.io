@@ -12,6 +12,7 @@ function resetSkewb() {
     for (var i = 0; i < x.length; i++) {
         x[i].style.fill = color[Math.floor(i/5)];
     }
+    solNum = solLen;
 }
 
 function doSolutionSkewb() {
@@ -131,6 +132,7 @@ function doMoveSkewb(n) {
         doMoveSkewb(3);
         doMoveSkewb(3);
     }
+    solNum = solLen;
 }
 
 function scrambleSkewb() {

@@ -45,6 +45,7 @@ function cube2On() {
     x.style.display = "inline";
     x = document.getElementById("colorpickerpyra");
     x.style.display = "none";
+    solNum = solLen;
 }
 
 function cube3On() {
@@ -78,6 +79,7 @@ function cube3On() {
     x.style.display = "inline";
     x = document.getElementById("colorpickerpyra");
     x.style.display = "none";
+    solNum = solLen;
 }
         
 function cubepyraOn() {
@@ -111,6 +113,7 @@ function cubepyraOn() {
     x.style.display = "none";
     x = document.getElementById("colorpickerpyra");
     x.style.display = "inline";
+    solNum = solLen;
 }
 
 function cubeskewbOn() {
@@ -144,4 +147,5 @@ function cubeskewbOn() {
     x.style.display = "inline";
     x = document.getElementById("colorpickerpyra");
     x.style.display = "none";
+    solNum = solLen;
 }

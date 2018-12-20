@@ -12,6 +12,7 @@ function reset2() {
     for (var i = 0; i < x.length; i++) {
         x[i].style.fill = color[Math.floor(i/4)];
     }
+    solNum = solLen;
 }
 
 function doSolution2() {
@@ -354,6 +355,7 @@ function doMove2(n) {
         x[23].style.fill = temp;
         break;
     }
+    solNum = solLen;
 }
 
 function scramble2() {

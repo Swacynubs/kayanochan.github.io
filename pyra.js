@@ -12,6 +12,7 @@ function resetPyra() {
     for (var i = 0; i < x.length; i++) {
         x[i].style.fill = colorpyra[Math.floor(i/9)];
     }
+    solNum = solLen;
 }
 
 function doSolutionPyra() {
@@ -156,6 +157,7 @@ function doMovePyra(n) {
         doMovePyra(11);
         doMovePyra(11);
     }
+    solNum = solLen;
 }
 
 function scramblePyra() {

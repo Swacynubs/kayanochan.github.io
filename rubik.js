@@ -12,6 +12,7 @@ function reset3() {
     for (var i = 0; i < x.length; i++) {
         x[i].style.fill = color[Math.floor(i/9)];
     }
+    solNum = solLen;
 }
 
 function doSolution3() {
@@ -245,6 +246,7 @@ function doMove3(n) {
         doMove3(5);
         doMove3(5);
     }
+    solNum = solLen;
 }
 
 function doSolMove3(cube, m) {
