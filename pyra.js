@@ -307,13 +307,15 @@ function completeSolvePyra() {
         document.getElementById('solutionpyra').innerHTML = "Already solved";
     }
     else {
-        for (var i = 1; i < 12; i++) {
-            solution = solveByMovePyra(cube, i);
-            if (solution[0] != -1) {
-                for (var j = 0; j < solution.length; j++) {
-                    doSolMovePyra(cube, solution[j]);
+        if (!noTipsSolved(cube)) {
+            for (var i = 1; i < 12; i++) {
+                solution = solveByMovePyra(cube, i);
+                if (solution[0] != -1) {
+                    for (var j = 0; j < solution.length; j++) {
+                        doSolMovePyra(cube, solution[j]);
+                    }
+                    break;
                 }
-                break;
             }
         }
         for (var i = 1; i < 5; i++) {
