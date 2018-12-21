@@ -226,7 +226,7 @@ function solveByMoveSkewb(cube, maxlen, lastmove = 0, currlen = 1) {
 
 function completeSolveSkewb() {
     "use strict";
-    var solution, cube = copyCubeSkewb(), temp;
+    var solution, cube = copyCubeSkewb();
     if (!isValidSkewb()) {
         document.getElementById('solutionskewb').innerHTML = "Invalid state";
     }
@@ -243,7 +243,7 @@ function completeSolveSkewb() {
                 break;
             }
         }
-        if (temp[0] == -1) {
+        if (solution[0] == -1) {
             document.getElementById('solutionskewb').innerHTML = "Invalid state";
         }
         else {
